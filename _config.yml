@@ -1,0 +1,27 @@
+title: Envoy Mobile
+
+description: >
+  Client networking libraries based on the Envoy project
+baseurl: ""
+url: "envoy-mobile.github.io"
+
+latest: 0.1
+
+versions:
+- 0.1
+
+sass:
+  style: compressed
+
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - docs/
+  - vendor

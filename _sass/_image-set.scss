@@ -1,0 +1,16 @@
+// Mixin:           image-set
+// Description:     To support retina images
+//
+// Example usage:   @include image-set("image", "jpg");
+
+@mixin image-set($filename, $extension) {
+    background-image: url($filename + "." + $extension);
+    background-image: -webkit-image-set(
+        url($filename + "." + $extension) 1x,
+        url($filename + "@2x" + "." + $extension) 2x
+    );
+    background-image: image-set(
+        url($filename + "." + $extension) 1x,
+        url($filename + "@2x" + "." + $extension) 2x
+    );
+}

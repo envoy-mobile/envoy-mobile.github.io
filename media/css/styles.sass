@@ -1,0 +1,145 @@
+---
+---
+
+$font-stack:    'Source Sans Pro', Helvetica, sans-serif
+$primary-color: #333
+$padding-side:  38px
+$media_path:    "/media/"
+
+@import "image-set"
+
+html, body
+  height: 100%
+  padding: 0
+  margin: 0
+
+body
+  font: 100% $font-stack
+  color: $primary-color
+  padding: 0
+  margin: 0
+  display: flex
+  flex-direction: column
+
+header
+  padding: 22px $padding-side 200px $padding-side
+  background: #3D2250
+
+  section
+    color: white
+
+    h1
+      font-size: 30px
+      margin-top: 45px
+      margin-bottom: 0
+
+    p
+      font-size: 15px
+      font-weight: lighter
+      width: 230px
+      margin-bottom: 35px
+
+    .download
+      font-size: 13px
+      background: #FF2C75
+      color: white
+      text-decoration: none
+      padding: 7px 25px
+      border-radius: 17px
+      text-align: center
+
+      &:hover
+        background: #C8285F
+
+    h1 b
+      color: #D1479B
+
+  nav
+    color: white
+    ul
+      margin-top: -25px
+      list-style-type: none
+      position: fixed
+      right: $padding-side - 22px
+      li
+        display: inline
+        float: left
+
+    a
+      font-size: 16px
+      text-align: center
+      color: white
+      text-decoration: none
+      margin: 0 30px
+      &:hover
+        text-decoration: underline
+
+    #logo
+      width: 53px
+      height: 42px
+      background-size: contain
+      background-repeat: no-repeat
+      @include image-set($media_path + "img/logo", "png")
+
+  #phone
+    height: 341px
+    width: 229px
+    right: 155px
+    margin-top: -120px
+    position: fixed
+    @include image-set($media_path + "img/rocket", "png")
+
+  #back-clouds
+    margin-top: 60px
+    margin-left: -$padding-side
+    position: fixed
+    background-repeat: repeat-x
+    width: 100%
+    height: 136px
+
+    @include image-set($media_path + "img/back-cloud", "png")
+
+  #front-clouds
+    margin-left: -$padding-side
+    margin-top: 100px
+    position: fixed
+    background-repeat: repeat-x
+    width: 100%
+    height: 136px
+
+    @include image-set($media_path + "img/front-cloud", "png")
+
+section#body
+  padding: 0 $padding_side
+  background: white
+  flex-grow: 1
+  flex-flow: row wrap
+  justify-content: center
+  display: flex
+  padding-top: 45px
+  text-align: center
+
+  article
+    width: 150px
+    flex-grow: 1
+    margin: 0 10px
+
+  .icon
+    margin: 0 auto
+    width: 48px
+    height: 48px
+
+  #trend-icon
+    @include image-set($media_path + "img/trend-icon", "png")
+
+  #http3-icon
+    @include image-set($media_path + "img/http3-icon", "png")
+
+  #traffic-icon
+    @include image-set($media_path + "img/traffic-icon", "png")
+
+
+@media screen and (max-width: 640px)
+  #phone
+    left: 220px
+    right: auto
