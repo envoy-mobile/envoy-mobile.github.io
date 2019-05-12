@@ -33,6 +33,7 @@ header
 
   section
     color: white
+    width: 230px
 
     h1
       font-size: 30px
@@ -42,7 +43,6 @@ header
     p
       font-size: 15px
       font-weight: lighter
-      width: 230px
       margin-bottom: 35px
 
     .download
@@ -66,17 +66,21 @@ header
       margin-top: -25px
       list-style-type: none
       float: right
-      right: $padding-side - 22px
+      max-width: 280px
+      width: 100%
+      display: flex
+      flex-flow: row wrap
+      justify-content: center
+
       li
-        display: inline
-        float: left
+        flex-grow: 1
+        text-align: right
 
     a
       font-size: 16px
       text-align: center
       color: white
       text-decoration: none
-      margin: 0 30px
       &:hover
         text-decoration: underline
 
@@ -94,6 +98,7 @@ header
     margin-top: -140px
     padding-left: 90px
     background-repeat: no-repeat
+    position: relative
     @include image-set($media_path + "img/rocket", "png")
 
   #back-clouds
@@ -121,14 +126,14 @@ section#body
   flex-flow: row wrap
   justify-content: center
   display: flex
-  padding-top: 45px
+  padding-top: 15px
   text-align: center
   margin: 0 auto
 
   article
     width: 150px
     flex-grow: 1
-    margin: 0 10px
+    margin: 20px 10px
 
   .icon
     margin: 0 auto
@@ -148,3 +153,15 @@ section#body
 @media screen and (max-width: 580px)
   #phone
     padding-left: 0 !important
+    float: none !important
+    margin: 30px auto -200px auto !important
+
+  header
+    section
+      text-align: center
+      margin: 0 auto
+
+
+@media screen and (max-width: 340px)
+  #logo
+    opacity: 0
