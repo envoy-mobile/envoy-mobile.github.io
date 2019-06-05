@@ -34,9 +34,9 @@ header
   section
     border-radius: 4px
     background: #331D42
-    padding: 15px 20px
+    padding: 15px 20px 20px 20px
     color: white
-    width: 250px
+    max-width: 450px
     margin-top: 45px
 
     h1
@@ -48,18 +48,23 @@ header
 
     p
       padding: 0
-      font-size: 15px
+      font-size: 16px
       font-weight: lighter
-      margin-bottom: 35px
+      margin-bottom: 25px
+      letter-spacing: 0.5px
+
+    .cleaner
+      clear: both
 
     .download
-      font-size: 14px
+      float: right
+      font-size: 17px
       background: #CF469A
       display: block
-      width: 70px
+      width: 120px
       color: white
       text-decoration: none
-      padding: 7px 25px
+      padding: 8px 25px
       border-radius: 17px
       text-align: center
 
@@ -73,14 +78,14 @@ header
       width: 140px
       height: 140px
       position: absolute
-      margin-top: -115px
+      margin-top: -110px
       margin-left: -32px
       @include image-set($media_path + "img/preview-ribbon", "png")
 
   nav
     color: white
     ul
-      margin-top: -40px
+      margin-top: -45px
       list-style-type: none
       float: right
       max-width: 180px
@@ -106,8 +111,8 @@ header
         text-decoration: underline
 
     #logo
-      width: 53px
-      height: 42px
+      width: 73px
+      height: 58px
       background-size: contain
       background-repeat: no-repeat
       @include image-set($media_path + "img/logo", "png")
@@ -154,13 +159,12 @@ h3#preview-title
     color: white
 
 section#body
-  padding: 0 $padding_side
+  padding: 0
   background: white
   flex-grow: 1
   flex-flow: row wrap
   justify-content: center
   display: flex
-  padding-top: 15px
   text-align: center
   margin: 0 auto
 
