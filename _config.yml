@@ -19,9 +19,12 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
+include:
+  - _static
+  - _sources
+
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
-  - docs/
   - vendor
