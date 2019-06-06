@@ -36,8 +36,8 @@ header
     background: #331D42
     padding: 15px 20px 20px 20px
     color: white
-    max-width: 450px
-    margin-top: 45px
+    max-width: 490px
+    margin-top: 25px
 
     h1
       overflow: hidden
@@ -126,11 +126,10 @@ header
       @include image-set($media_path + "img/logo", "png")
 
   #phone
-    height: 341px
-    width: 229px
+    height: 407px
+    width: 230px
     float: right
-    margin-top: -140px
-    padding-left: 90px
+    margin-top: -206px
     background-repeat: no-repeat
     position: relative
     @include image-set($media_path + "img/rocket", "png")
@@ -177,7 +176,7 @@ section#body
   margin: 0 auto
 
   article
-    width: 150px
+    width: 220px
     flex-grow: 1
     margin: 20px 10px
 
@@ -196,12 +195,12 @@ section#body
     @include image-set($media_path + "img/traffic-icon", "png")
 
 
-@media screen and (max-width: 580px)
+@media screen and (max-width: 700px)
   #phone
-    padding-left: 0 !important
     float: none !important
     margin: 30px auto -200px auto !important
 
+@media screen and (max-width: 550px)
   header
     padding: 0
 
@@ -209,6 +208,8 @@ section#body
       margin-top: 20px
       margin: 0 auto
 
+  section#body article
+    width: 100% !important
 
 @media screen and (max-width: 340px)
   #logo
