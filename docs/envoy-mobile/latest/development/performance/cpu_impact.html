@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Performance Analysis &mdash; envoy-mobile 0.1.0-24ba3e documentation</title>
+  <title>Analysis of CPU impact &mdash; envoy-mobile 0.1.0-24ba3e documentation</title>
   
 
   
@@ -30,8 +30,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Analysis of Binary Size" href="binary_size.html" />
-    <link rel="prev" title="Development" href="../development.html" /> 
+    <link rel="prev" title="Analysis of battery impact" href="battery_impact.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -89,10 +88,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../start/start.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../development.html">Development</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Performance Analysis</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="performance.html">Performance Analysis</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="binary_size.html">Analysis of Binary Size</a></li>
 <li class="toctree-l3"><a class="reference internal" href="battery_impact.html">Analysis of battery impact</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpu_impact.html">Analysis of CPU impact</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Analysis of CPU impact</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#experimentation-method">Experimentation method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#analysis">Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#current-status">Current status</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -144,13 +149,15 @@
         
           <li><a href="../development.html">Development</a> &raquo;</li>
         
-      <li>Performance Analysis</li>
+          <li><a href="performance.html">Performance Analysis</a> &raquo;</li>
+        
+      <li>Analysis of CPU impact</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/development/performance/performance.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/development/performance/cpu_impact.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -163,37 +170,62 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="performance-analysis">
-<span id="dev-performance"></span><h1>Performance Analysis<a class="headerlink" href="#performance-analysis" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="binary_size.html">Analysis of Binary Size</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="binary_size.html#object-files-analysis">Object files analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="binary_size.html#open-issues-regarding-size">Open issues regarding size</a></li>
-<li class="toctree-l2"><a class="reference internal" href="binary_size.html#ci-integration">CI Integration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="battery_impact.html">Analysis of battery impact</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="battery_impact.html#experimentation-method">Experimentation method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="battery_impact.html#results">Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="battery_impact.html#analysis">Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="battery_impact.html#current-status">Current status</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="cpu_impact.html">Analysis of CPU impact</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpu_impact.html#experimentation-method">Experimentation method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpu_impact.html#results">Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpu_impact.html#analysis">Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpu_impact.html#current-status">Current status</a></li>
-</ul>
-</li>
+  <div class="section" id="analysis-of-cpu-impact">
+<h1>Analysis of CPU impact<a class="headerlink" href="#analysis-of-cpu-impact" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="experimentation-method">
+<h2>Experimentation method<a class="headerlink" href="#experimentation-method" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ios">
+<h3>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>TODO</li>
 </ul>
 </div>
-<p>Performance analysis can take several shapes in mobile applications. These docs
-describe the process (tools, analysis, measurements) that the Envoy Mobile team
-uses in their performance investigations. These docs serve as a common ground
-so that any person running analyses can use the same platform in order to
-effectively advance their results.</p>
+<div class="section" id="android">
+<h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
+<p>Getting the build:
+1. Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">android_dist</span> <span class="pre">--config=android</span></code>
+2. Control: <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/control:hello_control_kt</span></code>
+3. Envoy: <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/hello_world:hello_envoy_kt</span> <span class="pre">--fat_apk_cpu=armeabi-v7a</span></code></p>
+<p>Experiment steps:
+* TODO</p>
+</div>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>iOS<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>TODO</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>Android<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>TODO</li>
+</ul>
+</div>
+</div>
+<div class="section" id="analysis">
+<h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>iOS<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>TODO</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>Android<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>TODO</li>
+</ul>
+</div>
+<div class="section" id="open-issues-regarding-battery-usage">
+<h3>Open issues regarding battery usage<a class="headerlink" href="#open-issues-regarding-battery-usage" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="current-status">
+<h2>Current status<a class="headerlink" href="#current-status" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -204,10 +236,8 @@ effectively advance their results.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="binary_size.html" class="btn btn-neutral float-right" title="Analysis of Binary Size" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="../development.html" class="btn btn-neutral" title="Development" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="battery_impact.html" class="btn btn-neutral" title="Analysis of battery impact" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
