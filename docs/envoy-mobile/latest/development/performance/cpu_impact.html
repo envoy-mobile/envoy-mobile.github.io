@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of CPU impact &mdash; envoy-mobile 0.1.0-1e16e5 documentation</title>
+  <title>Analysis of CPU impact &mdash; envoy-mobile 0.1.0-e85e55 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.1.0-1e16e5
+                0.1.0-e85e55
               </div>
             
           
@@ -182,12 +182,21 @@
 </div>
 <div class="section" id="android">
 <h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
-<p>Getting the build:
-1. Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">android_dist</span> <span class="pre">--config=android</span></code>
-2. Control: <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/control:hello_control_kt</span></code>
-3. Envoy: <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/hello_world:hello_envoy_kt</span> <span class="pre">--fat_apk_cpu=armeabi-v7a</span></code></p>
-<p>Experiment steps:
-* TODO</p>
+<p>We’re currently using HttpURLConnection to communicate and send requests to Envoy every 200ms.
+Envoy in it’s current state is run as
+a process</p>
+<p>Getting the build:</p>
+<ol class="arabic simple">
+<li>Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">android_dist</span> <span class="pre">--config=android</span></code></li>
+<li>Control: <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/control:hello_control_kt</span></code></li>
+<li>Envoy: <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/hello_world:hello_envoy_kt</span> <span class="pre">--fat_apk_cpu=armeabi-v7a</span></code></li>
+</ol>
+<p>Experiment steps:</p>
+<ol class="arabic simple">
+<li>Run <code class="docutils literal notranslate"><span class="pre">adb</span> <span class="pre">shell</span> <span class="pre">top</span> <span class="pre">-H</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">envoy</span></code> to get the CPU usage of the application (the <code class="docutils literal notranslate"><span class="pre">-H</span></code> flag displays the running threads)</li>
+<li>Wait 10minutes to gather a sample set of data to analyze</li>
+<li>Take the average CPU% and MEM%</li>
+</ol>
 </div>
 </div>
 <div class="section" id="results">
@@ -200,8 +209,15 @@
 </div>
 <div class="section" id="id2">
 <h3>Android<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Envoy:</p>
 <ul class="simple">
-<li>TODO</li>
+<li>Avg CPU: 33.16075949%</li>
+<li>Avg MEM: 2.765822785%</li>
+</ul>
+<p>Control:</p>
+<ul class="simple">
+<li>Avg CPU: 28.81012658%</li>
+<li>Avg MEM: 2.169620253%</li>
 </ul>
 </div>
 </div>
@@ -215,9 +231,13 @@
 </div>
 <div class="section" id="id4">
 <h3>Android<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>TODO</li>
-</ul>
+<p>The results of this experiment is that there is minimal difference between Envoy and Control. By enabling trace logging
+within Envoy, we are able to observe the following:</p>
+<ol class="arabic simple">
+<li>Requests to s3 are being logged in Envoy</li>
+<li>DNS resolution does happen every 5 seconds</li>
+<li>Stats are flushed every 5 seconds</li>
+</ol>
 </div>
 <div class="section" id="open-issues-regarding-battery-usage">
 <h3>Open issues regarding battery usage<a class="headerlink" href="#open-issues-regarding-battery-usage" title="Permalink to this headline">¶</a></h3>

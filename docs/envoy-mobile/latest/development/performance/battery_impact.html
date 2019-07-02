@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of battery impact &mdash; envoy-mobile 0.1.0-1e16e5 documentation</title>
+  <title>Analysis of battery impact &mdash; envoy-mobile 0.1.0-e85e55 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.1.0-1e16e5
+                0.1.0-e85e55
               </div>
             
           
@@ -190,19 +190,27 @@ current hello world example applications. To see the actual applications we used
 </div>
 <div class="section" id="android">
 <h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
-<p>Getting the build:
-1. Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">android_dist</span> <span class="pre">--config=android</span></code>
-2. Control: <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/control:hello_control_kt</span></code>
-3. Envoy: <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/hello_world:hello_envoy_kt</span> <span class="pre">--fat_apk_cpu=armeabi-v7a</span></code></p>
-<p>Experiment steps:
-1. Set a phone’s display to sleep after 30minutes of inactivity
-2. Unplug the phone from any power source
-3. Open up the demo app
-4. Wait for the phone to sleep
-5. Look at the battery drain from an application like <a class="reference external" href="https://play.google.com/store/apps/details?id=com.digibites.accubattery&amp;hl=en_US">AccuBattery</a></p>
-<ul class="simple">
-<li>TODO: Instructions on how to use AccuBattery</li>
-</ul>
+<p>We’re currently using HttpURLConnection to communicate and send requests to Envoy. Envoy in it’s current state is run as
+a process</p>
+<p>Getting the build:</p>
+<ol class="arabic simple">
+<li>Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">android_dist</span> <span class="pre">--config=android</span></code></li>
+<li>Control: <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/control:hello_control_kt</span></code></li>
+<li>Envoy: <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/hello_world:hello_envoy_kt</span> <span class="pre">--fat_apk_cpu=armeabi-v7a</span></code></li>
+</ol>
+<p>Experiment steps:</p>
+<ol class="arabic simple">
+<li>Set a phone’s display to sleep after 30minutes of inactivity</li>
+<li>Unplug the phone from any power source</li>
+<li>Open up the demo app</li>
+<li>Wait for the phone to sleep</li>
+<li>Look at the battery drain the battery settings in the phone to see the battery usage and drainage</li>
+</ol>
+<p>Alternative profiling methods tried:</p>
+<p>1. <a class="reference external" href="https://play.google.com/store/apps/details?id=com.digibites.accubattery&amp;hl=en_US">AccuBattery</a>
+We were unable to get the running time of a given application on AccuBattery to more accurately identify battery usage per minute
+2. <a class="reference external" href="https://github.com/google/battery-historian">Battery Historian</a>
+We were unable to get reliable data using this method. Often times, the battery usage of an application appears to use no batteries</p>
 </div>
 </div>
 <div class="section" id="results">
@@ -212,9 +220,12 @@ current hello world example applications. To see the actual applications we used
 </div>
 <div class="section" id="id2">
 <h3>Android<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Through running the applications for 30minutes, the results are:</p>
 <ul class="simple">
-<li>TODO</li>
+<li>Envoy   : 0.17%/min</li>
+<li>Control : 0.18%/min</li>
 </ul>
+<p>The results of Envoy and Control are very similar</p>
 </div>
 </div>
 <div class="section" id="analysis">
@@ -227,9 +238,15 @@ current hello world example applications. To see the actual applications we used
 </div>
 <div class="section" id="id4">
 <h3>Android<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>TODO</li>
-</ul>
+<p>The results of this experiment is that there isn’t much of a difference between Envoy and Control every 200ms. With the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/e85e553a2a6a6a552460110f421dda6cac7e5b82//docs/root/development/performance/cpu_impact.rst">CPU analysis</a>,
+we are able to see:</p>
+<ol class="arabic simple">
+<li>Requests to s3 are being logged in Envoy</li>
+<li>DNS resolution does happen every 5 seconds</li>
+<li>Stats are flushed every 5 seconds</li>
+</ol>
+<p>The DNS resolution and stats flush happening every 5 seconds was a concern but updating the frequency to 1 minute, we
+did not notice a big change.</p>
 </div>
 <div class="section" id="open-issues-regarding-battery-usage">
 <h3>Open issues regarding battery usage<a class="headerlink" href="#open-issues-regarding-battery-usage" title="Permalink to this headline">¶</a></h3>
