@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of CPU/battery impact &mdash; envoy-mobile 0.1.0-421aa2 documentation</title>
+  <title>Analysis of CPU/battery impact &mdash; envoy-mobile 0.1.0-bf5d02 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.1.0-421aa2
+                0.1.0-bf5d02
               </div>
             
           
@@ -223,8 +223,8 @@ The root cause has been identified and is being tracked in <a class="reference e
 </div>
 <div class="section" id="experimentation-method">
 <h2>Experimentation method<a class="headerlink" href="#experimentation-method" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id2">
-<h3>iOS<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>iOS<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>The original investigation was completed as part of <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/113">this issue</a>.</p>
 <p>For analysis, the <a class="reference external" href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/MonitorEnergyWithInstruments.html">Energy Diagnostics tool from Xcode Instruments</a>
 was used.</p>
@@ -238,8 +238,8 @@ Envoy listened to the data sent over <code class="docutils literal notranslate">
 <li>Build/run the example app</li>
 </ol>
 </div>
-<div class="section" id="id3">
-<h3>Android<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>Android<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>We’re currently using <code class="docutils literal notranslate"><span class="pre">HttpURLConnection</span></code> to communicate and send requests to Envoy. Envoy in it’s current state is run as
 a process listening to traffic sent over this connection.</p>
 <p>Getting the build:</p>
@@ -271,8 +271,8 @@ We were unable to get reliable data using this method. Often times, the battery 
 </div>
 <div class="section" id="analysis">
 <h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id4">
-<h3>iOS<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>iOS<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Envoy had a reasonable increase in memory usage of a few megabytes compared to control.</p>
 <p>CPU/battery usage, however, was much higher. After some digging, the largest contributor to this usage
 was <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/113#issuecomment-505676324">identified as a poller</a>.</p>
@@ -284,8 +284,8 @@ This issue and the subsequent fix are being tracked <a class="reference external
 network traffic was flowing through Envoy on the phone every <code class="docutils literal notranslate"><span class="pre">200ms</span></code>, giving us confidence that there was
 no additional caching happening within <code class="docutils literal notranslate"><span class="pre">URLSession</span></code>.</p>
 </div>
-<div class="section" id="id5">
-<h3>Android<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>Android<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>There are minimal differences between Envoy and control. By enabling trace logging within Envoy,
 we are able to observe the following:</p>
 <ol class="arabic simple">
