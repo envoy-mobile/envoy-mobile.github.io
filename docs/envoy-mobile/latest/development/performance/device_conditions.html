@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of device conditions &mdash; envoy-mobile 0.1.0-7495f1 documentation</title>
+  <title>Analysis of device conditions &mdash; envoy-mobile 0.1.0-254dbf documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.1.0-7495f1
+                0.1.0-254dbf
               </div>
             
           
@@ -95,8 +95,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#results">Results</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#experimentation-method">Experimentation method</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#analysis">Analysis</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#current-status">Current status</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">Current status</a></li>
 </ul>
 </li>
 </ul>
@@ -177,32 +175,25 @@
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="ios">
 <h3>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>TODO</li>
-</ul>
+<p>Valid through SHA <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/f05d43f">f05d43f</a>.</p>
+<p>We did not observe any issues when switching between background/foreground or between WiFi/cellular.
+<strong>However</strong>, we believe that this will become problematic when we change to calling Envoy directly,
+rather making requests through <code class="docutils literal notranslate"><span class="pre">URLSession</span></code> and having Envoy proxy them.
+This test will need to be re-run after those changes. See below for more details.</p>
 </div>
 <div class="section" id="android">
 <h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
-<p>We did not observe any issues when switching between background/foreground and between WiFi/cellular. Network requests
-resumed and were successful after a brief period of time.</p>
+<p>Valid through SHA <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/e85e553">e85e553</a>.</p>
+<p>We did not observe any issues when switching between background/foreground or between WiFi/cellular.
+Network requests resumed and were successful after a brief period of time.</p>
 </div>
 </div>
 <div class="section" id="experimentation-method">
 <h2>Experimentation method<a class="headerlink" href="#experimentation-method" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id1">
-<h3>iOS<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>TODO</li>
-</ul>
-</div>
-<div class="section" id="id2">
-<h3>Android<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>Getting the build:</p>
-<ol class="arabic simple">
-<li>Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">android_dist</span> <span class="pre">--config=android</span></code></li>
-<li>Control: <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/control:hello_control_kt</span></code></li>
-<li>Envoy: <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/hello_world:hello_envoy_kt</span> <span class="pre">--fat_apk_cpu=armeabi-v7a</span></code></li>
-</ol>
+<p>Modified versions of the “hello world” example apps were used to run the following experiments.
+See the iOS/Android sections below for instructions on building the examples.</p>
+<p>Throughout all of the following steps, we tested to make sure that network requests succeeded
+when making each of the lifecycle/network changes listed below.</p>
 <p>Lifecycle experiment steps:</p>
 <ol class="arabic simple">
 <li>Open the example application</li>
@@ -214,9 +205,26 @@ resumed and were successful after a brief period of time.</p>
 <li>Turn on WiFi</li>
 <li>Open the example application</li>
 <li>Turn off WiFi</li>
-<li>Turn on WiFI</li>
+<li>Turn on WiFi</li>
 <li>Turn on airplane mode</li>
 <li>Turn off airplane mode</li>
+</ol>
+<div class="section" id="id1">
+<h3>iOS<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The original investigation was completed as part of <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/128">this issue</a>.</p>
+<p>Reproducing the Envoy example app:</p>
+<ol class="arabic simple">
+<li>Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">ios_dist</span> <span class="pre">--config=ios</span> <span class="pre">--config=fat</span></code></li>
+<li>Copy <code class="docutils literal notranslate"><span class="pre">./dist/Envoy.framework</span></code> to the example’s <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/254dbf557708c4801f55b7d3b200e8b329e588ef/examples/objective-c/hello_world">source directory</a></li>
+<li>Build/run the example app on a physical device</li>
+</ol>
+</div>
+<div class="section" id="id2">
+<h3>Android<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Reproducing the Envoy example app:</p>
+<ol class="arabic simple">
+<li>Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">android_dist</span> <span class="pre">--config=android</span></code></li>
+<li>Run the app: <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/hello_world:hello_envoy_kt</span> <span class="pre">--fat_apk_cpu=armeabi-v7a</span></code></li>
 </ol>
 </div>
 </div>
@@ -224,9 +232,18 @@ resumed and were successful after a brief period of time.</p>
 <h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id3">
 <h3>iOS<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>TODO</li>
-</ul>
+<p>With the current configuration of sending traffic over <code class="docutils literal notranslate"><span class="pre">URLSession</span></code> and having Envoy proxy it through,
+there seems to be no issues on iOS when switching between WiFi/cellular or background/foreground.</p>
+<p>However, these findings are strange given that
+<a class="reference external" href="https://github.com/grpc/grpc-swift/issues/337">issues have been observed</a> with the cellular radio and gRPC
+in the past. We were able to reproduce this issue in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/128">investigation</a>, which showed that gRPC
+channels (using BSD sockets under the hood) stalled when switching from WiFi to cellular, while requests made
+through <code class="docutils literal notranslate"><span class="pre">URLSession</span></code> and proxied through Envoy continued to succeed.</p>
+<p>The current theory is that <code class="docutils literal notranslate"><span class="pre">URLSession</span></code> is doing something smart under the hood to handle these changes.</p>
+<p>We will need to re-run these tests when we switch to calling Envoy Mobile directly as a library
+(rather than running on top of calls to <code class="docutils literal notranslate"><span class="pre">URLSession</span></code>).</p>
+<p>Depending on the outcome of <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/13">#13</a>, we shouldn’t have problems as long as we use Apple-approved
+network solutions for the transport on iOS (such as <code class="docutils literal notranslate"><span class="pre">CFNetwork</span></code>/<code class="docutils literal notranslate"><span class="pre">Network.framework</span></code>/etc.).</p>
 </div>
 <div class="section" id="id4">
 <h3>Android<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
@@ -234,18 +251,11 @@ resumed and were successful after a brief period of time.</p>
 succeed after some time. To be certain that what we observed in the high level experiment were valid, we enabled <code class="docutils literal notranslate"><span class="pre">trace</span></code>
 level logging within Envoy to ensure Envoy is getting the requests back.</p>
 </div>
-</div>
-<div class="section" id="current-status">
-<h2>Current status<a class="headerlink" href="#current-status" title="Permalink to this headline">¶</a></h2>
-<p>As of
-<a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/e85e553a2a6a6a552460110f421dda6cac7e5b82">https://github.com/lyft/envoy-mobile/tree/e85e553a2a6a6a552460110f421dda6cac7e5b82</a></p>
-<p>This test was done with Envoy being run as a process and using native APIs to make requests to Envoy.</p>
 <div class="section" id="open-issues-regarding-device-conditions">
 <h3>Open issues regarding device conditions<a class="headerlink" href="#open-issues-regarding-device-conditions" title="Permalink to this headline">¶</a></h3>
+<p>For current issues with device conditions, please see issues with the
+<a class="reference external" href="https://github.com/lyft/envoy-mobile/labels/perf%2Fdevice">perf/device label</a>.</p>
 </div>
-</div>
-<div class="section" id="id5">
-<h2>Current status<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
