@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of CPU/battery impact &mdash; envoy-mobile 0.1.0-254dbf documentation</title>
+  <title>Analysis of CPU/battery impact &mdash; envoy-mobile 0.1.0-c797b4 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.1.0-254dbf
+                0.1.0-c797b4
               </div>
             
           
@@ -176,8 +176,8 @@
 <ul class="simple">
 <li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/8636711/examples/kotlin/control">Android control app</a></li>
 <li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/8636711/examples/kotlin/hello_world">Android Envoy app</a></li>
-<li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/f05d43f/examples/objective-c/control/control">iOS control app</a></li>
-<li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/f05d43f/examples/objective-c/xcode_variant/EnvoyObjc/EnvoyObjc">iOS Envoy app</a></li>
+<li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/2f27581/examples/objective-c/control/control">iOS control app</a></li>
+<li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/2f27581/examples/objective-c/xcode_variant/EnvoyObjc/EnvoyObjc">iOS Envoy app</a></li>
 </ul>
 <p>The 2 apps on each platform:</p>
 <ul class="simple">
@@ -189,21 +189,20 @@
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="ios">
 <h3>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h3>
-<p>Valid through SHA <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/f05d43f">f05d43f</a>.</p>
+<p>Valid through SHA <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/2f27581">2f27581</a>.</p>
 <p>Envoy:</p>
 <ul class="simple">
-<li>Avg CPU: &gt;= 100%</li>
+<li>Avg CPU: ~4%</li>
 <li>Avg memory: 12MB</li>
-<li>Battery: 12/20 Xcode Instruments score</li>
+<li>Battery: 1/20 Xcode Instruments score</li>
 </ul>
 <p>Control:</p>
 <ul class="simple">
-<li>Avg CPU: 12%</li>
+<li>Avg CPU: ~2%</li>
 <li>Avg memory: 6MB</li>
 <li>Battery: 1/20 Xcode Instruments score</li>
 </ul>
-<p><strong>Based on these results, memory usage is similar. However, CPU (and consequently battery) usage is very high.</strong>
-The root cause has been identified and is being tracked in <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/215">issue 215</a>.</p>
+<p><strong>Based on these results, control and Envoy are relatively similar with a slight increase using Envoy.</strong></p>
 </div>
 <div class="section" id="android">
 <h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
@@ -228,7 +227,8 @@ The root cause has been identified and is being tracked in <a class="reference e
 <h2>Experimentation method<a class="headerlink" href="#experimentation-method" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
 <h3>iOS<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>The original investigation was completed as part of <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/113">this issue</a>.</p>
+<p>The original investigation was completed as part of <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/113">#113</a>,
+and a critical performance issue was fixed in <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/215">#215</a>.</p>
 <p>For analysis, the <a class="reference external" href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/MonitorEnergyWithInstruments.html">Energy Diagnostics tool from Xcode Instruments</a>
 was used.</p>
 <p>Requests were made using <code class="docutils literal notranslate"><span class="pre">URLSession</span></code>, with the session’s cache set to <code class="docutils literal notranslate"><span class="pre">nil</span></code> (disabling caching).
@@ -237,7 +237,7 @@ Envoy listened to the data sent over <code class="docutils literal notranslate">
 <p>Reproducing the Envoy example app:</p>
 <ol class="arabic simple">
 <li>Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">ios_dist</span> <span class="pre">--config=ios</span> <span class="pre">--config=fat</span></code></li>
-<li>Copy <code class="docutils literal notranslate"><span class="pre">./dist/Envoy.framework</span></code> to the example’s <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/f05d43f/examples/objective-c/xcode_variant/EnvoyObjc/EnvoyObjc">source directory</a></li>
+<li>Copy <code class="docutils literal notranslate"><span class="pre">./dist/Envoy.framework</span></code> to the example’s <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/2f27581/examples/objective-c/xcode_variant/EnvoyObjc/EnvoyObjc">source directory</a></li>
 <li>Build/run the example app</li>
 </ol>
 </div>
@@ -276,13 +276,9 @@ We were unable to get reliable data using this method. Often times, the battery 
 <h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id3">
 <h3>iOS<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>Envoy had a reasonable increase in memory usage of a few megabytes compared to control.</p>
-<p>CPU/battery usage, however, was much higher. After some digging, the largest contributor to this usage
-was <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/113#issuecomment-505676324">identified as a poller</a>.</p>
-<p>Upon further investigation, the <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/113#issuecomment-507425528">root cause was determined</a>
-to be that <code class="docutils literal notranslate"><span class="pre">poll_dispatch</span></code> was being used by <code class="docutils literal notranslate"><span class="pre">libevent</span></code> instead of the much more performant <code class="docutils literal notranslate"><span class="pre">kqueue</span></code>.
-Forcing <code class="docutils literal notranslate"><span class="pre">libevent</span></code> to use <code class="docutils literal notranslate"><span class="pre">kqueue</span></code> reduced the CPU usage <strong>from &gt;= 100% down to ~3%</strong>.
-This issue and the subsequent fix are being tracked <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/215">here</a>.</p>
+<p>Envoy had a small increase in memory and CPU usage compared to control.</p>
+<p>During the <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/113#issuecomment-505676324">initial investigation</a>, we identified and fixed
+<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/215">issue</a> with <code class="docutils literal notranslate"><span class="pre">libevent</span></code> that was severely degrading CPU (and subsequently battery) performance.</p>
 <p><a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/113#issuecomment-505673869">We used Wireshark</a> to validate that
 network traffic was flowing through Envoy on the phone every <code class="docutils literal notranslate"><span class="pre">200ms</span></code>, giving us confidence that there was
 no additional caching happening within <code class="docutils literal notranslate"><span class="pre">URLSession</span></code>.</p>
