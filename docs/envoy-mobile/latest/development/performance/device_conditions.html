@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of device conditions &mdash; envoy-mobile 0.1.0-4b1161 documentation</title>
+  <title>Analysis of device conditions &mdash; envoy-mobile 0.1.0-a9be00 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.1.0-4b1161
+                0.1.0-a9be00
               </div>
             
           
@@ -178,10 +178,13 @@
 <div class="section" id="ios">
 <h3>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h3>
 <p>Valid through SHA <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/f05d43f">f05d43f</a>.</p>
-<p>We did not observe any issues when switching between background/foreground or between WiFi/cellular.
-<strong>However</strong>, we believe that this will become problematic when we change to calling Envoy directly,
-rather making requests through <code class="docutils literal notranslate"><span class="pre">URLSession</span></code> and having Envoy proxy them.
-This test will need to be re-run after those changes. See below for more details.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Envoy Mobile is currently unable to properly reconnect or switch between connections when the device
+is switched between WiFi and cellular. This is a common issue with libraries that use BSD sockets,
+and it is being fixed as part of <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/13">this issue</a>.</p>
+</div>
+<p>This test will need to be re-run after those changes. See below for more details.</p>
 </div>
 <div class="section" id="android">
 <h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
@@ -194,7 +197,47 @@ Network requests resumed and were successful after a brief period of time.</p>
 <h2>Experimentation method<a class="headerlink" href="#experimentation-method" title="Permalink to this headline">¶</a></h2>
 <p>Modified versions of the “hello world” example apps were used to run the following experiments.
 See the iOS/Android sections below for instructions on building the examples.</p>
-<p>Throughout all of the following steps, we tested to make sure that network requests succeeded
+<div class="section" id="id1">
+<h3>iOS<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The original investigation was completed as part of <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/128#issuecomment-516260951">this issue</a>.</p>
+<p><strong>Configuration:</strong></p>
+<ol class="arabic simple">
+<li>Build the app using the following flags to allow us to build to a device with debugging symbols:</li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">ios_dist</span> <span class="pre">--config=ios</span> <span class="pre">--ios_multi_cpus=arm64</span> <span class="pre">--copt=-ggdb3</span></code></p>
+<ol class="arabic simple" start="2">
+<li>Add the outputted <code class="docutils literal notranslate"><span class="pre">Envoy.framework</span></code> to the example app</li>
+<li>In the active scheme of the app’s Xcode <code class="docutils literal notranslate"><span class="pre">Environment</span> <span class="pre">Variables</span></code>, set <code class="docutils literal notranslate"><span class="pre">CFNETWORK_DIAGNOSTICS=3</span></code> to enable more verbose <code class="docutils literal notranslate"><span class="pre">CFNetwork</span></code> logs</li>
+<li>Set Envoy’s logs to <code class="docutils literal notranslate"><span class="pre">trace</span></code></li>
+</ol>
+<p><strong>Experiment:</strong></p>
+<p>Make single requests to a
+<a class="reference external" href="https://github.com/Reflejo/TestNetworking/blob/master/TestNetworking/client.c">simple Python server</a>
+that shows when the client connects, disconnects, and makes requests. These request should be routed
+through Envoy <strong>using the socket implementation of Envoy Mobile via URLSession</strong>
+(not calling directly into the Envoy Mobile library).</p>
+<ul class="simple">
+<li>Send a request on WiFi, then switch to cellular (disabling WiFi) and make more requests</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">URLSessionConfiguration</span></code>’s <code class="docutils literal notranslate"><span class="pre">httpMaximumConnectionsPerHost</span></code> to <code class="docutils literal notranslate"><span class="pre">1</span></code> and try this again</li>
+<li>Switch the phone to airplane mode and try making requests</li>
+</ul>
+<p><strong>Findings:</strong></p>
+<p>Whenever we switched from WiFi to cellular (or vice versa), the next request would consistently fail
+with <code class="docutils literal notranslate"><span class="pre">-1001</span> <span class="pre">kCFURLErrorTimedOut</span></code>. At the same time, we’d see the connection terminate on the server,
+and we’d see logs from both Envoy and CFNetwork indicating that a new connection was established.</p>
+<p>When we executed the next request, it would complete successfully.</p>
+<p>If we did this more quickly and sent several requests in rapid succession,
+<strong>the first would still fail and the subsequent requests would complete normally</strong>.</p>
+<p>Setting the <code class="docutils literal notranslate"><span class="pre">URLSessionConfiguration</span></code>’s <code class="docutils literal notranslate"><span class="pre">httpMaximumConnectionsPerHost</span></code> to <code class="docutils literal notranslate"><span class="pre">1</span></code>
+(preventing concurrent connections) and sending several requests in rapid succession resulted in all
+of them failing after the <code class="docutils literal notranslate"><span class="pre">timeoutIntervalForRequest</span></code> specified on the <code class="docutils literal notranslate"><span class="pre">URLSessionConfiguration</span></code>.
+This is the same behavior seen with libraries like gRPC which use BSD sockets.</p>
+<p>Putting the phone in airplane mode resulted in all requests failing immediately
+(instead of waiting for the specified timeout) because iOS was aware that it had no connectivity.</p>
+</div>
+<div class="section" id="id2">
+<h3>Android<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Throughout all of the following steps, we tested to make validate if network requests succeeded
 when making each of the lifecycle/network changes listed below.</p>
 <p>Lifecycle experiment steps:</p>
 <ol class="arabic simple">
@@ -211,18 +254,6 @@ when making each of the lifecycle/network changes listed below.</p>
 <li>Turn on airplane mode</li>
 <li>Turn off airplane mode</li>
 </ol>
-<div class="section" id="id1">
-<h3>iOS<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>The original investigation was completed as part of <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/128">this issue</a>.</p>
-<p>Reproducing the Envoy example app:</p>
-<ol class="arabic simple">
-<li>Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">ios_dist</span> <span class="pre">--config=ios</span> <span class="pre">--config=fat</span></code></li>
-<li>Copy <code class="docutils literal notranslate"><span class="pre">./dist/Envoy.framework</span></code> to the example’s <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/4b116130f1aebaffbb84a9c862d2014af7ea50b4/examples/objective-c/hello_world">source directory</a></li>
-<li>Build/run the example app on a physical device</li>
-</ol>
-</div>
-<div class="section" id="id2">
-<h3>Android<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Reproducing the Envoy example app:</p>
 <ol class="arabic simple">
 <li>Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">android_dist</span> <span class="pre">--config=android</span></code></li>
@@ -234,18 +265,32 @@ when making each of the lifecycle/network changes listed below.</p>
 <h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id3">
 <h3>iOS<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>With the current configuration of sending traffic over <code class="docutils literal notranslate"><span class="pre">URLSession</span></code> and having Envoy proxy it through,
-there seems to be no issues on iOS when switching between WiFi/cellular or background/foreground.</p>
-<p>However, these findings are strange given that
-<a class="reference external" href="https://github.com/grpc/grpc-swift/issues/337">issues have been observed</a> with the cellular radio and gRPC
-in the past. We were able to reproduce this issue in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/128">investigation</a>, which showed that gRPC
-channels (using BSD sockets under the hood) stalled when switching from WiFi to cellular, while requests made
-through <code class="docutils literal notranslate"><span class="pre">URLSession</span></code> and proxied through Envoy continued to succeed.</p>
-<p>The current theory is that <code class="docutils literal notranslate"><span class="pre">URLSession</span></code> is doing something smart under the hood to handle these changes.</p>
-<p>We will need to re-run these tests when we switch to calling Envoy Mobile directly as a library
-(rather than running on top of calls to <code class="docutils literal notranslate"><span class="pre">URLSession</span></code>).</p>
-<p>Depending on the outcome of <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/13">#13</a>, we shouldn’t have problems as long as we use Apple-approved
-network solutions for the transport on iOS (such as <code class="docutils literal notranslate"><span class="pre">CFNetwork</span></code>/<code class="docutils literal notranslate"><span class="pre">Network.framework</span></code>/etc.).</p>
+<p>Envoy is currently configured as such:</p>
+<p><code class="docutils literal notranslate"><span class="pre">[URLSession]</span> <span class="pre">--&gt;</span> <span class="pre">[Socket]</span> <span class="pre">--&gt;</span> <span class="pre">[Envoy</span> <span class="pre">Mobile]</span> <span class="pre">--&gt;</span> <span class="pre">[Socket]</span> <span class="pre">--&gt;</span> <span class="pre">[Internet]</span></code></p>
+<p>With the current configuration of sending traffic over URLSession and having Envoy proxy it through,
+we identified issues with Envoy being able to reconnect or switch between connections when the device
+underwent various network changes such as toggling between WiFi and cellular.</p>
+<p>The experiment above indicates that when a working connection changes to inactive (i.e., by disabling WiFi and
+forcing the phone to switch to cellular), the sockets aren’t notified of the change.
+This is a commonly understood issue with BSD sockets on iOS, and is why Apple strongly advises against using them.</p>
+<p>Switching networks then executing a request through URLSession resulted in the request timing out.
+Executing another network request resulted in the following,
+which could make it seem like Envoy was working properly at first glance (even though it wasn’t):</p>
+<ul class="simple">
+<li>iOS realized that the connection was dead and terminated its socket connection with Envoy, then re-established it</li>
+<li>When the connection with Envoy was terminated, Envoy in turn terminated its socket connection with the outside Internet</li>
+<li>When iOS reconnected to Envoy, Envoy also reconnected and selected the first available connection (cellular in this case)</li>
+<li>Future requests succeeded because they were sent over the new/valid connection</li>
+</ul>
+<p>Essentially, URLSession forced Envoy to reconnect/switch to a valid connection when a request failed due to
+the fact that it was disconnecting from Envoy and reconnecting to it.</p>
+<p>This means:</p>
+<ul class="simple">
+<li>When Envoy is called as a library (instead of proxying URLSession over a socket), it will break because nothing will force it to reconnect to a valid connection</li>
+<li>Restricting URLSession’s concurrent connections makes this problem immediately apparent even in today’s setup because the only existing connection becomes invalid</li>
+</ul>
+<p><a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/13">Issue #13</a> will be implementing Apple-approved network solutions for the transport layer
+on iOS (such as CFNetwork/Network.framework/etc.), which will resolve these problems.</p>
 </div>
 <div class="section" id="id4">
 <h3>Android<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
