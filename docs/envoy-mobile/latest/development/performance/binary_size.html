@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of Binary Size &mdash; envoy-mobile 0.1.1-b1d49e documentation</title>
+  <title>Analysis of binary size &mdash; envoy-mobile 0.1.1-0051d0 documentation</title>
   
 
   
@@ -31,7 +31,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Analysis of CPU/battery impact" href="cpu_battery_impact.html" />
-    <link rel="prev" title="Performance Analysis" href="performance.html" /> 
+    <link rel="prev" title="Performance analysis" href="performance.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.1.1-b1d49e
+                0.1.1-0051d0
               </div>
             
           
@@ -88,11 +88,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../start/start.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../development.html">Development</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="performance.html">Performance Analysis</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Analysis of Binary Size</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="performance.html">Performance analysis</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Analysis of binary size</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#object-files-analysis">Object files analysis</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#open-issues-regarding-size">Open issues regarding size</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ci-integration">CI Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ci-integration">CI integration</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="cpu_battery_impact.html">Analysis of CPU/battery impact</a></li>
@@ -149,9 +149,9 @@
         
           <li><a href="../development.html">Development</a> &raquo;</li>
         
-          <li><a href="performance.html">Performance Analysis</a> &raquo;</li>
+          <li><a href="performance.html">Performance analysis</a> &raquo;</li>
         
-      <li>Analysis of Binary Size</li>
+      <li>Analysis of binary size</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -171,7 +171,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="analysis-of-binary-size">
-<span id="dev-performance-size"></span><h1>Analysis of Binary Size<a class="headerlink" href="#analysis-of-binary-size" title="Permalink to this headline">¶</a></h1>
+<span id="dev-performance-size"></span><h1>Analysis of binary size<a class="headerlink" href="#analysis-of-binary-size" title="Permalink to this headline">¶</a></h1>
 <p>In order to be able to tackle binary size analysis,
 the Envoy Mobile team has standardized the process in this document.</p>
 <div class="section" id="object-files-analysis">
@@ -319,9 +319,10 @@ described above compiles to a stripped size of 8.9mb and a compressed size of
 </div>
 </div>
 <div class="section" id="ci-integration">
-<h2>CI Integration<a class="headerlink" href="#ci-integration" title="Permalink to this headline">¶</a></h2>
-<p>TODO: add when the integration is live.
-<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/181">https://github.com/lyft/envoy-mobile/issues/181</a></p>
+<h2>CI integration<a class="headerlink" href="#ci-integration" title="Permalink to this headline">¶</a></h2>
+<p>CI validates that no PR increases the binary size of the library above a specific
+threshold specified in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/0051d0a7ed422b8119963d9fbb64c6e879c9b338/.github/workflows/perf.yml">perf.yml configuration</a>.</p>
+<p>The status of this job is reported on PRs in the <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">/</span> <span class="pre">size_compare</span></code> task.</p>
 </div>
 </div>
 
@@ -336,7 +337,7 @@ described above compiles to a stripped size of 8.9mb and a compressed size of
         <a href="cpu_battery_impact.html" class="btn btn-neutral float-right" title="Analysis of CPU/battery impact" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="performance.html" class="btn btn-neutral" title="Performance Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="performance.html" class="btn btn-neutral" title="Performance analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
