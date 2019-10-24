@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of CPU/battery impact &mdash; envoy-mobile 0.1.1-f2bcf8 documentation</title>
+  <title>Analysis of CPU/battery impact &mdash; envoy-mobile 0.1.1-3fe6f9 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.1.1-f2bcf8
+                0.1.1-3fe6f9
               </div>
             
           
@@ -173,6 +173,11 @@
             
   <div class="section" id="analysis-of-cpu-battery-impact">
 <span id="dev-performance-cpu-battery"></span><h1>Analysis of CPU/battery impact<a class="headerlink" href="#analysis-of-cpu-battery-impact" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">These analyses have not been updated since Envoy Mobile added interfaces for performing
+network requests directly using the library. They will be re-run as part of <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/536">#536</a>.</p>
+</div>
 <p>Modified versions of the “hello world” example apps were used to run these experiments:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/8636711/examples/kotlin/control">Android control app</a></li>
@@ -208,7 +213,6 @@
 <div class="section" id="android">
 <h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
 <p>Valid through SHA <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/8636711">8636711</a>.</p>
-<p>TODO(buildbreaker): Update battery percentages</p>
 <p>Envoy:</p>
 <ul class="simple">
 <li>Avg CPU: 33.16075949%</li>
