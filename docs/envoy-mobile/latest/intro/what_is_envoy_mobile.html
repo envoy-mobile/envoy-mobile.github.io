@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>What is Envoy Mobile? &mdash; envoy-mobile 0.1.1-28ad19 documentation</title>
+  <title>What is Envoy Mobile? &mdash; envoy-mobile 0.1.1-f2bcf8 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.1.1-28ad19
+                0.1.1-f2bcf8
               </div>
             
           
@@ -93,12 +93,12 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="comparison.html">Comparison to similar systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="currently_supported.html">Currently supported features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_help.html">Getting help</a></li>
 <li class="toctree-l2"><a class="reference internal" href="version_history.html">Version history</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a></li>
 </ul>
 
@@ -218,6 +218,8 @@ in poor network conditions, as well as general Envoy policies such as retry and 
 specifications.</p>
 <p>Much like Envoy’s use in a server-side service mesh, the goal is to push as much functionality as
 possible into the common core so as to avoid reimplementing it in every mobile application language.</p>
+<p>Furthermore, it is an explicit goal of Envoy Mobile to maintain consistent 1:1 APIs between
+the native mobile languages that it supports.</p>
 <p>Our long-term plans include evolving the <a class="reference external" href="https://github.com/grpc/grpc/blob/master/doc/server-reflection.md">gRPC Server Reflection Protocol</a> into a streaming reflection
 service API. This API will allow both Envoy and Envoy Mobile to fetch generic protobuf definitions
 from a central IDL service, which can then be used to implement annotation driven networking via
