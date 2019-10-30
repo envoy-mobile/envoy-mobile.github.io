@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of CPU/battery impact &mdash; envoy-mobile 0.1.1-e46bbc documentation</title>
+  <title>Analysis of CPU/battery impact &mdash; envoy-mobile 0.1.1-9f6d8b documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.1.1-e46bbc
+                0.1.1-9f6d8b
               </div>
             
           
@@ -242,7 +242,7 @@ Envoy listened to the data sent over <code class="docutils literal notranslate">
 <p>Both apps were run (one at a time) on a physical device (iPhone 6s iOS 12.2.x) while running Instruments.</p>
 <p>Reproducing the Envoy example app:</p>
 <ol class="arabic simple">
-<li>Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">ios_dist</span> <span class="pre">--config=ios</span> <span class="pre">--config=fat</span></code></li>
+<li>Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">ios_dist</span> <span class="pre">--config=ios</span> <span class="pre">--ios_multi_cpus=armv7,arm64</span></code></li>
 <li>Copy <code class="docutils literal notranslate"><span class="pre">./dist/Envoy.framework</span></code> to the example’s <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/2f27581/examples/objective-c/xcode_variant/EnvoyObjc/EnvoyObjc">source directory</a></li>
 <li>Build/run the example app</li>
 </ol>
