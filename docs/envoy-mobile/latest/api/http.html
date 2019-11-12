@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>HTTP requests and streams &mdash; envoy-mobile 0.2.0-59e344 documentation</title>
+  <title>HTTP requests and streams &mdash; envoy-mobile 0.2.0-9485c9 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2.0-59e344
+                0.2.0-9485c9
               </div>
             
           
@@ -86,24 +86,7 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../start/start.html">Getting Started</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="api.html">API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">HTTP requests and streams</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#request"><code class="docutils literal notranslate"><span class="pre">Request</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#responsehandler"><code class="docutils literal notranslate"><span class="pre">ResponseHandler</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#retrypolicy"><code class="docutils literal notranslate"><span class="pre">RetryPolicy</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#streamemitter"><code class="docutils literal notranslate"><span class="pre">StreamEmitter</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#unary-requests">Unary Requests</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../start/building/building.html">Building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../start/examples/hello_world.html">Hello World</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">HTTP requests and streams</a><ul>
@@ -187,14 +170,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="http-requests-and-streams">
-<h1>HTTP requests and streams<a class="headerlink" href="#http-requests-and-streams" title="Permalink to this headline">¶</a></h1>
+<span id="api-http"></span><h1>HTTP requests and streams<a class="headerlink" href="#http-requests-and-streams" title="Permalink to this headline">¶</a></h1>
 <p>Streams are first-class citizens in Envoy Mobile, and are supported out-of-the-box.</p>
 <p>In fact, unary (single request, single response) HTTP requests are actually written as simply
 convenience functions on top of streams.</p>
 <div class="section" id="request">
 <h2><code class="docutils literal notranslate"><span class="pre">Request</span></code><a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h2>
 <p>Creating a stream is done by initializing a <code class="docutils literal notranslate"><span class="pre">Request</span></code> via a <code class="docutils literal notranslate"><span class="pre">RequestBuilder</span></code>, then passing it to
-a previously created <a class="reference external" href="_starting_envoy">Envoy instance</a>.</p>
+a previously created <a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">Envoy instance</span></a>.</p>
 <p><strong>Kotlin</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">request</span> <span class="o">=</span> <span class="n">RequestBuilder</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="s2">&quot;https&quot;</span><span class="p">,</span> <span class="s2">&quot;api.envoyproxy.io&quot;</span><span class="p">,</span> <span class="s2">&quot;/foo&quot;</span><span class="p">)</span>
   <span class="o">.</span><span class="n">addRetryPolicy</span><span class="p">(</span><span class="n">RetryPolicy</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
@@ -270,7 +253,7 @@ are applied when the request is sent.</p>
 <div class="section" id="streamemitter">
 <h2><code class="docutils literal notranslate"><span class="pre">StreamEmitter</span></code><a class="headerlink" href="#streamemitter" title="Permalink to this headline">¶</a></h2>
 <p>Once a <code class="docutils literal notranslate"><span class="pre">Request</span></code> and <code class="docutils literal notranslate"><span class="pre">ResponseHandler</span></code> have been created, a stream can be opened using an
-<a class="reference external" href="_starting_envoy">Envoy instance</a>.</p>
+<a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">Envoy instance</span></a>.</p>
 <p>Doing so returns a <code class="docutils literal notranslate"><span class="pre">StreamEmitter</span></code> which allows the sender to interact with the stream.</p>
 <p><strong>Kotlin</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">envoy</span> <span class="o">=</span> <span class="n">AndroidEnvoyClientBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>

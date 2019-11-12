@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>gRPC streams &mdash; envoy-mobile 0.2.0-59e344 documentation</title>
+  <title>gRPC streams &mdash; envoy-mobile 0.2.0-9485c9 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2.0-59e344
+                0.2.0-9485c9
               </div>
             
           
@@ -86,23 +86,7 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../start/start.html">Getting Started</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="api.html">API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">gRPC streams</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#grpcclient"><code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#grpcrequestbuilder"><code class="docutils literal notranslate"><span class="pre">GRPCRequestBuilder</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#grpcresponsehandler"><code class="docutils literal notranslate"><span class="pre">GRPCResponseHandler</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#grpcstreamemitter"><code class="docutils literal notranslate"><span class="pre">GRPCStreamEmitter</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../start/building/building.html">Building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../start/examples/hello_world.html">Hello World</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
@@ -186,7 +170,7 @@
             
   <div class="section" id="grpc-streams">
 <span id="api-grpc"></span><h1>gRPC streams<a class="headerlink" href="#grpc-streams" title="Permalink to this headline">¶</a></h1>
-<p>Envoy Mobile provides support for gRPC as a thin interface built on top of its <a class="reference external" href="_http">HTTP APIs</a>.</p>
+<p>Envoy Mobile provides support for gRPC as a thin interface built on top of its <a class="reference internal" href="http.html#api-http"><span class="std std-ref">HTTP APIs</span></a>.</p>
 <p>gRPC APIs are designed to be used in conjunction with protobuf libraries such as
 <a class="reference external" href="https://github.com/apple/swift-protobuf">SwiftProtobuf</a> and
 <a class="reference external" href="https://github.com/protocolbuffers/protobuf/tree/master/java">Java Protobuf</a>.</p>
@@ -200,7 +184,7 @@ utilizing annotations for enhanced functionality.</p>
 <h2><code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code><a class="headerlink" href="#grpcclient" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code> type provides the ability to start gRPC streams, and is backed by Envoy Mobile’s
 <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code> type that is instantiated using the <code class="docutils literal notranslate"><span class="pre">EnvoyClientBuilder</span></code>.</p>
-<p>To create a <code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code>, simply <a class="reference external" href="_http">create an HTTP client</a> and pass it to the initializer:</p>
+<p>To create a <code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code>, simply <a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">create an HTTP client</span></a> and pass it to the initializer:</p>
 <p><code class="docutils literal notranslate"><span class="pre">grpcClient</span> <span class="pre">=</span> <span class="pre">GRPCClient(httpClient)</span></code></p>
 <p>This client can then be used with the types outlined below for starting gRPC streams.</p>
 </div>
