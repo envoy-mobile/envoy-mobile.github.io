@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Version history &mdash; envoy-mobile 0.2.0-d6a3ed documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.2.1-9d1117 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2.0-d6a3ed
+                0.2.1-9d1117
               </div>
             
           
@@ -90,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="comparison.html">Comparison to similar systems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_help.html">Getting help</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Version history</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#jan-6-2020">0.2.1 (Jan 6, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nov-4-2019">0.2.0 (Nov 4, 2019)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sep-11-2019">0.1.1 (Sep 11, 2019)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#jun-18-2019">0.1.0 (Jun 18, 2019)</a></li>
@@ -168,6 +169,16 @@
             
   <div class="section" id="version-history">
 <h1>Version history<a class="headerlink" href="#version-history" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="jan-6-2020">
+<h2>0.2.1 (Jan 6, 2020)<a class="headerlink" href="#jan-6-2020" title="Permalink to this headline">¶</a></h2>
+<p>This release of Envoy Mobile contains some small improvements:</p>
+<ul class="simple">
+<li>Maven release script for Android builds</li>
+<li>Streams are now limited to a single “terminal” callback</li>
+<li>Keepalive settings are now in place to better support connection switching and long-lived streams</li>
+<li>Properly support IPv6 networks by using updated DNS settings</li>
+</ul>
+</div>
 <div class="section" id="nov-4-2019">
 <h2>0.2.0 (Nov 4, 2019)<a class="headerlink" href="#nov-4-2019" title="Permalink to this headline">¶</a></h2>
 <p>Envoy Mobile v0.2 is a fundamental shift in how mobile clients use Envoy. Envoy Mobile now provides native Swift/Kotlin APIs that call through to Envoy directly (rather than using Envoy as a proxy), which apps use to create and interact with network streams.</p>
