@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Releasing &mdash; envoy-mobile 0.2.1-69ef39 documentation</title>
+  <title>Releasing &mdash; envoy-mobile 0.2.1.220120-7d0b08 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2.1-69ef39
+                0.2.1.220120-7d0b08
               </div>
             
           
@@ -95,6 +95,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#publish-release-and-artifacts">Publish release and artifacts</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#pre-release-versioning">Pre-release versioning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/testing.html">Testing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tools/tools.html">Development Tools</a></li>
 </ul>
@@ -173,9 +174,9 @@
 <h2>Prepare for release<a class="headerlink" href="#prepare-for-release" title="Permalink to this headline">¶</a></h2>
 <p>Before cutting the release, submit and merge a PR with the following changes:</p>
 <ol class="arabic simple">
-<li>Bump the version in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/69ef3951c7a2ee82b0155ade8fbd25dce6f4f662/EnvoyMobile.podspec">EnvoyMobile.podspec</a> file</li>
-<li>Bump the version in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/69ef3951c7a2ee82b0155ade8fbd25dce6f4f662/VERSION">VERSION</a> file</li>
-<li>Provide a brief overview of the release in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/69ef3951c7a2ee82b0155ade8fbd25dce6f4f662/docs/root/intro/version_history.rst">version history documentation</a></li>
+<li>Bump the version in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/7d0b08929276751ec836eaf83f02e96eff5f81cc/EnvoyMobile.podspec">EnvoyMobile.podspec</a> file</li>
+<li>Bump the version in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/7d0b08929276751ec836eaf83f02e96eff5f81cc/VERSION">VERSION</a> file</li>
+<li>Provide a brief overview of the release in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/7d0b08929276751ec836eaf83f02e96eff5f81cc/docs/root/intro/version_history.rst">version history documentation</a></li>
 </ol>
 </div>
 <div class="section" id="publish-release-and-artifacts">
@@ -197,6 +198,11 @@ directory, run:</p>
 <p><code class="docutils literal notranslate"><span class="pre">pod</span> <span class="pre">trunk</span> <span class="pre">push</span></code></p>
 <p>Note: This last step is slated to be automated in <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/624">#624</a>.</p>
 </div>
+</div>
+<div class="section" id="pre-release-versioning">
+<h1>Pre-release versioning<a class="headerlink" href="#pre-release-versioning" title="Permalink to this headline">¶</a></h1>
+<p>Pre-releases are published on a weekly basis. The versioning scheme we use is <code class="docutils literal notranslate"><span class="pre">X.Y.Z.{ddmmyy}</span></code>.
+For example: January 25, 2020: <code class="docutils literal notranslate"><span class="pre">0.3.1.250120</span></code>.</p>
 </div>
 
 
