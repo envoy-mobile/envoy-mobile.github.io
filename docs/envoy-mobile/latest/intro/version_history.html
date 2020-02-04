@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Version history &mdash; envoy-mobile 0.2.1.310120-37348c documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.2.2-a6c445 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2.1.310120-37348c
+                0.2.2-a6c445
               </div>
             
           
@@ -90,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="comparison.html">Comparison to similar systems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_help.html">Getting help</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Version history</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#feb-3-2020">0.2.2 (Feb 3, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#jan-6-2020">0.2.1 (Jan 6, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nov-4-2019">0.2.0 (Nov 4, 2019)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sep-11-2019">0.1.1 (Sep 11, 2019)</a></li>
@@ -169,6 +170,15 @@
             
   <div class="section" id="version-history">
 <h1>Version history<a class="headerlink" href="#version-history" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="feb-3-2020">
+<h2>0.2.2 (Feb 3, 2020)<a class="headerlink" href="#feb-3-2020" title="Permalink to this headline">¶</a></h2>
+<p>Envoy Mobile v0.2.2 changes how network requests are performed to no longer use Envoy’s <cite>AsyncClient</cite> and to instead consume the <cite>ApiListener</cite> directly (#616).</p>
+<p>Additional changes:</p>
+<ul class="simple">
+<li>Domain specification when starting the library is no longer supported (#641, #642). Envoy Mobile now uses the authority specified when starting a new stream</li>
+<li>Less aggressive retry back-off policies (#652)</li>
+</ul>
+</div>
 <div class="section" id="jan-6-2020">
 <h2>0.2.1 (Jan 6, 2020)<a class="headerlink" href="#jan-6-2020" title="Permalink to this headline">¶</a></h2>
 <p>This release of Envoy Mobile contains some small improvements:</p>
