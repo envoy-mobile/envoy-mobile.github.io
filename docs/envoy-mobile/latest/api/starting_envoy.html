@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.2.1.310120-d1952b documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.2.2-a1b53a documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2.1.310120-d1952b
+                0.2.2-a1b53a
               </div>
             
           
@@ -179,7 +179,7 @@ which conforms to the <code class="docutils literal notranslate"><span class="pr
 <p>This builder exposes some of Envoy’s configuration options programmatically using builder
 functions, some of which are demonstrated below:</p>
 <p><strong>Kotlin example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">envoy</span> <span class="o">=</span> <span class="n">AndroidEnvoyClientBuilder</span><span class="p">(</span><span class="n">baseContext</span><span class="p">,</span> <span class="n">Domain</span><span class="p">(</span><span class="s2">&quot;api.envoyproxy.io&quot;</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">envoy</span> <span class="o">=</span> <span class="n">AndroidEnvoyClientBuilder</span><span class="p">(</span><span class="n">baseContext</span><span class="p">)</span>
   <span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">WARN</span><span class="p">)</span>
   <span class="o">.</span><span class="n">addStatsFlushSeconds</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
   <span class="o">...</span>
@@ -187,7 +187,7 @@ functions, some of which are demonstrated below:</p>
 </pre></div>
 </div>
 <p><strong>Swift example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">envoy</span> <span class="o">=</span> <span class="k">try</span> <span class="n">EnvoyClientBuilder</span><span class="p">(</span><span class="n">domain</span><span class="p">:</span> <span class="s2">&quot;api.envoyproxy.io&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">envoy</span> <span class="o">=</span> <span class="k">try</span> <span class="n">EnvoyClientBuilder</span><span class="p">()</span>
   <span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="o">.</span><span class="n">warn</span><span class="p">)</span>
   <span class="o">.</span><span class="n">addStatsFlushSeconds</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
   <span class="o">...</span>
