@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Starting Envoy &mdash; envoy-mobile 0.2.2.021120-4d4e8c documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="HTTP requests and streams" href="http.html" />
+    <link rel="prev" title="API" href="api.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> envoy-mobile
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2.021120-4d4e8c
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#envoyclient"><code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#making-requests">Making Requests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">envoy-mobile</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../start/start.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="api.html">API</a> &raquo;</li>
+        
+      <li>Starting Envoy</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/starting_envoy.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="starting-envoy">
+<span id="api-starting-envoy"></span><h1>Starting Envoy<a class="headerlink" href="#starting-envoy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="envoyclient">
+<h2><code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code><a class="headerlink" href="#envoyclient" title="Permalink to this headline">¶</a></h2>
+<p>Starting an instance of Envoy Mobile for making requests is done by creating an <code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code>,
+which conforms to the <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code> interface.</p>
+<p>To do so, create an <code class="docutils literal notranslate"><span class="pre">EnvoyClientBuilder</span></code> and call <code class="docutils literal notranslate"><span class="pre">build()</span></code>.</p>
+<p>This builder exposes some of Envoy’s configuration options programmatically using builder
+functions, some of which are demonstrated below:</p>
+<p><strong>Kotlin example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">envoy</span> <span class="o">=</span> <span class="n">AndroidEnvoyClientBuilder</span><span class="p">(</span><span class="n">baseContext</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">WARN</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">addStatsFlushSeconds</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+  <span class="o">...</span>
+  <span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Swift example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">envoy</span> <span class="o">=</span> <span class="k">try</span> <span class="n">EnvoyClientBuilder</span><span class="p">()</span>
+  <span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="o">.</span><span class="n">warn</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">addStatsFlushSeconds</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+  <span class="o">...</span>
+  <span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>After the client is created, it should be stored and kept in memory in order to be used
+for issuing requests.</p>
+</div>
+<div class="section" id="advanced-configuration">
+<h2>Advanced configuration<a class="headerlink" href="#advanced-configuration" title="Permalink to this headline">¶</a></h2>
+<p>In most cases, the functions provided by the builder should cover basic setup requirements.
+However, in some cases it can be useful to provide a
+<a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/configuration/configuration">Envoy configuration YAML file</a>
+with additional customizations applied.</p>
+<p>This may be done by initializing a builder with the contents of the YAML file you you wish to use:</p>
+<p><strong>Kotlin example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">envoy</span> <span class="o">=</span> <span class="n">AndroidEnvoyClientBuilder</span><span class="p">(</span><span class="n">baseContext</span><span class="p">,</span> <span class="n">Yaml</span><span class="p">(</span><span class="n">yamlFileString</span><span class="p">))</span>
+  <span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">WARN</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">addStatsFlushSeconds</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+  <span class="o">...</span>
+  <span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Swift example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">envoy</span> <span class="o">=</span> <span class="k">try</span> <span class="n">EnvoyClientBuilder</span><span class="p">(</span><span class="n">yaml</span><span class="p">:</span> <span class="n">yamlFileString</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="o">.</span><span class="n">warn</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">addStatsFlushSeconds</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+  <span class="o">...</span>
+  <span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">Using custom YAML configurations can lead to runtime bugs or crashes due to the fact that the
+configuration string is not evaluated until runtime, and not all of the core Envoy configuration
+options are supported by Envoy Mobile.</p>
+</div>
+<div class="section" id="making-requests">
+<h3>Making Requests<a class="headerlink" href="#making-requests" title="Permalink to this headline">¶</a></h3>
+<p>Now that you have an Envoy Mobile instance, you can start making requests:</p>
+<ul class="simple">
+<li><a class="reference internal" href="http.html#api-http"><span class="std std-ref">HTTP requests and streams</span></a></li>
+<li><a class="reference internal" href="grpc.html#api-grpc"><span class="std std-ref">gRPC streams</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="http.html" class="btn btn-neutral float-right" title="HTTP requests and streams" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api.html" class="btn btn-neutral" title="API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 Lyft, Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

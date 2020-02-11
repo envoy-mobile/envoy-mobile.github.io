@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HTTP requests and streams &mdash; envoy-mobile 0.2.2.021120-4d4e8c documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="gRPC streams" href="grpc.html" />
+    <link rel="prev" title="Starting Envoy" href="starting_envoy.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> envoy-mobile
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2.021120-4d4e8c
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HTTP requests and streams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#request"><code class="docutils literal notranslate"><span class="pre">Request</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#responsehandler"><code class="docutils literal notranslate"><span class="pre">ResponseHandler</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#retrypolicy"><code class="docutils literal notranslate"><span class="pre">RetryPolicy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streamemitter"><code class="docutils literal notranslate"><span class="pre">StreamEmitter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unary-requests">Unary Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">envoy-mobile</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../start/start.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="api.html">API</a> &raquo;</li>
+        
+      <li>HTTP requests and streams</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/http.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="http-requests-and-streams">
+<span id="api-http"></span><h1>HTTP requests and streams<a class="headerlink" href="#http-requests-and-streams" title="Permalink to this headline">¶</a></h1>
+<p>Streams are first-class citizens in Envoy Mobile, and are supported out-of-the-box.</p>
+<p>In fact, unary (single request, single response) HTTP requests are actually written as simply
+convenience functions on top of streams.</p>
+<div class="section" id="request">
+<h2><code class="docutils literal notranslate"><span class="pre">Request</span></code><a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h2>
+<p>Creating a stream is done by initializing a <code class="docutils literal notranslate"><span class="pre">Request</span></code> via a <code class="docutils literal notranslate"><span class="pre">RequestBuilder</span></code>, then passing it to
+a previously created <a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">Envoy instance</span></a>.</p>
+<p><strong>Kotlin</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">request</span> <span class="o">=</span> <span class="n">RequestBuilder</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="s2">&quot;https&quot;</span><span class="p">,</span> <span class="s2">&quot;api.envoyproxy.io&quot;</span><span class="p">,</span> <span class="s2">&quot;/foo&quot;</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">addRetryPolicy</span><span class="p">(</span><span class="n">RetryPolicy</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
+  <span class="o">.</span><span class="n">addHeader</span><span class="p">(</span><span class="s2">&quot;x-custom-header&quot;</span><span class="p">,</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
+  <span class="o">...</span>
+  <span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Swift</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">request</span> <span class="o">=</span> <span class="n">RequestBuilder</span><span class="p">(</span><span class="n">method</span><span class="p">:</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="n">scheme</span><span class="p">:</span> <span class="s2">&quot;https&quot;</span><span class="p">,</span> <span class="n">authority</span><span class="p">:</span> <span class="s2">&quot;api.envoyproxy.io&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="s2">&quot;/foo&quot;</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">addRetryPolicy</span><span class="p">(</span><span class="n">RetryPolicy</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
+  <span class="o">.</span><span class="n">addHeader</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s2">&quot;x-custom-header&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
+  <span class="o">...</span>
+  <span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="responsehandler">
+<h2><code class="docutils literal notranslate"><span class="pre">ResponseHandler</span></code><a class="headerlink" href="#responsehandler" title="Permalink to this headline">¶</a></h2>
+<p>In order to receive updates for a given request/stream, a <code class="docutils literal notranslate"><span class="pre">ResponseHandler</span></code> must be created.
+This class contains a set of callbacks that are called whenever an update occurs on the stream.</p>
+<p><strong>Kotlin</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">handler</span> <span class="o">=</span> <span class="n">ResponseHandler</span><span class="p">(</span><span class="n">Executor</span> <span class="p">{})</span>
+  <span class="o">.</span><span class="n">onHeaders</span> <span class="p">{</span> <span class="n">headers</span><span class="p">,</span> <span class="n">statusCode</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span>
+    <span class="n">Log</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;MainActivity&quot;</span><span class="p">,</span> <span class="s2">&quot;Received status: &quot;</span> <span class="o">+</span> <span class="n">statusCode</span> <span class="o">+</span> <span class="s2">&quot; and headers: &quot;</span> <span class="o">+</span> <span class="n">headers</span><span class="p">)</span>
+    <span class="n">Unit</span>
+  <span class="p">}</span>
+  <span class="o">.</span><span class="n">onData</span> <span class="p">{</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">endStream</span> <span class="o">-&gt;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">endStream</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">Log</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;MainActivity&quot;</span><span class="p">,</span> <span class="s2">&quot;Finished receiving body data&quot;</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">Log</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;MainActivity&quot;</span><span class="p">,</span> <span class="s2">&quot;Received body data, more incoming&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">Unit</span>
+  <span class="p">}</span>
+  <span class="o">.</span><span class="n">onError</span> <span class="p">{</span> <span class="n">error</span> <span class="o">-&gt;</span>
+    <span class="n">Log</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;MainActivity&quot;</span><span class="p">,</span> <span class="s2">&quot;Error received: &quot;</span> <span class="o">+</span> <span class="n">error</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+    <span class="n">Unit</span>
+  <span class="p">}</span>
+  <span class="o">...</span>
+</pre></div>
+</div>
+<p><strong>Swift</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">handler</span> <span class="o">=</span> <span class="n">ResponseHandler</span><span class="p">()</span>
+  <span class="o">.</span><span class="n">onHeaders</span> <span class="p">{</span> <span class="n">headers</span><span class="p">,</span> <span class="n">statusCode</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Received status: \(statusCode) and headers: \(headers)&quot;</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="o">.</span><span class="n">onData</span> <span class="p">{</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">endStream</span> <span class="ow">in</span>
+    <span class="k">if</span> <span class="n">endStream</span> <span class="p">{</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finished receiving body data&quot;</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Received body data, more incoming&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="o">.</span><span class="n">onError</span> <span class="p">{</span> <span class="n">error</span> <span class="ow">in</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error received: \(error.message)&quot;</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="retrypolicy">
+<h2><code class="docutils literal notranslate"><span class="pre">RetryPolicy</span></code><a class="headerlink" href="#retrypolicy" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">RetryPolicy</span></code> type allows for customizing retry rules that should be applied to an outbound
+request. These rules are added by calling <code class="docutils literal notranslate"><span class="pre">addRetryPolicy(...)</span></code> on the <code class="docutils literal notranslate"><span class="pre">RequestBuilder</span></code>, and
+are applied when the request is sent.</p>
+<p>For full documentation of how these retry rules perform, see Envoy’s documentation:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.envoyproxy.io/learn/automatic-retries">Automatic retries</a></li>
+<li><a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/http/http_routing.html?highlight=exponential#retry-semantics">Retry semantics</a></li>
+</ul>
+</div>
+<div class="section" id="streamemitter">
+<h2><code class="docutils literal notranslate"><span class="pre">StreamEmitter</span></code><a class="headerlink" href="#streamemitter" title="Permalink to this headline">¶</a></h2>
+<p>Once a <code class="docutils literal notranslate"><span class="pre">Request</span></code> and <code class="docutils literal notranslate"><span class="pre">ResponseHandler</span></code> have been created, a stream can be opened using an
+<a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">Envoy instance</span></a>.</p>
+<p>Doing so returns a <code class="docutils literal notranslate"><span class="pre">StreamEmitter</span></code> which allows the sender to interact with the stream.</p>
+<p><strong>Kotlin</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">envoy</span> <span class="o">=</span> <span class="n">AndroidEnvoyClientBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+
+<span class="n">val</span> <span class="n">request</span> <span class="o">=</span> <span class="n">RequestBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">val</span> <span class="n">responseHandler</span> <span class="o">=</span> <span class="n">ResponseHandler</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">val</span> <span class="n">emitter</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">responseHandler</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">sendData</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">sendData</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="o">...</span>
+<span class="n">emitter</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Swift</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">envoy</span> <span class="o">=</span> <span class="k">try</span> <span class="n">EnvoyClientBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+
+<span class="n">let</span> <span class="n">request</span> <span class="o">=</span> <span class="n">RequestBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">let</span> <span class="n">responseHandler</span> <span class="o">=</span> <span class="n">ResponseHandler</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">emitter</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">responseHandler</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">sendData</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">sendData</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="o">...</span>
+<span class="n">emitter</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unary-requests">
+<h2>Unary Requests<a class="headerlink" href="#unary-requests" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned above, unary requests are made using the same types that perform streaming requests.</p>
+<p>Sending a unary request may be done by either closing the <code class="docutils literal notranslate"><span class="pre">StreamEmitter</span></code> after the
+set of headers/data has been written, or by using the helper function that returns a
+<code class="docutils literal notranslate"><span class="pre">CancelableStream</span></code> type instead of a <code class="docutils literal notranslate"><span class="pre">StreamEmitter</span></code>.</p>
+<p>The unary helper function takes optional body data, then closes the stream.
+The <code class="docutils literal notranslate"><span class="pre">CancelableStream</span></code> it returns does not expose options for sending additional data.</p>
+<p><strong>Kotlin</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">envoy</span> <span class="o">=</span> <span class="n">AndroidEnvoyClientBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+
+<span class="n">val</span> <span class="n">request</span> <span class="o">=</span> <span class="n">RequestBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">val</span> <span class="n">responseHandler</span> <span class="o">=</span> <span class="n">ResponseHandler</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">val</span> <span class="n">cancelable</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">trailers</span><span class="p">,</span> <span class="n">responseHandler</span><span class="p">)</span>
+<span class="o">//</span> <span class="n">cancelable</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Swift</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">envoy</span> <span class="o">=</span> <span class="k">try</span> <span class="n">EnvoyClientBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+
+<span class="n">let</span> <span class="n">request</span> <span class="o">=</span> <span class="n">RequestBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">let</span> <span class="n">responseHandler</span> <span class="o">=</span> <span class="n">ResponseHandler</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">cancelable</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">trailers</span><span class="p">:</span> <span class="p">[:],</span> <span class="n">handler</span><span class="p">:</span> <span class="n">responseHandler</span><span class="p">)</span>
+<span class="o">//</span> <span class="n">cancelable</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="grpc.html" class="btn btn-neutral float-right" title="gRPC streams" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="starting_envoy.html" class="btn btn-neutral" title="Starting Envoy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 Lyft, Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
