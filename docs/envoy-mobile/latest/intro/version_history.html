@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Version history &mdash; envoy-mobile 0.2.2.021820-046380 documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.2.3-dca265 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2.2.021820-046380
+                0.2.3-dca265
               </div>
             
           
@@ -90,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="comparison.html">Comparison to similar systems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_help.html">Getting help</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Version history</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#feb-21-2020">0.2.3 (Feb 21, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#feb-3-2020">0.2.2 (Feb 3, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#jan-6-2020">0.2.1 (Jan 6, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nov-4-2019">0.2.0 (Nov 4, 2019)</a></li>
@@ -171,6 +172,25 @@
             
   <div class="section" id="version-history">
 <h1>Version history<a class="headerlink" href="#version-history" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="feb-21-2020">
+<h2>0.2.3 (Feb 21, 2020)<a class="headerlink" href="#feb-21-2020" title="Permalink to this headline">¶</a></h2>
+<p>This release provides stabilization fixes as follow-up changes to 0.2.2:</p>
+<ul class="simple">
+<li>Fixes race that caused double-deletion of HCM active streams crashing (#669)</li>
+<li>Fixes DNS resolution when starting Envoy Mobile offline on iOS (#672)</li>
+<li>Fixes for API listener crashes (#667 and #674)</li>
+<li>Fixes for linking and assertions (#663)</li>
+<li>Fixes bad access in ~DnsCache() in Envoy upstream (#690)</li>
+<li>Fixes bug in Dynamic Forward Proxy Cluster in Envoy Upstream (#678)</li>
+<li>Adds known issue assertion that prevents crash on force-close (#699)</li>
+</ul>
+<p>Additional changes:</p>
+<ul class="simple">
+<li>Allows zero for upstream timeout specification (#659)</li>
+<li>Adds process logging for Android (#684)</li>
+<li>Adds the ability to decide upstream protocol for requests (#697)</li>
+</ul>
+</div>
 <div class="section" id="feb-3-2020">
 <h2>0.2.2 (Feb 3, 2020)<a class="headerlink" href="#feb-3-2020" title="Permalink to this headline">¶</a></h2>
 <p>Envoy Mobile v0.2.2 changes how network requests are performed to no longer use Envoy’s <cite>AsyncClient</cite> and to instead consume the <cite>ApiListener</cite> directly (#616).</p>
