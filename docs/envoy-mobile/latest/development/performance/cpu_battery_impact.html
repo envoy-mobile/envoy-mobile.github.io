@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of CPU/battery impact &mdash; envoy-mobile 0.2.3.03062020-2b5526 documentation</title>
+  <title>Analysis of CPU/battery impact &mdash; envoy-mobile 0.2.3.03062020-839084 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2.3.03062020-2b5526
+                0.2.3.03062020-839084
               </div>
             
           
@@ -94,7 +94,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Analysis of CPU/battery impact</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#results">Results</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#experimentation-method">Experimentation method</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#analysis">Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#open-issues">Open issues</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="device_connectivity.html">Device connectivity analysis</a></li>
@@ -177,42 +177,31 @@
             
   <div class="section" id="analysis-of-cpu-battery-impact">
 <span id="dev-performance-cpu-battery"></span><h1>Analysis of CPU/battery impact<a class="headerlink" href="#analysis-of-cpu-battery-impact" title="Permalink to this headline">¶</a></h1>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">These analyses have not been updated since Envoy Mobile added interfaces for performing
-network requests directly using the library. They will be re-run as part of <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/536">#536</a>.</p>
-</div>
-<p>Modified versions of the “hello world” example apps were used to run these experiments:</p>
-<ul class="simple">
-<li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/8636711/examples/kotlin/control">Android control app</a></li>
-<li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/8636711/examples/kotlin/hello_world">Android Envoy app</a></li>
-<li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/2f27581/examples/objective-c/control/control">iOS control app</a></li>
-<li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/2f27581/examples/objective-c/xcode_variant/EnvoyObjc/EnvoyObjc">iOS Envoy app</a></li>
-</ul>
-<p>The 2 apps on each platform:</p>
+<p>We utilized 2 apps (1 control, 1 variant) on each platform to validate
+performance using the native networking stacks versus Envoy Mobile:</p>
 <ul class="simple">
 <li><strong>Control:</strong> Made a request every <code class="docutils literal notranslate"><span class="pre">200ms</span></code> to an endpoint without Envoy compiled in the app.</li>
-<li><strong>Envoy:</strong> Made the same request at the same interval, but routed through an instance of Envoy.</li>
+<li><strong>Envoy:</strong> Made the same request at the same interval, but using Envoy Mobile.</li>
 </ul>
 <p>All request/response caching was disabled.</p>
 <div class="section" id="results">
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="ios">
 <h3>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h3>
-<p>Valid through SHA <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/2f27581">2f27581</a>.</p>
+<p>Valid through SHA <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/v0.2.3.03062020">v0.2.3.03062020</a>.</p>
 <p>Envoy:</p>
 <ul class="simple">
 <li>Avg CPU: ~4%</li>
-<li>Avg memory: 12MB</li>
-<li>Battery: 1/20 Xcode Instruments score</li>
+<li>Avg memory: 46MB</li>
+<li>Battery: Negligible</li>
 </ul>
 <p>Control:</p>
 <ul class="simple">
-<li>Avg CPU: ~2%</li>
-<li>Avg memory: 6MB</li>
-<li>Battery: 1/20 Xcode Instruments score</li>
+<li>Avg CPU: ~4%</li>
+<li>Avg memory: 29MB</li>
+<li>Battery: Negligible</li>
 </ul>
-<p><strong>Based on these results, control and Envoy are relatively similar with a slight increase using Envoy.</strong></p>
+<p><strong>Based on these results, control and Envoy are relatively similar with a slight increase in memory using Envoy.</strong></p>
 </div>
 <div class="section" id="android">
 <h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
@@ -236,22 +225,26 @@ network requests directly using the library. They will be re-run as part of <a c
 <h2>Experimentation method<a class="headerlink" href="#experimentation-method" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
 <h3>iOS<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>The original investigation was completed as part of <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/113">#113</a>,
-and a critical performance issue was fixed in <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/215">#215</a>.</p>
-<p>For analysis, the <a class="reference external" href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/MonitorEnergyWithInstruments.html">Energy Diagnostics tool from Xcode Instruments</a>
-was used.</p>
-<p>Requests were made using <code class="docutils literal notranslate"><span class="pre">URLSession</span></code>, with the session’s cache set to <code class="docutils literal notranslate"><span class="pre">nil</span></code> (disabling caching).
-Envoy listened to the data sent over <code class="docutils literal notranslate"><span class="pre">URLSession</span></code>, proxying it through.</p>
-<p>Both apps were run (one at a time) on a physical device (iPhone 6s iOS 12.2.x) while running Instruments.</p>
-<p>Reproducing the Envoy example app:</p>
-<ol class="arabic simple">
-<li>Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">ios_dist</span> <span class="pre">--config=ios</span> <span class="pre">--ios_multi_cpus=armv7,arm64</span></code></li>
-<li>Copy <code class="docutils literal notranslate"><span class="pre">./dist/Envoy.framework</span></code> to the example’s <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/2f27581/examples/objective-c/xcode_variant/EnvoyObjc/EnvoyObjc">source directory</a></li>
-<li>Build/run the example app</li>
-</ol>
+<p>The sample apps checked into
+<a class="reference external" href="https://github.com/rebello95/EnvoyMobileAnalysis/tree/v0.2.3.03062020">this analysis repository</a>
+were used to run the analysis outlined in this document.</p>
+<p>For the analysis, we utilized Xcode Instruments to monitor the 2 sample apps
+while they ran in the foreground for a few minutes.</p>
+<p>Control requests were made using <code class="docutils literal notranslate"><span class="pre">URLSession</span></code>, with the session
+configuration’s cache set to <code class="docutils literal notranslate"><span class="pre">nil</span></code> (disabling caching).</p>
+<p>Variant requests were made using the <code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code>.</p>
+<p>Both apps were run (one at a time) on a physical device (iPhone XS, iOS 13.3.1)
+while running Instruments.</p>
+<p>Additional screenshots from the analysis are available on the
+<a class="reference external" href="https://github.com/rebello95/EnvoyMobileAnalysis/releases/tag/v0.2.3.03062020">release</a>.</p>
 </div>
 <div class="section" id="id2">
 <h3>Android<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Modified versions of the “hello world” example apps were used to run these experiments:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/8636711/examples/kotlin/control">Android control app</a></li>
+<li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/8636711/examples/kotlin/hello_world">Android Envoy app</a></li>
+</ul>
 <p>We’re currently using <code class="docutils literal notranslate"><span class="pre">HttpURLConnection</span></code> to communicate and send requests to Envoy. Envoy in it’s current state is run as
 a process listening to traffic sent over this connection.</p>
 <p>Getting the build:</p>
@@ -281,34 +274,10 @@ We were unable to get reliable data using this method. Often times, the battery 
 </ol>
 </div>
 </div>
-<div class="section" id="analysis">
-<h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id3">
-<h3>iOS<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>Envoy had a small increase in memory and CPU usage compared to control.</p>
-<p>During the <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/113#issuecomment-505676324">initial investigation</a>, we identified and fixed
-<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/215">issue</a> with <code class="docutils literal notranslate"><span class="pre">libevent</span></code> that was severely degrading CPU (and subsequently battery) performance.</p>
-<p><a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/113#issuecomment-505673869">We used Wireshark</a> to validate that
-network traffic was flowing through Envoy on the phone every <code class="docutils literal notranslate"><span class="pre">200ms</span></code>, giving us confidence that there was
-no additional caching happening within <code class="docutils literal notranslate"><span class="pre">URLSession</span></code>.</p>
-</div>
-<div class="section" id="id4">
-<h3>Android<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>There are minimal differences between Envoy and control. By enabling trace logging within Envoy,
-we are able to observe the following:</p>
-<ol class="arabic simple">
-<li>Requests to S3 are being logged in Envoy</li>
-<li>DNS resolution does happen every 5 seconds</li>
-<li>Stats are flushed every 5 seconds</li>
-</ol>
-<p>The DNS resolution and stats flush happening every 5 seconds was originally a concern,
-but updating the frequency to 1 minute did not result in a significant change.</p>
-</div>
-<div class="section" id="open-issues-regarding-battery-usage">
-<h3>Open issues regarding battery usage<a class="headerlink" href="#open-issues-regarding-battery-usage" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="open-issues">
+<h2>Open issues<a class="headerlink" href="#open-issues" title="Permalink to this headline">¶</a></h2>
 <p>For current issues with CPU/battery, please see issues with the
 <a class="reference external" href="https://github.com/lyft/envoy-mobile/labels/perf%2Fcpu">perf/cpu label</a>.</p>
-</div>
 </div>
 </div>
 
