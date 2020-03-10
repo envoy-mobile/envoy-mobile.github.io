@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.2.3.03062020-2272d0 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.2.3.03062020-917186 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2.3.03062020-2272d0
+                0.2.3.03062020-917186
               </div>
             
           
@@ -90,7 +90,9 @@
 <li class="toctree-l2 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#envoyclient"><code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#envoyclientbuilder"><code class="docutils literal notranslate"><span class="pre">EnvoyClientBuilder</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#making-requests">Making Requests</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
@@ -104,10 +106,17 @@
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#envoyclient"><code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#making-requests">Making Requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#envoyclientbuilder"><code class="docutils literal notranslate"><span class="pre">EnvoyClientBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#addconnecttimeoutseconds"><code class="docutils literal notranslate"><span class="pre">addConnectTimeoutSeconds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adddnsfailurerefreshseconds"><code class="docutils literal notranslate"><span class="pre">addDNSFailureRefreshSeconds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adddnsrefreshseconds"><code class="docutils literal notranslate"><span class="pre">addDNSRefreshSeconds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addloglevel"><code class="docutils literal notranslate"><span class="pre">addLogLevel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addstatsdomain"><code class="docutils literal notranslate"><span class="pre">addStatsDomain</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addstatsflushseconds"><code class="docutils literal notranslate"><span class="pre">addStatsFlushSeconds</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#making-requests">Making Requests</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
@@ -189,13 +198,12 @@
 <h2><code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code><a class="headerlink" href="#envoyclient" title="Permalink to this headline">¶</a></h2>
 <p>Starting an instance of Envoy Mobile for making requests is done by creating an <code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code>,
 which conforms to the <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code> interface.</p>
-<p>To do so, create an <code class="docutils literal notranslate"><span class="pre">EnvoyClientBuilder</span></code> and call <code class="docutils literal notranslate"><span class="pre">build()</span></code>.</p>
-<p>This builder exposes some of Envoy’s configuration options programmatically using builder
-functions, some of which are demonstrated below:</p>
+<p>To do so, create an <code class="docutils literal notranslate"><span class="pre">EnvoyClientBuilder</span></code> and call <code class="docutils literal notranslate"><span class="pre">build()</span></code> (see below).</p>
+<p>After the client is created, it should be stored and kept in memory in order to be used
+for issuing requests.</p>
 <p><strong>Kotlin example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">envoy</span> <span class="o">=</span> <span class="n">AndroidEnvoyClientBuilder</span><span class="p">(</span><span class="n">baseContext</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">envoy</span> <span class="o">=</span> <span class="n">AndroidEnvoyClientBuilder</span><span class="p">(</span><span class="n">getApplication</span><span class="p">())</span>
   <span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">WARN</span><span class="p">)</span>
-  <span class="o">.</span><span class="n">addStatsFlushSeconds</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
   <span class="o">...</span>
   <span class="o">.</span><span class="n">build</span><span class="p">()</span>
 </pre></div>
@@ -203,13 +211,98 @@ functions, some of which are demonstrated below:</p>
 <p><strong>Swift example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">envoy</span> <span class="o">=</span> <span class="k">try</span> <span class="n">EnvoyClientBuilder</span><span class="p">()</span>
   <span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="o">.</span><span class="n">warn</span><span class="p">)</span>
-  <span class="o">.</span><span class="n">addStatsFlushSeconds</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
   <span class="o">...</span>
   <span class="o">.</span><span class="n">build</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>After the client is created, it should be stored and kept in memory in order to be used
-for issuing requests.</p>
+</div>
+<div class="section" id="envoyclientbuilder">
+<h2><code class="docutils literal notranslate"><span class="pre">EnvoyClientBuilder</span></code><a class="headerlink" href="#envoyclientbuilder" title="Permalink to this headline">¶</a></h2>
+<p>This type is used to configure an instance of <code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code> before finally
+creating the client using <code class="docutils literal notranslate"><span class="pre">.build()</span></code>.</p>
+<p>Available builders are 1:1 between iOS/Android, and are documented below.</p>
+<div class="section" id="addconnecttimeoutseconds">
+<h3><code class="docutils literal notranslate"><span class="pre">addConnectTimeoutSeconds</span></code><a class="headerlink" href="#addconnecttimeoutseconds" title="Permalink to this headline">¶</a></h3>
+<p>Specify the timeout for new network connections to hosts in Envoy Mobile clusters.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addConnectTimeoutSeconds</span><span class="p">(</span><span class="mi">30</span><span class="n">L</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addConnectTimeoutSeconds</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adddnsfailurerefreshseconds">
+<h3><code class="docutils literal notranslate"><span class="pre">addDNSFailureRefreshSeconds</span></code><a class="headerlink" href="#adddnsfailurerefreshseconds" title="Permalink to this headline">¶</a></h3>
+<p>Specify the rate at which Envoy Mobile should refresh DNS in states of failure.</p>
+<p>This should typically be a relatively aggressive range compared to the standard-state DNS refresh
+rate, as it is required for Envoy Mobile to recover and continue making requests.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addDNSFailureRefreshSeconds</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addDNSFailureRefreshSeconds</span><span class="p">(</span><span class="n">base</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">max</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adddnsrefreshseconds">
+<h3><code class="docutils literal notranslate"><span class="pre">addDNSRefreshSeconds</span></code><a class="headerlink" href="#adddnsrefreshseconds" title="Permalink to this headline">¶</a></h3>
+<p>Specify the interval at which Envoy should forcefully refresh DNS.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addDNSRefreshSeconds</span><span class="p">(</span><span class="mi">60</span><span class="n">L</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addDNSRefreshSeconds</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="addloglevel">
+<h3><code class="docutils literal notranslate"><span class="pre">addLogLevel</span></code><a class="headerlink" href="#addloglevel" title="Permalink to this headline">¶</a></h3>
+<p>Specify the log level to be used when running the underlying Envoy engine.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">WARN</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="o">.</span><span class="n">warn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="addstatsdomain">
+<h3><code class="docutils literal notranslate"><span class="pre">addStatsDomain</span></code><a class="headerlink" href="#addstatsdomain" title="Permalink to this headline">¶</a></h3>
+<p>Specify a domain which implements the
+<a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/83908423d46a37574e9a35627df1f3dd9634e5ec/library/common/config_template.cc#L139-L145">stats endpoint</a>
+in order to take advantage of the
+<a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/configuration/upstream/cluster_manager/cluster_stats">stats emitted by Envoy</a>
+(and subsequently Envoy Mobile).</p>
+<p>Note that only stats specified in the configuration’s
+<a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/83908423d46a37574e9a35627df1f3dd9634e5ec/library/common/config_template.cc#L146-L167">whitelist</a>
+will be emitted.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addStatsDomain</span><span class="p">(</span><span class="s2">&quot;envoy-mobile.envoyproxy.io&quot;</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addStatsDomain</span><span class="p">(</span><span class="s2">&quot;envoy-mobile.envoyproxy.io&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="addstatsflushseconds">
+<h3><code class="docutils literal notranslate"><span class="pre">addStatsFlushSeconds</span></code><a class="headerlink" href="#addstatsflushseconds" title="Permalink to this headline">¶</a></h3>
+<p>Specify the rate at which Envoy Mobile should flush its queued stats.</p>
+<p>Note that the library automatically flushes stats on application backgrounding/termination as well.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addStatsFlushSeconds</span><span class="p">(</span><span class="mi">5</span><span class="n">L</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addStatsFlushSeconds</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="advanced-configuration">
 <h2>Advanced configuration<a class="headerlink" href="#advanced-configuration" title="Permalink to this headline">¶</a></h2>
@@ -240,14 +333,14 @@ with additional customizations applied.</p>
 configuration string is not evaluated until runtime, and not all of the core Envoy configuration
 options are supported by Envoy Mobile.</p>
 </div>
+</div>
 <div class="section" id="making-requests">
-<h3>Making Requests<a class="headerlink" href="#making-requests" title="Permalink to this headline">¶</a></h3>
+<h2>Making Requests<a class="headerlink" href="#making-requests" title="Permalink to this headline">¶</a></h2>
 <p>Now that you have an Envoy Mobile instance, you can start making requests:</p>
 <ul class="simple">
 <li><a class="reference internal" href="http.html#api-http"><span class="std std-ref">HTTP requests and streams</span></a></li>
 <li><a class="reference internal" href="grpc.html#api-grpc"><span class="std std-ref">gRPC streams</span></a></li>
 </ul>
-</div>
 </div>
 </div>
 
