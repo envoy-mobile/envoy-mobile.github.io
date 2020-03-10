@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of binary size &mdash; envoy-mobile 0.2.3.03062020-839084 documentation</title>
+  <title>Analysis of binary size &mdash; envoy-mobile 0.2.3.03062020-2272d0 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2.3.03062020-839084
+                0.2.3.03062020-2272d0
               </div>
             
           
@@ -93,6 +93,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Analysis of binary size</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#object-files-analysis">Object files analysis</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#open-issues-regarding-size">Open issues regarding size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#current-status">Current status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#ci-integration">CI integration</a></li>
 </ul>
 </li>
@@ -314,19 +315,42 @@ binary size. Check out the issues <a class="reference external" href="https://gi
 any change that tries to address these issues you should run through the
 analysis pipeline described above, and make sure your changes match
 expectations.</p>
+</div>
 <div class="section" id="current-status">
-<h3>Current status<a class="headerlink" href="#current-status" title="Permalink to this headline">¶</a></h3>
-<p>As of
-<a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/f17caebcfce09ec5dcda905dc8418fea4d382da7">https://github.com/lyft/envoy-mobile/tree/f17caebcfce09ec5dcda905dc8418fea4d382da7</a>
-The test_binary_size_size as built by the toolchain against the architecture
-described above compiles to a stripped size of 8.9mb and a compressed size of
-3mb.</p>
+<h2>Current status<a class="headerlink" href="#current-status" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ios">
+<h3>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h3>
+<p>When compiling Envoy Mobile for <code class="docutils literal notranslate"><span class="pre">arm64</span></code> only, we found the final size to be
+<strong>approximately 4.6 MB</strong> as of <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/v0.2.3.03062020">v0.2.3.03062020</a>.</p>
+<p>This analysis was done by:</p>
+<ul class="simple">
+<li>Compiling the <a class="reference external" href="https://github.com/rebello95/EnvoyMobileAnalysis/tree/v0.2.3.03062020/AnalysisVariant">analysis variant example app</a> for release</li>
+<li>Exporing the app for Ad Hoc distribution using Xcode</li>
+<li>Enabling app thinning for <code class="docutils literal notranslate"><span class="pre">arm64</span></code> only</li>
+<li>Investigating the <code class="docutils literal notranslate"><span class="pre">.ipa</span></code> file and/or <code class="docutils literal notranslate"><span class="pre">App</span> <span class="pre">Thinning</span> <span class="pre">Size</span> <span class="pre">Report.txt</span></code></li>
+<li>Doing the same for the <a class="reference external" href="https://github.com/rebello95/EnvoyMobileAnalysis/tree/v0.2.3.03062020/AnalysisControl">analysis control example app</a> in that repository, and comparing the size differences</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Control</span><span class="p">:</span>
+<span class="n">App</span> <span class="o">+</span> <span class="n">On</span> <span class="n">Demand</span> <span class="n">Resources</span> <span class="n">size</span><span class="p">:</span> <span class="mi">27</span> <span class="n">KB</span> <span class="n">compressed</span><span class="p">,</span> <span class="mi">113</span> <span class="n">KB</span> <span class="n">uncompressed</span>
+<span class="n">App</span> <span class="n">size</span><span class="p">:</span> <span class="mi">27</span> <span class="n">KB</span> <span class="n">compressed</span><span class="p">,</span> <span class="mi">113</span> <span class="n">KB</span> <span class="n">uncompressed</span>
+
+<span class="n">Variant</span><span class="p">:</span>
+<span class="n">App</span> <span class="o">+</span> <span class="n">On</span> <span class="n">Demand</span> <span class="n">Resources</span> <span class="n">size</span><span class="p">:</span> <span class="mf">4.6</span> <span class="n">MB</span> <span class="n">compressed</span><span class="p">,</span> <span class="mf">13.8</span> <span class="n">MB</span> <span class="n">uncompressed</span>
+<span class="n">App</span> <span class="n">size</span><span class="p">:</span> <span class="mf">4.6</span> <span class="n">MB</span> <span class="n">compressed</span><span class="p">,</span> <span class="mf">13.8</span> <span class="n">MB</span> <span class="n">uncompressed</span>
+
+<span class="n">Net</span><span class="p">:</span> <span class="mf">4.6</span> <span class="n">MB</span> <span class="n">compressed</span><span class="p">,</span> <span class="mf">13.8</span> <span class="n">MB</span> <span class="n">uncompressed</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="android">
+<h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
+<p>This is being done in <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/742">#742</a>.</p>
 </div>
 </div>
 <div class="section" id="ci-integration">
 <h2>CI integration<a class="headerlink" href="#ci-integration" title="Permalink to this headline">¶</a></h2>
 <p>CI validates that no PR increases the binary size of the library above a specific
-threshold specified in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/83908423d46a37574e9a35627df1f3dd9634e5ec/.github/workflows/perf.yml">perf.yml configuration</a>.</p>
+threshold specified in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/2272d063cdfd11ae46a65b0eff7f7bdcb19c0934/.github/workflows/perf.yml">perf.yml configuration</a>.</p>
 <p>The status of this job is reported on PRs in the <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">/</span> <span class="pre">size_compare</span></code> task.</p>
 </div>
 </div>
