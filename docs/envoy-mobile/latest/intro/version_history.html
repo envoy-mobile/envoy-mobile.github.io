@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Version history &mdash; envoy-mobile 0.2.3.03182020-16f5fe documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.3.0-ba4dff documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2.3.03182020-16f5fe
+                0.3.0-ba4dff
               </div>
             
           
@@ -90,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="comparison.html">Comparison to similar systems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_help.html">Getting help</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Version history</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mar-26-2020">0.3.0 (Mar 26, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#feb-21-2020">0.2.3 (Feb 21, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#feb-3-2020">0.2.2 (Feb 3, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#jan-6-2020">0.2.1 (Jan 6, 2020)</a></li>
@@ -172,6 +173,27 @@
             
   <div class="section" id="version-history">
 <h1>Version history<a class="headerlink" href="#version-history" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="mar-26-2020">
+<h2>0.3.0 (Mar 26, 2020)<a class="headerlink" href="#mar-26-2020" title="Permalink to this headline">¶</a></h2>
+<p>This is the first release of Envoy Mobile Lyft is using in a production application! 🎉</p>
+<p>Since early November, when the team tagged v0.2.0, we have been hard at work to stabilize the library,
+and harden it via experiments with Lyft’s Alpha and Beta releases. We have released Lyft’s production
+binaries with Envoy Mobile for a couple weeks now, and are starting to expose a percentage of our
+production clients to Envoy Mobile with this release.</p>
+<p>Since v0.2.3 we have largely focused on observability:</p>
+<ul class="simple">
+<li>Adds improved logging (#701, #702, #722)</li>
+<li>Adds basic stats for retries #718)</li>
+<li>Adds <code class="docutils literal notranslate"><span class="pre">x-envoy-attempt-count</span></code> response header (#751)</li>
+<li>Adds visibility over <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto#config-route-v3-virtualcluster">virtual clusters</a> (#768, #771)</li>
+</ul>
+<p>Additional changes:</p>
+<ul class="simple">
+<li>Fixes trailers missing on iOS (#703)</li>
+<li>Adds ability to set DNS failure refresh rate (#714)</li>
+<li>Adds docs on the EnvoyClientBuilder (#745)</li>
+</ul>
+</div>
 <div class="section" id="feb-21-2020">
 <h2>0.2.3 (Feb 21, 2020)<a class="headerlink" href="#feb-21-2020" title="Permalink to this headline">¶</a></h2>
 <p>This release provides stabilization fixes as follow-up changes to 0.2.2:</p>
