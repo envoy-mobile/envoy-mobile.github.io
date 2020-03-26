@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.2.3.03182020-5ee55f documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.2.3.03182020-16f5fe documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2.3.03182020-5ee55f
+                0.2.3.03182020-16f5fe
               </div>
             
           
@@ -99,6 +99,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#addstatsflushseconds"><code class="docutils literal notranslate"><span class="pre">addStatsFlushSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addappversion"><code class="docutils literal notranslate"><span class="pre">addAppVersion</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addappid"><code class="docutils literal notranslate"><span class="pre">addAppId</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addvirtualclusters"><code class="docutils literal notranslate"><span class="pre">addVirtualClusters</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
@@ -311,6 +312,25 @@ This information is sent as metadata when flushing stats.</p>
 
 <span class="o">//</span> <span class="n">Swift</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">addAppId</span><span class="p">(</span><span class="s2">&quot;com.mydomain.myapp)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="addvirtualclusters">
+<h3><code class="docutils literal notranslate"><span class="pre">addVirtualClusters</span></code><a class="headerlink" href="#addvirtualclusters" title="Permalink to this headline">¶</a></h3>
+<p>Specify the virtual clusters config for Envoy Mobile’s configuration.
+The configuration is expected as a JSON list.
+This functionality is used for stat segmentation.</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">This API is non-ideal as it exposes lower-level internals of Envoy than desired by this project.
+<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/770">#770</a> tracks enhancing this API.</p>
+</div>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addVirtualClusters</span><span class="p">(</span><span class="s2">&quot;[{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">vcluster</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">headers</span><span class="se">\&quot;</span><span class="s2">:[{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">:path</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">exact_match</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">/v1/vcluster</span><span class="se">\&quot;</span><span class="s2">}]}]&quot;</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addVirtualClusters</span><span class="p">(</span><span class="s2">&quot;[{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">vcluster</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">headers</span><span class="se">\&quot;</span><span class="s2">:[{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">:path</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">exact_match</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">/v1/vcluster</span><span class="se">\&quot;</span><span class="s2">}]}]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
