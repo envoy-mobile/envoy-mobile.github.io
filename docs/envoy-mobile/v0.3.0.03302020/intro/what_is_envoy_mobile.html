@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>What is Envoy Mobile? &mdash; envoy-mobile 0.3.0.03302020-041648 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Comparison to similar systems" href="comparison.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> envoy-mobile
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0.03302020-041648
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Introduction</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">What is Envoy Mobile?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ubiquitous-api-and-abstraction-for-networking">Ubiquitous API and abstraction for networking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-and-explicit-system-for-supporting-advanced-networking-features">Simple and explicit system for supporting advanced networking features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xds-driven-mobile-client-policy">xDS driven mobile client policy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="comparison.html">Comparison to similar systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_help.html">Getting help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version_history.html">Version history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="additional_resources.html">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">envoy-mobile</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="intro.html">Introduction</a> &raquo;</li>
+        
+      <li>What is Envoy Mobile?</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/intro/what_is_envoy_mobile.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="what-is-envoy-mobile">
+<h1>What is Envoy Mobile?<a class="headerlink" href="#what-is-envoy-mobile" title="Permalink to this headline">¶</a></h1>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">Envoy Mobile is currently in a very early stage of development. This page should be read as a set
+of aspirational project goals.</p>
+</div>
+<p>Envoy Mobile is an iOS and Android client networking library built using
+<a class="reference external" href="https://www.envoyproxy.io/">Envoy</a> as its core.</p>
+<p>Envoy’s <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/intro/what_is_envoy">project goals</a> are
+simply stated as:</p>
+<blockquote>
+<div><em>The network should be transparent to applications. When network and application problems do occur
+it should be easy to determine the source of the problem.</em></div></blockquote>
+<p>As fundamental as Envoy has become in scaling many organizations’ distributed architectures, the
+reality is that three 9s at the server-side edge is meaningless if the user of a mobile application
+is only able to complete the desired product flows a fraction of the time. This may be due to a
+combination of network and application errors. Thus, in order to fully achieve the Envoy project’s
+goal of making the network transparent to applications, the service mesh and its inherent benefits
+(observability, consistency, etc.) must expand beyond the edge all the way to the mobile
+applications that are so critical to the end user’s experience. Envoy Mobile in conjunction with
+Envoy in the data center will provide the ability to reason about the entire distributed system
+network, not just the server-side portion.</p>
+<p>Whereas server-side Envoy proxy is a self-contained process that is meant to be deployed alongside a
+polyglot architecture, Envoy Mobile is distributed as a library meant to be compiled directly into
+client mobile applications. The library approach is required due to the practicalities of how
+applications are written and distributed on both the iOS and Android platforms. The high level goals
+of the library are discussed in the following subsections.</p>
+<div class="section" id="ubiquitous-api-and-abstraction-for-networking">
+<h2>Ubiquitous API and abstraction for networking<a class="headerlink" href="#ubiquitous-api-and-abstraction-for-networking" title="Permalink to this headline">¶</a></h2>
+<p>With the industry progressively moving towards specifying APIs via a strongly typed IDL such as
+<a class="reference external" href="https://developers.google.com/protocol-buffers/">protocol buffers</a>, Envoy Mobile will standardize
+and abstract how mobile developers interact with IDL exposed endpoints. Via <a class="reference external" href="https://github.com/lyft/protoc-gen-star">intelligent protobuf
+code generation</a> and an abstract transport, both iOS and
+Android can provide similar interfaces and ergonomics for consuming APIs. Initially we are planning
+on focusing our efforts on Swift APIs for iOS and Kotlin APIs for Android, but depending on
+community interest we will consider adding support for additional languages in the future. Our
+ultimate goal is to make the low-level Envoy common C++ code an implementation detail that the
+average mobile developer does not need to be aware of. Instead, mobile developers will interact with
+high-level language specific APIs that encapsulate common concerns such as making API calls,
+analytics, tracing, etc.</p>
+</div>
+<div class="section" id="simple-and-explicit-system-for-supporting-advanced-networking-features">
+<h2>Simple and explicit system for supporting advanced networking features<a class="headerlink" href="#simple-and-explicit-system-for-supporting-advanced-networking-features" title="Permalink to this headline">¶</a></h2>
+<p>With protocol buffer’s powerful annotation/extension system, Envoy Mobile can add sophisticated
+cross-platform functionality in a simple and explicit way when using strongly typed IDL APIs.
+Examples of annotations that are planned on our roadmap include marking an API as offline/deferred
+capable, caching, priority, streaming, marking fields for exclusion both on the request and response
+in poor network conditions, as well as general Envoy policies such as retry and timeout
+specifications.</p>
+<p>Much like Envoy’s use in a server-side service mesh, the goal is to push as much functionality as
+possible into the common core so as to avoid reimplementing it in every mobile application language.</p>
+<p>Furthermore, it is an explicit goal of Envoy Mobile to maintain consistent 1:1 APIs between
+the native mobile languages that it supports.</p>
+<p>Our long-term plans include evolving the <a class="reference external" href="https://github.com/grpc/grpc/blob/master/doc/server-reflection.md">gRPC Server Reflection Protocol</a> into a streaming reflection
+service API. This API will allow both Envoy and Envoy Mobile to fetch generic protobuf definitions
+from a central IDL service, which can then be used to implement annotation driven networking via
+reflection. This model means that Envoy Mobile will not necessarily need to have prior knowledge of
+an organization’s APIs in order to provide enhanced cross-platform networking functionality.</p>
+</div>
+<div class="section" id="xds-driven-mobile-client-policy">
+<h2>xDS driven mobile client policy<a class="headerlink" href="#xds-driven-mobile-client-policy" title="Permalink to this headline">¶</a></h2>
+<p>One of the reasons that Envoy has become so popular as a platform is its rich configuration
+discovery APIs which are collectively known as <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/dynamic_configuration">xDS</a>. These
+APIs allow a distributed set of Envoys to be managed by an eventually consistent control plane. One
+of the long term goals of Envoy Mobile is to bring xDS configuration all the way to mobile clients,
+in the form of routing, authentication, failover, load balancing, and other policies driven by a
+global load balancing system. This will be an extremely powerful mechanism for bringing layer 7 /
+application networking concepts all the way to the mobile client.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="comparison.html" class="btn btn-neutral float-right" title="Comparison to similar systems" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 Lyft, Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
