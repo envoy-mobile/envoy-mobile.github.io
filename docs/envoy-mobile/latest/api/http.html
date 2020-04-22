@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>HTTP requests and streams &mdash; envoy-mobile 0.3.0.04012020-93f712 documentation</title>
+  <title>HTTP requests and streams &mdash; envoy-mobile 0.3.0.04012020-21195f documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.0.04012020-93f712
+                0.3.0.04012020-21195f
               </div>
             
           
@@ -86,24 +86,7 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../start/start.html">Getting Started</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="api.html">API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">HTTP requests and streams</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#request"><code class="docutils literal notranslate"><span class="pre">Request</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#responsehandler"><code class="docutils literal notranslate"><span class="pre">ResponseHandler</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#retrypolicy"><code class="docutils literal notranslate"><span class="pre">RetryPolicy</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#streamemitter"><code class="docutils literal notranslate"><span class="pre">StreamEmitter</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#unary-requests">Unary Requests</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../start/building/building.html">Building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../start/examples/hello_world.html">Hello World</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">HTTP requests and streams</a><ul>
@@ -279,7 +262,7 @@ are applied when the request is sent.</p>
 
 <span class="n">val</span> <span class="n">request</span> <span class="o">=</span> <span class="n">RequestBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 <span class="n">val</span> <span class="n">responseHandler</span> <span class="o">=</span> <span class="n">ResponseHandler</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="n">val</span> <span class="n">emitter</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">responseHandler</span><span class="p">)</span>
+<span class="n">val</span> <span class="n">emitter</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">responseHandler</span><span class="p">)</span>
   <span class="o">.</span><span class="n">sendData</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
   <span class="o">.</span><span class="n">sendData</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 
@@ -292,7 +275,7 @@ are applied when the request is sent.</p>
 
 <span class="n">let</span> <span class="n">request</span> <span class="o">=</span> <span class="n">RequestBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 <span class="n">let</span> <span class="n">responseHandler</span> <span class="o">=</span> <span class="n">ResponseHandler</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="n">let</span> <span class="n">emitter</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">responseHandler</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">emitter</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">responseHandler</span><span class="p">)</span>
   <span class="o">.</span><span class="n">sendData</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
   <span class="o">.</span><span class="n">sendData</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 
@@ -307,15 +290,39 @@ are applied when the request is sent.</p>
 <p>Sending a unary request may be done by either closing the <code class="docutils literal notranslate"><span class="pre">StreamEmitter</span></code> after the
 set of headers/data has been written, or by using the helper function that returns a
 <code class="docutils literal notranslate"><span class="pre">CancelableStream</span></code> type instead of a <code class="docutils literal notranslate"><span class="pre">StreamEmitter</span></code>.</p>
-<p>The unary helper function takes optional body data, then closes the stream.
-The <code class="docutils literal notranslate"><span class="pre">CancelableStream</span></code> it returns does not expose options for sending additional data.</p>
+<p>The unary helper function allows for easily performing the following request types:</p>
+<ul class="simple">
+<li><strong>Headers-only:</strong> Send request headers then close the stream.<ul>
+<li>Done by passing <code class="docutils literal notranslate"><span class="pre">nil</span></code> body and <code class="docutils literal notranslate"><span class="pre">nil</span></code> trailers.</li>
+</ul>
+</li>
+<li><strong>Close with data:</strong> Send request headers and data, then close.<ul>
+<li>Done by passing <code class="docutils literal notranslate"><span class="pre">nil</span></code> trailers.</li>
+</ul>
+</li>
+<li><strong>Close with trailers:</strong> Send request headers and data, then close with trailers.<ul>
+<li>Done by passing a body and trailers.</li>
+</ul>
+</li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">CancelableStream</span></code> returned by the unary function does not expose options for sending additional data.</p>
 <p><strong>Kotlin</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">envoy</span> <span class="o">=</span> <span class="n">AndroidEnvoyClientBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 
 <span class="n">val</span> <span class="n">request</span> <span class="o">=</span> <span class="n">RequestBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 <span class="n">val</span> <span class="n">responseHandler</span> <span class="o">=</span> <span class="n">ResponseHandler</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Headers</span><span class="o">-</span><span class="n">only</span>
+<span class="n">val</span> <span class="n">cancelable</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="n">responseHandler</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Close</span> <span class="n">using</span> <span class="n">data</span>
+<span class="n">val</span> <span class="n">cancelable</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="n">responseHandler</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Close</span> <span class="n">using</span> <span class="n">trailers</span>
 <span class="n">val</span> <span class="n">cancelable</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">trailers</span><span class="p">,</span> <span class="n">responseHandler</span><span class="p">)</span>
-<span class="o">//</span> <span class="n">cancelable</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+
+<span class="o">//</span> <span class="n">To</span> <span class="n">cancel</span> <span class="n">the</span> <span class="n">request</span><span class="p">:</span>
+<span class="n">cancelable</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
 </pre></div>
 </div>
 <p><strong>Swift</strong>:</p>
@@ -323,8 +330,18 @@ The <code class="docutils literal notranslate"><span class="pre">CancelableStrea
 
 <span class="n">let</span> <span class="n">request</span> <span class="o">=</span> <span class="n">RequestBuilder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 <span class="n">let</span> <span class="n">responseHandler</span> <span class="o">=</span> <span class="n">ResponseHandler</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="n">let</span> <span class="n">cancelable</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">trailers</span><span class="p">:</span> <span class="p">[:],</span> <span class="n">handler</span><span class="p">:</span> <span class="n">responseHandler</span><span class="p">)</span>
-<span class="o">//</span> <span class="n">cancelable</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+
+<span class="o">//</span> <span class="n">Headers</span><span class="o">-</span><span class="n">only</span>
+<span class="n">let</span> <span class="n">cancelable</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">nil</span><span class="p">,</span> <span class="n">trailers</span><span class="p">:</span> <span class="n">nil</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">responseHandler</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Close</span> <span class="n">using</span> <span class="n">data</span>
+<span class="n">let</span> <span class="n">cancelable</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">trailers</span><span class="p">:</span> <span class="n">nil</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">responseHandler</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Close</span> <span class="n">using</span> <span class="n">trailers</span>
+<span class="n">let</span> <span class="n">cancelable</span> <span class="o">=</span> <span class="n">envoy</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">trailers</span><span class="p">:</span> <span class="n">trailers</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">responseHandler</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">To</span> <span class="n">cancel</span> <span class="n">the</span> <span class="n">request</span><span class="p">:</span>
+<span class="n">cancelable</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
