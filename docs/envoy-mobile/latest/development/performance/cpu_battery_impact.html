@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of CPU/battery impact &mdash; envoy-mobile 0.3.0.05122020-30ad38 documentation</title>
+  <title>Analysis of CPU/battery impact &mdash; envoy-mobile 0.3.0.05122020-6b131c documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.0.05122020-30ad38
+                0.3.0.05122020-6b131c
               </div>
             
           
@@ -205,18 +205,18 @@ performance using the native networking stacks versus Envoy Mobile:</p>
 </div>
 <div class="section" id="android">
 <h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
-<p>Valid through SHA <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/8636711">8636711</a>.</p>
+<p>Valid through SHA <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/v0.3.0.05122020">v0.3.0.05122020</a>.</p>
 <p>Envoy:</p>
 <ul class="simple">
-<li>Avg CPU: 33.16075949%</li>
-<li>Avg memory: 2.765822785%</li>
-<li>Battery: 0.17%/min</li>
+<li>Avg CPU: ~5.16%</li>
+<li>Avg memory: 109MB</li>
+<li>Battery: 0.2%/min</li>
 </ul>
 <p>Control:</p>
 <ul class="simple">
-<li>Avg CPU: 28.81012658%</li>
-<li>Avg memory: 2.169620253%</li>
-<li>Battery: 0.18%/min</li>
+<li>Avg CPU: ~2.94%</li>
+<li>Avg memory: 52MB</li>
+<li>Battery: 0.23%/min</li>
 </ul>
 <p><strong>Based on these results, control and Envoy are relatively similar.</strong></p>
 </div>
@@ -245,8 +245,6 @@ while running Instruments.</p>
 <li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/8636711/examples/kotlin/control">Android control app</a></li>
 <li><a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/8636711/examples/kotlin/hello_world">Android Envoy app</a></li>
 </ul>
-<p>We’re currently using <code class="docutils literal notranslate"><span class="pre">HttpURLConnection</span></code> to communicate and send requests to Envoy. Envoy in it’s current state is run as
-a process listening to traffic sent over this connection.</p>
 <p>Getting the build:</p>
 <ol class="arabic simple">
 <li>Build the library using <code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">android_dist</span> <span class="pre">--config=android</span> <span class="pre">--fat_apk_cpu=armeabi-v7a</span></code></li>
