@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.3.0.06152020-28ac29 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.3.0.06152020-af10f3 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.0.06152020-28ac29
+                0.3.0.06152020-af10f3
               </div>
             
           
@@ -89,8 +89,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#envoyclient"><code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#envoyclientbuilder"><code class="docutils literal notranslate"><span class="pre">EnvoyClientBuilder</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#streamclient"><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streamclientbuilder"><code class="docutils literal notranslate"><span class="pre">StreamClientBuilder</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#addconnecttimeoutseconds"><code class="docutils literal notranslate"><span class="pre">addConnectTimeoutSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adddnsfailurerefreshseconds"><code class="docutils literal notranslate"><span class="pre">addDNSFailureRefreshSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adddnsrefreshseconds"><code class="docutils literal notranslate"><span class="pre">addDNSRefreshSeconds</span></code></a></li>
@@ -103,7 +103,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#making-requests">Making Requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#making-requests">Making requests</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
@@ -181,31 +181,29 @@
             
   <div class="section" id="starting-envoy">
 <span id="api-starting-envoy"></span><h1>Starting Envoy<a class="headerlink" href="#starting-envoy" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="envoyclient">
-<h2><code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code><a class="headerlink" href="#envoyclient" title="Permalink to this headline">¶</a></h2>
-<p>Starting an instance of Envoy Mobile for making requests is done by creating an <code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code>,
-which conforms to the <code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code> interface.</p>
-<p>To do so, create an <code class="docutils literal notranslate"><span class="pre">EnvoyClientBuilder</span></code> and call <code class="docutils literal notranslate"><span class="pre">build()</span></code> (see below).</p>
-<p>After the client is created, it should be stored and kept in memory in order to be used
-for issuing requests.</p>
+<div class="section" id="streamclient">
+<h2><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code><a class="headerlink" href="#streamclient" title="Permalink to this headline">¶</a></h2>
+<p>Starting an instance of Envoy Mobile for performing requests is done by creating a <code class="docutils literal notranslate"><span class="pre">StreamClient</span></code>.</p>
+<p>To do so, create a <code class="docutils literal notranslate"><span class="pre">StreamClientBuilder</span></code> and call <code class="docutils literal notranslate"><span class="pre">build()</span></code> (see below).</p>
+<p>After the client is created, it should be stored and used to start network requests/streams.</p>
 <p><strong>Kotlin example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">envoy</span> <span class="o">=</span> <span class="n">AndroidEnvoyClientBuilder</span><span class="p">(</span><span class="n">getApplication</span><span class="p">())</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">streamClient</span> <span class="o">=</span> <span class="n">AndroidStreamClientBuilder</span><span class="p">(</span><span class="n">getApplication</span><span class="p">())</span>
   <span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">WARN</span><span class="p">)</span>
   <span class="o">...</span>
   <span class="o">.</span><span class="n">build</span><span class="p">()</span>
 </pre></div>
 </div>
 <p><strong>Swift example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">envoy</span> <span class="o">=</span> <span class="k">try</span> <span class="n">EnvoyClientBuilder</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">streamClient</span> <span class="o">=</span> <span class="k">try</span> <span class="n">StreamClientBuilder</span><span class="p">()</span>
   <span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="o">.</span><span class="n">warn</span><span class="p">)</span>
   <span class="o">...</span>
   <span class="o">.</span><span class="n">build</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="envoyclientbuilder">
-<h2><code class="docutils literal notranslate"><span class="pre">EnvoyClientBuilder</span></code><a class="headerlink" href="#envoyclientbuilder" title="Permalink to this headline">¶</a></h2>
-<p>This type is used to configure an instance of <code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code> before finally
+<div class="section" id="streamclientbuilder">
+<h2><code class="docutils literal notranslate"><span class="pre">StreamClientBuilder</span></code><a class="headerlink" href="#streamclientbuilder" title="Permalink to this headline">¶</a></h2>
+<p>This type is used to configure an instance of <code class="docutils literal notranslate"><span class="pre">StreamClient</span></code> before finally
 creating the client using <code class="docutils literal notranslate"><span class="pre">.build()</span></code>.</p>
 <p>Available builders are 1:1 between iOS/Android, and are documented below.</p>
 <div class="section" id="addconnecttimeoutseconds">
@@ -343,7 +341,7 @@ However, in some cases it can be useful to provide a
 with additional customizations applied.</p>
 <p>This may be done by initializing a builder with the contents of the YAML file you you wish to use:</p>
 <p><strong>Kotlin example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">envoy</span> <span class="o">=</span> <span class="n">AndroidEnvoyClientBuilder</span><span class="p">(</span><span class="n">baseContext</span><span class="p">,</span> <span class="n">Yaml</span><span class="p">(</span><span class="n">yamlFileString</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">streamClient</span> <span class="o">=</span> <span class="n">AndroidStreamClientBuilder</span><span class="p">(</span><span class="n">baseContext</span><span class="p">,</span> <span class="n">Yaml</span><span class="p">(</span><span class="n">yamlFileString</span><span class="p">))</span>
   <span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">WARN</span><span class="p">)</span>
   <span class="o">.</span><span class="n">addStatsFlushSeconds</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
   <span class="o">...</span>
@@ -351,7 +349,7 @@ with additional customizations applied.</p>
 </pre></div>
 </div>
 <p><strong>Swift example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">envoy</span> <span class="o">=</span> <span class="k">try</span> <span class="n">EnvoyClientBuilder</span><span class="p">(</span><span class="n">yaml</span><span class="p">:</span> <span class="n">yamlFileString</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">streamClient</span> <span class="o">=</span> <span class="k">try</span> <span class="n">StreamClientBuilder</span><span class="p">(</span><span class="n">yaml</span><span class="p">:</span> <span class="n">yamlFileString</span><span class="p">)</span>
   <span class="o">.</span><span class="n">addLogLevel</span><span class="p">(</span><span class="o">.</span><span class="n">warn</span><span class="p">)</span>
   <span class="o">.</span><span class="n">addStatsFlushSeconds</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
   <span class="o">...</span>
@@ -366,7 +364,7 @@ options are supported by Envoy Mobile.</p>
 </div>
 </div>
 <div class="section" id="making-requests">
-<h2>Making Requests<a class="headerlink" href="#making-requests" title="Permalink to this headline">¶</a></h2>
+<h2>Making requests<a class="headerlink" href="#making-requests" title="Permalink to this headline">¶</a></h2>
 <p>Now that you have an Envoy Mobile instance, you can start making requests:</p>
 <ul class="simple">
 <li><a class="reference internal" href="http.html#api-http"><span class="std std-ref">HTTP requests and streams</span></a></li>
