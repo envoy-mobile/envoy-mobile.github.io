@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Version history &mdash; envoy-mobile 0.3.0.07062020-a3b250 documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.3.1.09022020-37f23c documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.0.07062020-a3b250
+                0.3.1.09022020-37f23c
               </div>
             
           
@@ -90,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="comparison.html">Comparison to similar systems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_help.html">Getting help</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Version history</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#july-23-2020">0.3.1 (July 23, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mar-26-2020">0.3.0 (Mar 26, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#feb-21-2020">0.2.3 (Feb 21, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#feb-3-2020">0.2.2 (Feb 3, 2020)</a></li>
@@ -173,6 +174,36 @@
             
   <div class="section" id="version-history">
 <h1>Version history<a class="headerlink" href="#version-history" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="july-23-2020">
+<h2>0.3.1 (July 23, 2020)<a class="headerlink" href="#july-23-2020" title="Permalink to this headline">¶</a></h2>
+<p>In the last few months the team has continued to harden Envoy Mobile with production exposure.</p>
+<p>Stability and Production Hardening:</p>
+<ul class="simple">
+<li>Improves concurrency management for retries (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/774">#774</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/811">#811</a>)</li>
+<li>Adds complete coverage for c++ code (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/791">#791</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/792">#792</a>)</li>
+<li>Updates platform interfaces as production experience informs ergonomics (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/798">#798</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/802">#802</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/808">#808</a>)</li>
+<li>Updates termination signal handling (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/835">#835</a>)</li>
+<li>Updates battery and cpu analysis (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/852">#852</a>)</li>
+<li>Adds bi-directional compression support (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/861">#861</a>)</li>
+<li>Fixes SIGPIPE handling for iOS (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/965">#965</a>)</li>
+<li>Introduces formal style for cross-platform enums (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/966">#966</a>)</li>
+<li>Updates to build to C++17 (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/#964">#964</a>)</li>
+</ul>
+<p>Observability:</p>
+<ul class="simple">
+<li>Adds emission rule for upstream_rq_active (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/775">#775</a>)</li>
+<li>Adds the ability to observe number of retries that happened on a particular stream (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/821">#821</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/820">#820</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/813">#813</a>)</li>
+<li>Adds <a class="reference external" href="Http::Dispatcher">Http::Dispatcher</a> stats (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/871">#871</a>)</li>
+<li>Adds stats for 4xx codes (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/902">#902</a>)</li>
+</ul>
+<p>Extensibility:</p>
+<ul class="simple">
+<li>Introduces platform filter interfaces and bridging (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/795">#795</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/840">#840</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/858">#858</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/913">#913</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/940">#940</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/955">#955</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/943">#943</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/962">#962</a>)</li>
+<li>Introduces Envoy’s extension platform (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/860">#860</a>)</li>
+</ul>
+<p>Lastly, and perhaps most importantly, we have adopted a formal <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/main/CONTRIBUTING.md#inclusive-language-policy">inclusive language policy</a>
+(<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/948">#948</a>) and updated all necessary locations (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/944">#944</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/945">#945</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/946">#946</a>)</p>
+</div>
 <div class="section" id="mar-26-2020">
 <h2>0.3.0 (Mar 26, 2020)<a class="headerlink" href="#mar-26-2020" title="Permalink to this headline">¶</a></h2>
 <p>This is the first release of Envoy Mobile Lyft is using in a production application! 🎉</p>
@@ -182,44 +213,44 @@ binaries with Envoy Mobile for a couple weeks now, and are starting to expose a 
 production clients to Envoy Mobile with this release.</p>
 <p>Since v0.2.3 we have largely focused on observability:</p>
 <ul class="simple">
-<li>Adds improved logging (#701, #702, #722)</li>
-<li>Adds basic stats for retries #718)</li>
-<li>Adds <code class="docutils literal notranslate"><span class="pre">x-envoy-attempt-count</span></code> response header (#751)</li>
-<li>Adds visibility over <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto#config-route-v3-virtualcluster">virtual clusters</a> (#768, #771)</li>
+<li>Adds improved logging (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/701">#701</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/702">#702</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/722">#722</a>)</li>
+<li>Adds basic stats for retries <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/718">#718</a>)</li>
+<li>Adds <code class="docutils literal notranslate"><span class="pre">x-envoy-attempt-count</span></code> response header (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/751">#751</a>)</li>
+<li>Adds visibility over <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto#config-route-v3-virtualcluster">virtual clusters</a> (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/768">#768</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/771">#771</a>)</li>
 </ul>
 <p>Additional changes:</p>
 <ul class="simple">
-<li>Fixes trailers missing on iOS (#703)</li>
-<li>Adds ability to set DNS failure refresh rate (#714)</li>
-<li>Adds docs on the EnvoyClientBuilder (#745)</li>
+<li>Fixes trailers missing on iOS (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/703">#703</a>)</li>
+<li>Adds ability to set DNS failure refresh rate (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/714">#714</a>)</li>
+<li>Adds docs on the EnvoyClientBuilder (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/745">#745</a>)</li>
 </ul>
 </div>
 <div class="section" id="feb-21-2020">
 <h2>0.2.3 (Feb 21, 2020)<a class="headerlink" href="#feb-21-2020" title="Permalink to this headline">¶</a></h2>
 <p>This release provides stabilization fixes as follow-up changes to 0.2.2:</p>
 <ul class="simple">
-<li>Fixes race that caused double-deletion of HCM active streams crashing (#669)</li>
-<li>Fixes DNS resolution when starting Envoy Mobile offline on iOS (#672)</li>
-<li>Fixes for API listener crashes (#667 and #674)</li>
-<li>Fixes for linking and assertions (#663)</li>
-<li>Fixes bad access in ~DnsCache() in Envoy upstream (#690)</li>
-<li>Fixes bug in Dynamic Forward Proxy Cluster in Envoy Upstream (#678)</li>
-<li>Adds known issue assertion that prevents crash on force-close (#699)</li>
+<li>Fixes race that caused double-deletion of HCM active streams crashing (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/669">#669</a>)</li>
+<li>Fixes DNS resolution when starting Envoy Mobile offline on iOS (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/672">#672</a>)</li>
+<li>Fixes for API listener crashes (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/667">#667</a> and <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/674">#674</a>)</li>
+<li>Fixes for linking and assertions (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/663">#663</a>)</li>
+<li>Fixes bad access in ~DnsCache() in Envoy upstream (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/690">#690</a>)</li>
+<li>Fixes bug in Dynamic Forward Proxy Cluster in Envoy Upstream (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/678">#678</a>)</li>
+<li>Adds known issue assertion that prevents crash on force-close (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/699">#699</a>)</li>
 </ul>
 <p>Additional changes:</p>
 <ul class="simple">
-<li>Allows zero for upstream timeout specification (#659)</li>
-<li>Adds process logging for Android (#684)</li>
-<li>Adds the ability to decide upstream protocol for requests (#697)</li>
+<li>Allows zero for upstream timeout specification (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/659">#659</a>)</li>
+<li>Adds process logging for Android (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/684">#684</a>)</li>
+<li>Adds the ability to decide upstream protocol for requests (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/697">#697</a>)</li>
 </ul>
 </div>
 <div class="section" id="feb-3-2020">
 <h2>0.2.2 (Feb 3, 2020)<a class="headerlink" href="#feb-3-2020" title="Permalink to this headline">¶</a></h2>
-<p>Envoy Mobile v0.2.2 changes how network requests are performed to no longer use Envoy’s <cite>AsyncClient</cite> and to instead consume the <cite>ApiListener</cite> directly (#616).</p>
+<p>Envoy Mobile v0.2.2 changes how network requests are performed to no longer use Envoy’s <cite>AsyncClient</cite> and to instead consume the <cite>ApiListener</cite> directly (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/616">#616</a>).</p>
 <p>Additional changes:</p>
 <ul class="simple">
-<li>Domain specification when starting the library is no longer supported (#641, #642). Envoy Mobile now uses the authority specified when starting a new stream</li>
-<li>Less aggressive retry back-off policies (#652)</li>
+<li>Domain specification when starting the library is no longer supported (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/641">#641</a>, <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/642">#642</a>). Envoy Mobile now uses the authority specified when starting a new stream</li>
+<li>Less aggressive retry back-off policies (<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/652">#652</a>)</li>
 </ul>
 </div>
 <div class="section" id="jan-6-2020">
