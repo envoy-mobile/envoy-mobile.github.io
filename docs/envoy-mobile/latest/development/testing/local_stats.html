@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Local Stats &mdash; envoy-mobile 0.3.1.09032020-703092 documentation</title>
+  <title>Local Stats &mdash; envoy-mobile 0.3.1.09032020-4b0c05 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.1.09032020-703092
+                0.3.1.09032020-4b0c05
               </div>
             
           
@@ -178,7 +178,8 @@
 <span id="testing-local-stats"></span><h1>Local Stats<a class="headerlink" href="#local-stats" title="Permalink to this headline">¶</a></h1>
 <p>The <cite>local-stats</cite> <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/local-stats">branch</a> allows a
 developer to run a local statsd server, and see stats emissions from a client running in the
-simulator/emulator.</p>
+simulator/emulator. Unless network tunneling is set up this is not going to work in a physical
+device, as the statsd server is running on the computer’s local network.</p>
 <div class="section" id="config">
 <h2>Config<a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/local-stats/library/common/config_template.cc">config template</a>
