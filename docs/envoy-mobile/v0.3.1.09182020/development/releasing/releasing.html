@@ -1,0 +1,267 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Releasing &mdash; envoy-mobile 0.3.1.09182020-1507ee documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Testing" href="../testing/testing.html" />
+    <link rel="prev" title="VPN analysis" href="../performance/vpn_analysis.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> envoy-mobile
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.1.09182020-1507ee
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../development.html">Development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../performance/performance.html">Performance analysis</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Releasing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-for-release">Prepare for release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#publish-release-and-artifacts">Publish release and artifacts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pre-release-versioning">Pre-release versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tools.html">Development Tools</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">envoy-mobile</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../development.html">Development</a> &raquo;</li>
+        
+      <li>Releasing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/development/releasing/releasing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="releasing">
+<span id="releasing-instructions"></span><h1>Releasing<a class="headerlink" href="#releasing" title="Permalink to this headline">¶</a></h1>
+<p>The following workflow should be followed to create and publish a new Envoy Mobile
+<a class="reference external" href="https://github.com/lyft/envoy-mobile/releases">release</a>.</p>
+<div class="section" id="prepare-for-release">
+<h2>Prepare for release<a class="headerlink" href="#prepare-for-release" title="Permalink to this headline">¶</a></h2>
+<p>Before cutting the release, submit and merge a PR with the following changes:</p>
+<ol class="arabic simple">
+<li>Bump the version in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/1507ee8b9588719571394b64074ad6fdffcfdc1d/EnvoyMobile.podspec">EnvoyMobile.podspec</a> file</li>
+<li>Bump the version in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/1507ee8b9588719571394b64074ad6fdffcfdc1d/VERSION">VERSION</a> file</li>
+<li>Provide a brief overview of the release in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/1507ee8b9588719571394b64074ad6fdffcfdc1d/docs/root/intro/version_history.rst">version history documentation</a></li>
+</ol>
+</div>
+<div class="section" id="publish-release-and-artifacts">
+<h2>Publish release and artifacts<a class="headerlink" href="#publish-release-and-artifacts" title="Permalink to this headline">¶</a></h2>
+<p>After merging the above changes, a new release may be
+<a class="reference external" href="https://github.com/lyft/envoy-mobile/releases">tagged</a>.</p>
+<p>When tagging a release, it should contain all the artifacts built by CI on the main commit being
+tagged as the new version. These artifacts may be downloaded by clicking on the CI status of the
+commit on main, then clicking <code class="docutils literal notranslate"><span class="pre">Artifacts</span></code> in the top right corner. After downloading, be sure
+to upload the artifacts when tagging the GitHub release.</p>
+<p>Upon tagging the release, jobs automatically kick off on main which:</p>
+<ul class="simple">
+<li>Publish an Android artifact to Maven</li>
+<li>Publish the most recent version of the Envoy Mobile docs</li>
+</ul>
+<p>The last step to completing a release is to publish the CocoaPods artifact to the specs repo.
+This can be done by any maintainer with write access to the spec definition. From the repository
+directory, run:</p>
+<p><code class="docutils literal notranslate"><span class="pre">pod</span> <span class="pre">trunk</span> <span class="pre">push</span></code></p>
+<p>Note: This last step is slated to be automated in <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/624">#624</a>.</p>
+</div>
+</div>
+<div class="section" id="pre-release-versioning">
+<h1>Pre-release versioning<a class="headerlink" href="#pre-release-versioning" title="Permalink to this headline">¶</a></h1>
+<p>Pre-releases are published on a weekly basis. The versioning scheme we use is <code class="docutils literal notranslate"><span class="pre">X.Y.Z.{mmddyy}</span></code>.
+For example: January 25, 2020: <code class="docutils literal notranslate"><span class="pre">0.3.1.012520</span></code>.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../testing/testing.html" class="btn btn-neutral float-right" title="Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../performance/vpn_analysis.html" class="btn btn-neutral" title="VPN analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 Lyft, Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
