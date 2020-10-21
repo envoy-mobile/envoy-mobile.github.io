@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Building &mdash; envoy-mobile 0.3.1.10202020-cbdbbb documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Hello World" href="../examples/hello_world.html" />
+    <link rel="prev" title="Stats" href="../../api/stats.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> envoy-mobile
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.1.10202020-cbdbbb
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../start.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../api/api.html">API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Building</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bazel-requirements">Bazel requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#android-requirements">Android requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ios-requirements">iOS requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#android-aar">Android AAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ios-static-framework">iOS static framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cocoapods">CocoaPods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-envoy-mobile-with-private-extensions">Building Envoy Mobile with private Extensions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#extensions">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#deploying-envoy-mobile-locally">Deploying Envoy Mobile Locally</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#android">Android</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ios">iOS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/hello_world.html">Hello World</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/development.html">Development</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">envoy-mobile</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../start.html">Getting Started</a> &raquo;</li>
+        
+      <li>Building</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/start/building/building.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="building">
+<span id="id1"></span><h1>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h1>
+<p id="building-requirements">To build Envoy Mobile, your system must also be set up for building Envoy.
+To get started, you can use <a class="reference external" href="https://github.com/envoyproxy/envoy/tree/master/bazel#quick-start-bazel-build-for-developers">this quick start guide</a>.</p>
+<p>Ensure that the <code class="docutils literal notranslate"><span class="pre">envoy</span></code> <strong>submodule</strong> is initialized when cloning by using <code class="docutils literal notranslate"><span class="pre">--recursive</span></code>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/lyft/envoy-mobile.git</span> <span class="pre">--recursive</span></code></p>
+<p>If the repo was not initially cloned recursively, you can manually initialize the Envoy submodule:</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span> <span class="pre">--init</span></code></p>
+<div class="section" id="bazel-requirements">
+<h2>Bazel requirements<a class="headerlink" href="#bazel-requirements" title="Permalink to this headline">¶</a></h2>
+<p>Envoy Mobile is compiled using the version of Bazel specified in the
+<a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/cbdbbbbc47abac66ff57d38a528fc3d6ddfae548/.bazelversion">.bazelversion</a> file.</p>
+<p>To simplify build consistency across environments, bazelisk is used.
+Follow the Envoy instructions <a class="reference external" href="https://github.com/envoyproxy/envoy/blob/master/bazel/README.md#installing-bazelisk-as-bazel">here</a> to install bazelisk as bazel.</p>
+</div>
+<div class="section" id="android-requirements">
+<h2>Android requirements<a class="headerlink" href="#android-requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Android SDK Platform 29</li>
+<li>Android NDK 21</li>
+</ul>
+</div>
+<div class="section" id="ios-requirements">
+<h2>iOS requirements<a class="headerlink" href="#ios-requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Xcode 12</li>
+<li>Swift 5.x</li>
+<li>Note: Requirements are listed in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/cbdbbbbc47abac66ff57d38a528fc3d6ddfae548/.bazelrc">.bazelrc file</a> and CI scripts</li>
+</ul>
+</div>
+<div class="section" id="android-aar">
+<span id="id2"></span><h2>Android AAR<a class="headerlink" href="#android-aar" title="Permalink to this headline">¶</a></h2>
+<p>Envoy Mobile can be compiled into an <code class="docutils literal notranslate"><span class="pre">.aar</span></code> file for use with Android apps.
+This command is defined in the main <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/cbdbbbbc47abac66ff57d38a528fc3d6ddfae548/BUILD">BUILD</a> file of the repo, and may be run locally:</p>
+<p><code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">android_dist</span> <span class="pre">--config=android</span> <span class="pre">--fat_apk_cpu=&lt;arch1,arch2&gt;</span></code></p>
+<p>Upon completion of the build, you’ll see an <code class="docutils literal notranslate"><span class="pre">envoy.aar</span></code> file at <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/cbdbbbbc47abac66ff57d38a528fc3d6ddfae548/dist">dist/envoy.aar</a>.</p>
+<p>Alternatively, you can use the prebuilt artifact from Envoy Mobile’s <a class="reference external" href="https://github.com/lyft/envoy-mobile/releases">releases</a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">envoy_mobile_android</span></code> Bazel rule defined in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/cbdbbbbc47abac66ff57d38a528fc3d6ddfae548/dist/BUILD">dist BUILD file</a> provides
+an example of how this artifact may be used.</p>
+<p><strong>When building the artifact for release</strong> (usage outside of development), be sure to include the
+<code class="docutils literal notranslate"><span class="pre">--config=release-android</span></code> option, along with the architectures for which the artifact is being built:</p>
+<p><code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">android_dist</span> <span class="pre">--config=release-android</span> <span class="pre">--fat_apk_cpu=x86,armeabi-v7a,arm64-v8a</span></code></p>
+<p>For a demo of a working app using this artifact, see the <a class="reference internal" href="../examples/hello_world.html#hello-world"><span class="std std-ref">Hello World</span></a> example.</p>
+</div>
+<div class="section" id="ios-static-framework">
+<span id="ios-framework"></span><h2>iOS static framework<a class="headerlink" href="#ios-static-framework" title="Permalink to this headline">¶</a></h2>
+<p>Envoy Mobile supports being compiled into a <code class="docutils literal notranslate"><span class="pre">.framework</span></code> for consumption by iOS apps.
+This command is defined in the main <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/cbdbbbbc47abac66ff57d38a528fc3d6ddfae548/BUILD">BUILD</a> file of the repo, and may be run locally:</p>
+<p><code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">ios_dist</span> <span class="pre">--config=ios</span></code></p>
+<p>Upon completion of the build, you’ll see a <code class="docutils literal notranslate"><span class="pre">Envoy.framework</span></code> directory at
+<a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/cbdbbbbc47abac66ff57d38a528fc3d6ddfae548/dist">dist/Envoy.framework</a>.</p>
+<p>Alternatively, you can use the prebuilt artifact from Envoy Mobile’s <a class="reference external" href="https://github.com/lyft/envoy-mobile/releases">releases</a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">envoy_mobile_ios</span></code> Bazel rule defined in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/cbdbbbbc47abac66ff57d38a528fc3d6ddfae548/dist/BUILD">dist BUILD file</a> provides an
+example of how this artifact may be used.</p>
+<p><strong>When building the artifact for release</strong> (usage outside of development), be sure to include the
+<code class="docutils literal notranslate"><span class="pre">--config=release-ios</span></code> option, along with the architectures for which the artifact is being built:</p>
+<p><code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">ios_dist</span> <span class="pre">--config=release-ios</span> <span class="pre">--ios_multi_cpus=i386,x86_64,armv7,arm64</span></code></p>
+<p>For a demo of a working app using this artifact, see the <a class="reference internal" href="../examples/hello_world.html#hello-world"><span class="std std-ref">Hello World</span></a> example.</p>
+</div>
+<div class="section" id="cocoapods">
+<h2>CocoaPods<a class="headerlink" href="#cocoapods" title="Permalink to this headline">¶</a></h2>
+<p>If you use CocoaPods, you can add the following to your <code class="docutils literal notranslate"><span class="pre">Podfile</span></code> to use the latest version of the
+prebuilt Envoy Mobile framework.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pod</span> <span class="pre">'EnvoyMobile'</span></code></p>
+</div>
+<div class="section" id="building-envoy-mobile-with-private-extensions">
+<h2>Building Envoy Mobile with private Extensions<a class="headerlink" href="#building-envoy-mobile-with-private-extensions" title="Permalink to this headline">¶</a></h2>
+<p>Similar to Envoy, Envoy Mobile has bazel targets that allows the library to be built as a git
+submodule in a consuming project. This setup enables creating private extensions, such as filters.</p>
+<div class="section" id="extensions">
+<h3>Extensions<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h3>
+<p>The top-level <cite>envoy_build_config</cite> directory allows Envoy Mobile to tap into Envoy’s already
+existing <a class="reference external" href="https://github.com/envoyproxy/envoy/blob/master/bazel/README.md#disabling-extensions">selective extensions system</a>.
+Additionally, Envoy Mobile requires force registration
+of extensions in the extension_registry.cc/h files due to static linking.</p>
+<p>In order to override the extensions built into Envoy Mobile create an <code class="docutils literal notranslate"><span class="pre">envoy_build_config</span></code> directory
+and include the following in the WORKSPACE file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">local_repository</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;envoy_build_config&quot;</span><span class="p">,</span>
+  <span class="c1"># Relative paths are also supported.</span>
+  <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/somewhere/on/filesystem/envoy_build_config&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="deploying-envoy-mobile-locally">
+<h2>Deploying Envoy Mobile Locally<a class="headerlink" href="#deploying-envoy-mobile-locally" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="android">
+<h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
+<p>To deploy Envoy Mobile’s aar to your local maven repository, run the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># To build Envoy Mobile. --fat_apk_cpu takes in a list of architectures: [x86|armeabi-v7a|arm64-v8a].</span>
+<span class="n">bazelisk</span> <span class="n">build</span> <span class="n">android_dist</span> <span class="o">--</span><span class="n">config</span><span class="o">=</span><span class="n">android</span> <span class="o">--</span><span class="n">fat_apk_cpu</span><span class="o">=</span><span class="n">x86</span>
+
+<span class="c1"># To publish to local maven.</span>
+<span class="n">dist</span><span class="o">/</span><span class="n">sonatype_nexus_upload</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">files</span> <span class="n">dist</span><span class="o">/</span><span class="n">envoy</span><span class="o">.</span><span class="n">aar</span> <span class="n">dist</span><span class="o">/</span><span class="n">envoy</span><span class="o">-</span><span class="n">pom</span><span class="o">.</span><span class="n">xml</span> <span class="o">--</span><span class="n">local</span>
+</pre></div>
+</div>
+<p>The version deployed will be <code class="docutils literal notranslate"><span class="pre">LOCAL-SNAPSHOT</span></code>. These artifacts can be found in your local maven directory (<code class="docutils literal notranslate"><span class="pre">~/.m2/repository/io/envoyproxy/envoymobile/envoy/LOCAL-SNAPSHOT/</span></code>)</p>
+</div>
+<div class="section" id="ios">
+<h3>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h3>
+<p>TODO <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/980">#980</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../examples/hello_world.html" class="btn btn-neutral float-right" title="Hello World" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../api/stats.html" class="btn btn-neutral" title="Stats" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 Lyft, Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
