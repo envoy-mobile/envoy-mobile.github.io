@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Stats &mdash; envoy-mobile 0.3.1.10202020-cbdbbb documentation</title>
+  <title>Stats &mdash; envoy-mobile 0.3.1.10202020-70d6cd documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.1.10202020-cbdbbb
+                0.3.1.10202020-70d6cd
               </div>
             
           
@@ -86,13 +86,31 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../start/start.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Stats</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#statsclient"><code class="docutils literal notranslate"><span class="pre">StatsClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#counter"><code class="docutils literal notranslate"><span class="pre">Counter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gauge"><code class="docutils literal notranslate"><span class="pre">Gauge</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../start/building/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../start/examples/hello_world.html">Hello World</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
 <li class="toctree-l2"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Stats</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#statsclient"><code class="docutils literal notranslate"><span class="pre">StatsClient</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#counter"><code class="docutils literal notranslate"><span class="pre">Counter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gauge"><code class="docutils literal notranslate"><span class="pre">Gauge</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -170,7 +188,11 @@
 <span id="api-stats"></span><h1>Stats<a class="headerlink" href="#stats" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="statsclient">
 <h2><code class="docutils literal notranslate"><span class="pre">StatsClient</span></code><a class="headerlink" href="#statsclient" title="Permalink to this headline">¶</a></h2>
-<p>To use Envoy Mobile’s stats function, obtain an instance of <code class="docutils literal notranslate"><span class="pre">StatsClient</span></code> from <code class="docutils literal notranslate"><span class="pre">Engine</span></code> (refer to <a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">Starting Envoy</span></a> for building an engine instance), and store the stats client to create <code class="docutils literal notranslate"><span class="pre">Counter</span></code> instances.</p>
+<p>Envoy Mobile’s stats functionality currently supports two type of stats: <code class="docutils literal notranslate"><span class="pre">Counter</span></code> and <code class="docutils literal notranslate"><span class="pre">Gauge</span></code>.</p>
+<p>To use Envoy Mobile’s stats function, obtain an instance of <code class="docutils literal notranslate"><span class="pre">StatsClient</span></code> from <code class="docutils literal notranslate"><span class="pre">Engine</span></code>
+(refer to <a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">Starting Envoy</span></a> for building an engine instance), and store the stats client to
+create <code class="docutils literal notranslate"><span class="pre">Counter</span></code> or <code class="docutils literal notranslate"><span class="pre">Gauge</span></code> instances. The following code examples show how to create
+a <code class="docutils literal notranslate"><span class="pre">Counter</span></code>, and the same approach is used to create a <code class="docutils literal notranslate"><span class="pre">Gauge</span></code>.</p>
 <p><strong>Kotlin example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">statsClient</span><span class="o">.</span><span class="n">counter</span><span class="p">(</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">),</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">))</span>
 </pre></div>
@@ -179,8 +201,15 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">statsClient</span><span class="o">.</span><span class="n">counter</span><span class="p">(</span><span class="n">elements</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">counter</span></code> method from stats client takes a variable number of elements and returns a <code class="docutils literal notranslate"><span class="pre">Counter</span></code> instance, the elements are used to for a dot(.) delimited string. For the example code above, the formed string is <code class="docutils literal notranslate"><span class="pre">foo.bar</span></code>, this string serves as the identifier of the counter.</p>
-<p>Store the counter instance, and call the <code class="docutils literal notranslate"><span class="pre">increment</span></code> method to increment the counter wherever it applies.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">counter</span></code> method from the stats client takes a variable number of elements and returns a
+<code class="docutils literal notranslate"><span class="pre">Counter</span></code> instance. The elements provided are used to form a dot(<code class="docutils literal notranslate"><span class="pre">.</span></code>) delimited string that
+serves as the identifier of the counter. The string formed from the example code above is
+<code class="docutils literal notranslate"><span class="pre">foo.bar</span></code>.</p>
+<p>Store the instance of the counter or gauge, then use it to increment as necessary.</p>
+</div>
+<div class="section" id="counter">
+<h2><code class="docutils literal notranslate"><span class="pre">Counter</span></code><a class="headerlink" href="#counter" title="Permalink to this headline">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">Counter</span></code> can be incremented by calling the <code class="docutils literal notranslate"><span class="pre">increment()</span></code> method when applicable.</p>
 <p>The count argument of <code class="docutils literal notranslate"><span class="pre">increment</span></code> is defaulted with a value of <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Increment</span> <span class="n">the</span> <span class="n">counter</span> <span class="n">by</span> <span class="mi">1</span>
@@ -194,6 +223,33 @@
 <span class="o">//</span> <span class="n">Increment</span> <span class="n">the</span> <span class="n">counter</span> <span class="n">by</span> <span class="mi">5</span>
 <span class="o">//</span> <span class="n">Swift</span>
 <span class="n">counter</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span><span class="n">count</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gauge">
+<h2><code class="docutils literal notranslate"><span class="pre">Gauge</span></code><a class="headerlink" href="#gauge" title="Permalink to this headline">¶</a></h2>
+<p>The value of a <code class="docutils literal notranslate"><span class="pre">Gauge</span></code> can be incremented, decremented, or reassigned.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">gauge</span> <span class="n">to</span> <span class="mi">5</span>
+<span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">gauge</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">gauge</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Add</span> <span class="mi">5</span> <span class="n">to</span> <span class="n">the</span> <span class="n">gauge</span>
+<span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">gauge</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">gauge</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Subtract</span> <span class="mi">5</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">gauge</span>
+<span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">gauge</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">gauge</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
