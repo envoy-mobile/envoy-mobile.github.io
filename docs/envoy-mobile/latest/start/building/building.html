@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Building &mdash; envoy-mobile 0.3.1.11112020-6f5fa7 documentation</title>
+  <title>Building &mdash; envoy-mobile 0.3.1.11112020-834a05 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.1.11112020-6f5fa7
+                0.3.1.11112020-834a05
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#ios-requirements">iOS requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#android-aar">Android AAR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ios-static-framework">iOS static framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#maven">Maven</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cocoapods">CocoaPods</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#building-envoy-mobile-with-private-extensions">Building Envoy Mobile with private Extensions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#extensions">Extensions</a></li>
@@ -179,7 +180,7 @@
             
   <div class="section" id="building">
 <span id="id1"></span><h1>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h1>
-<p id="building-requirements">To build Envoy Mobile, your system must also be set up for building Envoy.
+<p>To build Envoy Mobile, your system must also be set up for building Envoy.
 To get started, you can use <a class="reference external" href="https://github.com/envoyproxy/envoy/tree/master/bazel#quick-start-bazel-build-for-developers">this quick start guide</a>.</p>
 <p>Ensure that the <code class="docutils literal notranslate"><span class="pre">envoy</span></code> <strong>submodule</strong> is initialized when cloning by using <code class="docutils literal notranslate"><span class="pre">--recursive</span></code>:</p>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/lyft/envoy-mobile.git</span> <span class="pre">--recursive</span></code></p>
@@ -188,9 +189,9 @@ To get started, you can use <a class="reference external" href="https://github.c
 <div class="section" id="bazel-requirements">
 <h2>Bazel requirements<a class="headerlink" href="#bazel-requirements" title="Permalink to this headline">¶</a></h2>
 <p>Envoy Mobile is compiled using the version of Bazel specified in the
-<a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/6f5fa71e6cbe2d6d2b90a3dc94f519b1ab90145d/.bazelversion">.bazelversion</a> file.</p>
+<a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/834a059fdab322870a875a971433f68e6c089bf7/.bazelversion">.bazelversion</a> file.</p>
 <p>To simplify build consistency across environments, bazelisk is used.
-Follow the Envoy instructions <a class="reference external" href="https://github.com/envoyproxy/envoy/blob/master/bazel/README.md#installing-bazelisk-as-bazel">here</a> to install bazelisk as bazel.</p>
+Follow <a class="reference external" href="https://github.com/envoyproxy/envoy/blob/master/bazel/README.md#installing-bazelisk-as-bazel">these Envoy instructions</a> to install bazelisk as bazel.</p>
 </div>
 <div class="section" id="android-requirements">
 <h2>Android requirements<a class="headerlink" href="#android-requirements" title="Permalink to this headline">¶</a></h2>
@@ -204,17 +205,18 @@ Follow the Envoy instructions <a class="reference external" href="https://github
 <ul class="simple">
 <li>Xcode 12</li>
 <li>Swift 5.x</li>
-<li>Note: Requirements are listed in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/6f5fa71e6cbe2d6d2b90a3dc94f519b1ab90145d/.bazelrc">.bazelrc file</a> and CI scripts</li>
+<li>Note: Requirements are listed in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/834a059fdab322870a875a971433f68e6c089bf7/.bazelrc">.bazelrc file</a> and CI scripts</li>
 </ul>
 </div>
 <div class="section" id="android-aar">
 <span id="id2"></span><h2>Android AAR<a class="headerlink" href="#android-aar" title="Permalink to this headline">¶</a></h2>
 <p>Envoy Mobile can be compiled into an <code class="docutils literal notranslate"><span class="pre">.aar</span></code> file for use with Android apps.
-This command is defined in the main <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/6f5fa71e6cbe2d6d2b90a3dc94f519b1ab90145d/BUILD">BUILD</a> file of the repo, and may be run locally:</p>
+This command is defined in the main <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/834a059fdab322870a875a971433f68e6c089bf7/BUILD">BUILD</a> file of the repo, and may be run locally:</p>
 <p><code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">android_dist</span> <span class="pre">--config=android</span> <span class="pre">--fat_apk_cpu=&lt;arch1,arch2&gt;</span></code></p>
-<p>Upon completion of the build, you’ll see an <code class="docutils literal notranslate"><span class="pre">envoy.aar</span></code> file at <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/6f5fa71e6cbe2d6d2b90a3dc94f519b1ab90145d/dist">dist/envoy.aar</a>.</p>
-<p>Alternatively, you can use the prebuilt artifact from Envoy Mobile’s <a class="reference external" href="https://github.com/lyft/envoy-mobile/releases">releases</a>.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">envoy_mobile_android</span></code> Bazel rule defined in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/6f5fa71e6cbe2d6d2b90a3dc94f519b1ab90145d/dist/BUILD">dist BUILD file</a> provides
+<p>Upon completion of the build, you’ll see an <code class="docutils literal notranslate"><span class="pre">envoy.aar</span></code> file at <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/834a059fdab322870a875a971433f68e6c089bf7/dist">dist/envoy.aar</a>.</p>
+<p>Alternatively, you can use the <strong>prebuilt artifact</strong> from Envoy Mobile’s <a class="reference external" href="https://github.com/lyft/envoy-mobile/releases">releases</a>
+or from <a class="reference internal" href="#maven"><span class="std std-ref">Maven</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">envoy_mobile_android</span></code> Bazel rule defined in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/834a059fdab322870a875a971433f68e6c089bf7/dist/BUILD">dist BUILD file</a> provides
 an example of how this artifact may be used.</p>
 <p><strong>When building the artifact for release</strong> (usage outside of development), be sure to include the
 <code class="docutils literal notranslate"><span class="pre">--config=release-android</span></code> option, along with the architectures for which the artifact is being built:</p>
@@ -224,22 +226,28 @@ an example of how this artifact may be used.</p>
 <div class="section" id="ios-static-framework">
 <span id="ios-framework"></span><h2>iOS static framework<a class="headerlink" href="#ios-static-framework" title="Permalink to this headline">¶</a></h2>
 <p>Envoy Mobile supports being compiled into a <code class="docutils literal notranslate"><span class="pre">.framework</span></code> for consumption by iOS apps.
-This command is defined in the main <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/6f5fa71e6cbe2d6d2b90a3dc94f519b1ab90145d/BUILD">BUILD</a> file of the repo, and may be run locally:</p>
+This command is defined in the main <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/834a059fdab322870a875a971433f68e6c089bf7/BUILD">BUILD</a> file of the repo, and may be run locally:</p>
 <p><code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">ios_dist</span> <span class="pre">--config=ios</span></code></p>
 <p>Upon completion of the build, you’ll see a <code class="docutils literal notranslate"><span class="pre">Envoy.framework</span></code> directory at
-<a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/6f5fa71e6cbe2d6d2b90a3dc94f519b1ab90145d/dist">dist/Envoy.framework</a>.</p>
-<p>Alternatively, you can use the prebuilt artifact from Envoy Mobile’s <a class="reference external" href="https://github.com/lyft/envoy-mobile/releases">releases</a>.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">envoy_mobile_ios</span></code> Bazel rule defined in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/6f5fa71e6cbe2d6d2b90a3dc94f519b1ab90145d/dist/BUILD">dist BUILD file</a> provides an
+<a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/834a059fdab322870a875a971433f68e6c089bf7/dist">dist/Envoy.framework</a>.</p>
+<p>Alternatively, you can use the prebuilt artifact from Envoy Mobile’s <a class="reference external" href="https://github.com/lyft/envoy-mobile/releases">releases</a>
+or from <a class="reference internal" href="#cocoapods"><span class="std std-ref">CocoaPods</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">envoy_mobile_ios</span></code> Bazel rule defined in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/834a059fdab322870a875a971433f68e6c089bf7/dist/BUILD">dist BUILD file</a> provides an
 example of how this artifact may be used.</p>
 <p><strong>When building the artifact for release</strong> (usage outside of development), be sure to include the
 <code class="docutils literal notranslate"><span class="pre">--config=release-ios</span></code> option, along with the architectures for which the artifact is being built:</p>
 <p><code class="docutils literal notranslate"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">ios_dist</span> <span class="pre">--config=release-ios</span> <span class="pre">--ios_multi_cpus=i386,x86_64,armv7,arm64</span></code></p>
 <p>For a demo of a working app using this artifact, see the <a class="reference internal" href="../examples/hello_world.html#hello-world"><span class="std std-ref">Hello World</span></a> example.</p>
 </div>
+<div class="section" id="maven">
+<span id="id3"></span><h2>Maven<a class="headerlink" href="#maven" title="Permalink to this headline">¶</a></h2>
+<p>Envoy Mobile Android artifacts are also uploaded to Maven, and can be accessed/downloaded
+<a class="reference external" href="https://mvnrepository.com/artifact/io.envoyproxy.envoymobile/envoy">here</a>.</p>
+</div>
 <div class="section" id="cocoapods">
-<h2>CocoaPods<a class="headerlink" href="#cocoapods" title="Permalink to this headline">¶</a></h2>
-<p>If you use CocoaPods, you can add the following to your <code class="docutils literal notranslate"><span class="pre">Podfile</span></code> to use the latest version of the
-prebuilt Envoy Mobile framework.</p>
+<span id="id4"></span><h2>CocoaPods<a class="headerlink" href="#cocoapods" title="Permalink to this headline">¶</a></h2>
+<p>If you use CocoaPods on iOS, you can add the following to your <code class="docutils literal notranslate"><span class="pre">Podfile</span></code> to use the latest version
+of the prebuilt Envoy Mobile framework.</p>
 <p><code class="docutils literal notranslate"><span class="pre">pod</span> <span class="pre">'EnvoyMobile'</span></code></p>
 </div>
 <div class="section" id="building-envoy-mobile-with-private-extensions">
