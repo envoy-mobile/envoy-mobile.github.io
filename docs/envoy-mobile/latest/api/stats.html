@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Stats &mdash; envoy-mobile 0.3.1.12042020-e637c6 documentation</title>
+  <title>Pulse (Stats) &mdash; envoy-mobile 0.3.1.12042020-b8ecce documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.1.12042020-e637c6
+                0.3.1.12042020-b8ecce
               </div>
             
           
@@ -86,13 +86,29 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../start/start.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Pulse (Stats)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pulseclient"><code class="docutils literal notranslate"><span class="pre">PulseClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#counter"><code class="docutils literal notranslate"><span class="pre">Counter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gauge"><code class="docutils literal notranslate"><span class="pre">Gauge</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../start/building/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../start/examples/hello_world.html">Hello World</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
 <li class="toctree-l2"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Stats</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#statsclient"><code class="docutils literal notranslate"><span class="pre">StatsClient</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pulse (Stats)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pulseclient"><code class="docutils literal notranslate"><span class="pre">PulseClient</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#counter"><code class="docutils literal notranslate"><span class="pre">Counter</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gauge"><code class="docutils literal notranslate"><span class="pre">Gauge</span></code></a></li>
 </ul>
@@ -149,7 +165,7 @@
         
           <li><a href="api.html">API</a> &raquo;</li>
         
-      <li>Stats</li>
+      <li>Pulse (Stats)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -168,24 +184,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="stats">
-<span id="api-stats"></span><h1>Stats<a class="headerlink" href="#stats" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="statsclient">
-<h2><code class="docutils literal notranslate"><span class="pre">StatsClient</span></code><a class="headerlink" href="#statsclient" title="Permalink to this headline">¶</a></h2>
-<p>Envoy Mobile’s stats functionality currently supports two type of stats: <code class="docutils literal notranslate"><span class="pre">Counter</span></code> and <code class="docutils literal notranslate"><span class="pre">Gauge</span></code>.</p>
-<p>To use Envoy Mobile’s stats function, obtain an instance of <code class="docutils literal notranslate"><span class="pre">StatsClient</span></code> from <code class="docutils literal notranslate"><span class="pre">Engine</span></code>
-(refer to <a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">Starting Envoy</span></a> for building an engine instance), and store the stats client to
+  <div class="section" id="pulse-stats">
+<span id="api-stats"></span><h1>Pulse (Stats)<a class="headerlink" href="#pulse-stats" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pulseclient">
+<h2><code class="docutils literal notranslate"><span class="pre">PulseClient</span></code><a class="headerlink" href="#pulseclient" title="Permalink to this headline">¶</a></h2>
+<p>Pulse is Envoy Mobile’s stats library, used for capturing client application time series
+metrics. Currently two types of metrics are supported: <code class="docutils literal notranslate"><span class="pre">Counter</span></code> and <code class="docutils literal notranslate"><span class="pre">Gauge</span></code>.</p>
+<p>This library (like all of Envoy Mobile) is under active development.</p>
+<p>To leverage Pulse, obtain an instance of a <code class="docutils literal notranslate"><span class="pre">PulseClient</span></code> from an Envoy Mobile <code class="docutils literal notranslate"><span class="pre">Engine</span></code>
+(refer to <a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">Starting Envoy</span></a> for building an engine instance), and use it to
 create <code class="docutils literal notranslate"><span class="pre">Counter</span></code> or <code class="docutils literal notranslate"><span class="pre">Gauge</span></code> instances. The following code examples show how to create
 a <code class="docutils literal notranslate"><span class="pre">Counter</span></code>, and the same approach is used to create a <code class="docutils literal notranslate"><span class="pre">Gauge</span></code>.</p>
 <p><strong>Kotlin example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">statsClient</span><span class="o">.</span><span class="n">counter</span><span class="p">(</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">),</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pulseClient</span><span class="o">.</span><span class="n">counter</span><span class="p">(</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">),</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 <p><strong>Swift example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">statsClient</span><span class="o">.</span><span class="n">counter</span><span class="p">(</span><span class="n">elements</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pulseClient</span><span class="o">.</span><span class="n">counter</span><span class="p">(</span><span class="n">elements</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">counter</span></code> method from the stats client takes a variable number of elements and returns a
+<p>The <code class="docutils literal notranslate"><span class="pre">counter</span></code> method from the <code class="docutils literal notranslate"><span class="pre">PulseClient</span></code> takes a variable number of elements and returns a
 <code class="docutils literal notranslate"><span class="pre">Counter</span></code> instance. The elements provided are used to form a dot(<code class="docutils literal notranslate"><span class="pre">.</span></code>) delimited string that
 serves as the identifier of the counter. The string formed from the example code above is
 <code class="docutils literal notranslate"><span class="pre">foo.bar</span></code>.</p>

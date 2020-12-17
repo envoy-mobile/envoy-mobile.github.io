@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.3.1.12042020-e637c6 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.3.1.12042020-b8ecce documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.1.12042020-e637c6
+                0.3.1.12042020-b8ecce
               </div>
             
           
@@ -86,7 +86,24 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../start/start.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#streamclient"><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enginebuilder"><code class="docutils literal notranslate"><span class="pre">EngineBuilder</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#making-requests">Making requests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stats.html">Pulse (Stats)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../start/building/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../start/examples/hello_world.html">Hello World</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#streamclient"><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code></a></li>
@@ -109,7 +126,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
 <li class="toctree-l2"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stats.html">Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html">Pulse (Stats)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a></li>
@@ -185,8 +202,8 @@
 <span id="api-starting-envoy"></span><h1>Starting Envoy<a class="headerlink" href="#starting-envoy" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="streamclient">
 <h2><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code><a class="headerlink" href="#streamclient" title="Permalink to this headline">¶</a></h2>
-<p>Starting an instance of Envoy Mobile is done by building the <code class="docutils literal notranslate"><span class="pre">Engine</span></code> instance with <code class="docutils literal notranslate"><span class="pre">EngineBuilder</span></code>. Requests are performed by the <code class="docutils literal notranslate"><span class="pre">StatsClient</span></code> provided by <code class="docutils literal notranslate"><span class="pre">Engine</span></code>.</p>
-<p>To obtain a <code class="docutils literal notranslate"><span class="pre">StatsClient</span></code>, call <code class="docutils literal notranslate"><span class="pre">streamClient()</span></code> on the <code class="docutils literal notranslate"><span class="pre">Engine</span></code> instance (see below).</p>
+<p>Starting an instance of Envoy Mobile is done by building the <code class="docutils literal notranslate"><span class="pre">Engine</span></code> instance with <code class="docutils literal notranslate"><span class="pre">EngineBuilder</span></code>. Requests are performed by the <code class="docutils literal notranslate"><span class="pre">StreamClient</span></code> provided by <code class="docutils literal notranslate"><span class="pre">Engine</span></code>.</p>
+<p>To obtain a <code class="docutils literal notranslate"><span class="pre">StreamClient</span></code>, call <code class="docutils literal notranslate"><span class="pre">streamClient()</span></code> on the <code class="docutils literal notranslate"><span class="pre">Engine</span></code> instance (see below).</p>
 <p>After the stream client is obtained, it should be stored and used to start network requests/streams.</p>
 <p><strong>Kotlin example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">streamClient</span> <span class="o">=</span> <span class="n">AndroidEngineBuilder</span><span class="p">(</span><span class="n">getApplication</span><span class="p">())</span>
