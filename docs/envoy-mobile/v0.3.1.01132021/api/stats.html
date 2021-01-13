@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pulse (Stats) &mdash; envoy-mobile 0.3.1.12042020-d565be documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Building" href="../start/building/building.html" />
+    <link rel="prev" title="gRPC streams" href="grpc.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> envoy-mobile
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.1.12042020-d565be
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pulse (Stats)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pulseclient"><code class="docutils literal notranslate"><span class="pre">PulseClient</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#counter"><code class="docutils literal notranslate"><span class="pre">Counter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gauge"><code class="docutils literal notranslate"><span class="pre">Gauge</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">envoy-mobile</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../start/start.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="api.html">API</a> &raquo;</li>
+        
+      <li>Pulse (Stats)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/stats.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pulse-stats">
+<span id="api-stats"></span><h1>Pulse (Stats)<a class="headerlink" href="#pulse-stats" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pulseclient">
+<h2><code class="docutils literal notranslate"><span class="pre">PulseClient</span></code><a class="headerlink" href="#pulseclient" title="Permalink to this headline">¶</a></h2>
+<p>Pulse is Envoy Mobile’s stats library, used for capturing client application time series
+metrics. Currently two types of metrics are supported: <code class="docutils literal notranslate"><span class="pre">Counter</span></code> and <code class="docutils literal notranslate"><span class="pre">Gauge</span></code>.</p>
+<p>This library (like all of Envoy Mobile) is under active development.</p>
+<p>To leverage Pulse, obtain an instance of a <code class="docutils literal notranslate"><span class="pre">PulseClient</span></code> from an Envoy Mobile <code class="docutils literal notranslate"><span class="pre">Engine</span></code>
+(refer to <a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">Starting Envoy</span></a> for building an engine instance), and use it to
+create <code class="docutils literal notranslate"><span class="pre">Counter</span></code> or <code class="docutils literal notranslate"><span class="pre">Gauge</span></code> instances. The following code examples show how to create
+a <code class="docutils literal notranslate"><span class="pre">Counter</span></code>, and the same approach is used to create a <code class="docutils literal notranslate"><span class="pre">Gauge</span></code>.</p>
+<p><strong>Kotlin example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pulseClient</span><span class="o">.</span><span class="n">counter</span><span class="p">(</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">),</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Swift example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pulseClient</span><span class="o">.</span><span class="n">counter</span><span class="p">(</span><span class="n">elements</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">counter</span></code> method from the <code class="docutils literal notranslate"><span class="pre">PulseClient</span></code> takes a variable number of elements and returns a
+<code class="docutils literal notranslate"><span class="pre">Counter</span></code> instance. The elements provided are used to form a dot(<code class="docutils literal notranslate"><span class="pre">.</span></code>) delimited string that
+serves as the identifier of the counter. The string formed from the example code above is
+<code class="docutils literal notranslate"><span class="pre">foo.bar</span></code>.</p>
+<p>Store the instance of the counter or gauge, then use it to increment as necessary.</p>
+</div>
+<div class="section" id="counter">
+<h2><code class="docutils literal notranslate"><span class="pre">Counter</span></code><a class="headerlink" href="#counter" title="Permalink to this headline">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">Counter</span></code> can be incremented by calling the <code class="docutils literal notranslate"><span class="pre">increment()</span></code> method when applicable.</p>
+<p>The count argument of <code class="docutils literal notranslate"><span class="pre">increment</span></code> is defaulted with a value of <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Increment</span> <span class="n">the</span> <span class="n">counter</span> <span class="n">by</span> <span class="mi">1</span>
+<span class="o">//</span> <span class="n">Kotlin</span><span class="p">,</span> <span class="n">Swift</span>
+<span class="n">counter</span><span class="o">.</span><span class="n">increment</span><span class="p">()</span>
+
+<span class="o">//</span> <span class="n">Increment</span> <span class="n">the</span> <span class="n">counter</span> <span class="n">by</span> <span class="mi">5</span>
+<span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">counter</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Increment</span> <span class="n">the</span> <span class="n">counter</span> <span class="n">by</span> <span class="mi">5</span>
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">counter</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span><span class="n">count</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gauge">
+<h2><code class="docutils literal notranslate"><span class="pre">Gauge</span></code><a class="headerlink" href="#gauge" title="Permalink to this headline">¶</a></h2>
+<p>The value of a <code class="docutils literal notranslate"><span class="pre">Gauge</span></code> can be incremented, decremented, or reassigned.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">gauge</span> <span class="n">to</span> <span class="mi">5</span>
+<span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">gauge</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">gauge</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Add</span> <span class="mi">5</span> <span class="n">to</span> <span class="n">the</span> <span class="n">gauge</span>
+<span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">gauge</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">gauge</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Subtract</span> <span class="mi">5</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">gauge</span>
+<span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">gauge</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">gauge</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../start/building/building.html" class="btn btn-neutral float-right" title="Building" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="grpc.html" class="btn btn-neutral" title="gRPC streams" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021 Lyft, Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
