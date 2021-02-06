@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Pulse (Stats) &mdash; envoy-mobile 0.3.1.12042020-70a75e documentation</title>
+  <title>Pulse (Stats) &mdash; envoy-mobile 0.3.1.12042020-875a45 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.1.12042020-70a75e
+                0.3.1.12042020-875a45
               </div>
             
           
@@ -95,6 +95,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#pulseclient"><code class="docutils literal notranslate"><span class="pre">PulseClient</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#counter"><code class="docutils literal notranslate"><span class="pre">Counter</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gauge"><code class="docutils literal notranslate"><span class="pre">Gauge</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#timer"><code class="docutils literal notranslate"><span class="pre">Timer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distribution"><code class="docutils literal notranslate"><span class="pre">Distribution</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -236,6 +238,34 @@ serves as the identifier of the counter. The string formed from the example code
 
 <span class="o">//</span> <span class="n">Swift</span>
 <span class="n">gauge</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="timer">
+<h2><code class="docutils literal notranslate"><span class="pre">Timer</span></code><a class="headerlink" href="#timer" title="Permalink to this headline">¶</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">Timer</span></code> to track a distribution of time durations.
+You can view the cumulative stats like quantile data (p50/p90/etc.) and average durations.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">new</span> <span class="n">duration</span> <span class="n">to</span> <span class="n">the</span> <span class="n">underlying</span> <span class="n">timer</span> <span class="n">distribution</span>
+<span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">timer</span><span class="o">.</span><span class="n">completeWithDuration</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">timer</span><span class="o">.</span><span class="n">completeWithDuration</span><span class="p">(</span><span class="n">durationMs</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="distribution">
+<h2><code class="docutils literal notranslate"><span class="pre">Distribution</span></code><a class="headerlink" href="#distribution" title="Permalink to this headline">¶</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">Distribution</span></code> to track a distribution of int values.
+You can view the cumulative stats like quantile data (p50/p90/etc.), sum, and averages.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">new</span> <span class="n">value</span> <span class="n">to</span> <span class="n">the</span> <span class="n">underlying</span> <span class="n">distribution</span>
+<span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">distribution</span><span class="o">.</span><span class="n">recordValue</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">distribution</span><span class="o">.</span><span class="n">recordValue</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
