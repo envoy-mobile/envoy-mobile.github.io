@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of binary size &mdash; envoy-mobile 0.3.1.02092021-a0043e documentation</title>
+  <title>Analysis of binary size &mdash; envoy-mobile 0.3.1.02092021-49034e documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.1.02092021-a0043e
+                0.3.1.02092021-49034e
               </div>
             
           
@@ -221,6 +221,17 @@ necessary tools:</p>
 <span class="n">cp</span> <span class="n">bloaty</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bloaty</span>
 </pre></div>
 </div>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">After this <a class="reference external" href="https://github.com/envoyproxy/envoy/pull/12569">change</a> Envoy started
+using split DWARF capabilities to reduce link time and binary size when compiling debug symbols.
+However, Bloaty (the analysis tool described below)
+does not support using <code class="docutils literal notranslate"><span class="pre">.dwp</span></code> files as a source for debug symbols
+(tracked in this <a class="reference external" href="https://github.com/google/bloaty/issues/156">issue</a>). Therefore, a patch
+<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/1274#issuecomment-788345216">like this</a>
+must be applied to the Envoy submodule before compiling the binary described
+below.</p>
+</div>
 <p>The binary being compiled is <code class="docutils literal notranslate"><span class="pre">//test/performance:test_binary_size</span></code>.
 The binary is getting built with the following build command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bazelisk</span> <span class="n">build</span> <span class="o">//</span><span class="n">test</span><span class="o">/</span><span class="n">performance</span><span class="p">:</span><span class="n">test_binary_size</span> <span class="o">--</span><span class="n">config</span><span class="o">=</span><span class="n">sizeopt</span> <span class="o">--</span><span class="n">copt</span><span class="o">=-</span><span class="n">ggdb3</span> <span class="o">--</span><span class="n">linkopt</span><span class="o">=-</span><span class="n">fuse</span><span class="o">-</span><span class="n">ld</span><span class="o">=</span><span class="n">lld</span>
@@ -350,7 +361,7 @@ expectations.</p>
 <div class="section" id="ci-integration">
 <h2>CI integration<a class="headerlink" href="#ci-integration" title="Permalink to this headline">¶</a></h2>
 <p>CI validates that no PR increases the binary size of the library above a specific
-threshold specified in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/a0043e711fb0f6c6f662be472e3709e7820d30b7/.github/workflows/perf.yml">perf.yml configuration</a>.</p>
+threshold specified in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/49034e5e55df35fa9acef19ecb109bdd81b89cc9/.github/workflows/perf.yml">perf.yml configuration</a>.</p>
 <p>The status of this job is reported on PRs in the <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">/</span> <span class="pre">size_compare</span></code> task.</p>
 </div>
 </div>
