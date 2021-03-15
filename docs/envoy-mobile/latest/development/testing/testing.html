@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Testing &mdash; envoy-mobile 0.3.1.02092021-2f87a3 documentation</title>
+  <title>Testing &mdash; envoy-mobile 0.3.1.02092021-fe938b documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.1.02092021-2f87a3
+                0.3.1.02092021-fe938b
               </div>
             
           
@@ -94,9 +94,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html#pre-release-versioning">Pre-release versioning</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Testing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="local_stats.html">Local Stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-c-c-tests">Common (C/C++) tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#java-tests">Java tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#kotlin-tests">Kotlin tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#swift-tests">Swift tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#coverage">Coverage</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../tools/tools.html">Development Tools</a></li>
@@ -184,9 +186,10 @@ project.</p>
 <p>All unit tests are in the various <code class="docutils literal notranslate"><span class="pre">library/&lt;language&gt;</span></code> directories of the repository,
 and are run on CI for all PRs and merges to main.</p>
 <p>Tests may be run locally as outlined below.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The overall project testing strategy is being revisited as part of <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/197">#197</a>.</p>
+<div class="section" id="common-c-c-tests">
+<h2>Common (C/C++) tests<a class="headerlink" href="#common-c-c-tests" title="Permalink to this headline">¶</a></h2>
+<p>To run the entire C/C++ test suite locally, use the following Bazel command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">bazelisk</span> <span class="pre">test</span> <span class="pre">--test_output=all</span> <span class="pre">//test/common/...</span></code></p>
 </div>
 <div class="section" id="java-tests">
 <h2>Java tests<a class="headerlink" href="#java-tests" title="Permalink to this headline">¶</a></h2>
@@ -202,6 +205,15 @@ and are run on CI for all PRs and merges to main.</p>
 <h2>Swift tests<a class="headerlink" href="#swift-tests" title="Permalink to this headline">¶</a></h2>
 <p>To run the entire Swift unit test suite locally, use the following Bazel command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">bazelisk</span> <span class="pre">test</span> <span class="pre">--test_output=all</span> <span class="pre">--build_tests_only</span> <span class="pre">//test/swift/...</span></code></p>
+</div>
+<div class="section" id="coverage">
+<h2>Coverage<a class="headerlink" href="#coverage" title="Permalink to this headline">¶</a></h2>
+<p>Currently, CI runs coverage jobs whenever any of the common (C/C++ code) under
+<code class="docutils literal notranslate"><span class="pre">library/common/...</span></code> or <code class="docutils literal notranslate"><span class="pre">test/common/...</span></code> changes; and on all commits to main.
+The coverage job will fail if the resulting coverage percentage falls below the project’s
+<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/0b06697989c7d64ab73dee76744b7493ce38c28b/.github/workflows/coverage.yml#L23">threshold</a>.</p>
+<p>The coverage report can be downloaded and inspected by clicking on the <code class="docutils literal notranslate"><span class="pre">Artifacts</span></code> drop down on
+the top right corner of the coverage CI job.</p>
 </div>
 </div>
 
