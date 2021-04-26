@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.3.1.04232021-d15598 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.4.0-2d5f1b documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.1.04232021-d15598
+                0.4.0-2d5f1b
               </div>
             
           
@@ -119,6 +119,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#addvirtualclusters"><code class="docutils literal notranslate"><span class="pre">addVirtualClusters</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setonenginerunning"><code class="docutils literal notranslate"><span class="pre">setOnEngineRunning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setlogger"><code class="docutils literal notranslate"><span class="pre">setLogger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addstringaccessor"><code class="docutils literal notranslate"><span class="pre">addStringAccessor</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
@@ -381,6 +382,18 @@ will be queued automatically, and this function is typically used purely for obs
 <span class="n">builder</span><span class="o">.</span><span class="n">setLogger</span> <span class="p">{</span> <span class="n">msg</span> <span class="ow">in</span>
   <span class="n">NSLog</span><span class="p">(</span><span class="s2">&quot;Envoy log: \(msg)&quot;</span><span class="p">)</span>
 <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="addstringaccessor">
+<h3><code class="docutils literal notranslate"><span class="pre">addStringAccessor</span></code><a class="headerlink" href="#addstringaccessor" title="Permalink to this headline">¶</a></h3>
+<p>Specify a closure to be called by Envoy to access arbitrary strings from Platform runtime.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addStringAccessor</span><span class="p">(</span><span class="s2">&quot;demo-accessor&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="s2">&quot;PlatformString&quot;</span> <span class="p">})</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addStringAccessor</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s2">&quot;demo-accessor&quot;</span><span class="p">,</span> <span class="n">accessor</span><span class="p">:</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&quot;PlatformString&quot;</span> <span class="p">})</span>
 </pre></div>
 </div>
 </div>

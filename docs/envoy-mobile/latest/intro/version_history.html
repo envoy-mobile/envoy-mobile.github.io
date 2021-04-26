@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Version history &mdash; envoy-mobile 0.3.1.04232021-d15598 documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.4.0-2d5f1b documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.3.1.04232021-d15598
+                0.4.0-2d5f1b
               </div>
             
           
@@ -90,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="comparison.html">Comparison to similar systems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_help.html">Getting help</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Version history</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#march-23-2021">0.4.0 (March 23, 2021)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#july-23-2020">0.3.1 (July 23, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mar-26-2020">0.3.0 (Mar 26, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#feb-21-2020">0.2.3 (Feb 21, 2020)</a></li>
@@ -174,6 +175,25 @@
             
   <div class="section" id="version-history">
 <h1>Version history<a class="headerlink" href="#version-history" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="march-23-2021">
+<h2>0.4.0 (March 23, 2021)<a class="headerlink" href="#march-23-2021" title="Permalink to this headline">¶</a></h2>
+<p>This is a large release. Moving forward the team will aim to release smaller version updates.
+The following is a very high-level overview of the larger changes going into this release.</p>
+<p>Richer Platform-level Feature Set:
+- Adds pluggable logging capabilities via <a class="reference internal" href="../api/starting_envoy.html#api-starting-envoy"><span class="std std-ref">setLogger</span></a>
+- Adds <a class="reference internal" href="../api/stats.html#api-stats"><span class="std std-ref">platform APIs</span></a> for emitting time-series data
+- Adds platform Filters
+- Adds API for accessing arbitrary strings from platform runtime via <a class="reference internal" href="../api/starting_envoy.html#api-starting-envoy"><span class="std std-ref">addStringAccessor</span></a></p>
+<p>Additional Language Bindings:
+- Alpha version of python APIs via C++ bindings
+- Alpha version exposing cronet compatible APIs</p>
+<p>Continued Bug fixes uncovered by additional testing
+- Fixes several memory management corner-cases
+- Fixes several issues that have led to production crashes</p>
+<p>Additional hardening of the codebase via extensive testing:
+- Adds end-to-end testing that covers roundtrip code execution from the platform layer to the core layer.
+- Adds coverage CI runs for core C++ core</p>
+</div>
 <div class="section" id="july-23-2020">
 <h2>0.3.1 (July 23, 2020)<a class="headerlink" href="#july-23-2020" title="Permalink to this headline">¶</a></h2>
 <p>In the last few months the team has continued to harden Envoy Mobile with production exposure.</p>
