@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.4.0.04282021-4e5019 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.4.0.04282021-c8ef0d documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.0.04282021-4e5019
+                0.4.0.04282021-c8ef0d
               </div>
             
           
@@ -289,6 +289,7 @@ in order to take advantage of the
 <p>Note that only stats specified in the configuration’s
 <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/83908423d46a37574e9a35627df1f3dd9634e5ec/library/common/config_template.cc#L146-L167">inclusion list</a>
 will be emitted.</p>
+<p>Passing <code class="docutils literal notranslate"><span class="pre">nil</span></code>/<code class="docutils literal notranslate"><span class="pre">null</span></code> disables stats emission, and this is the default value.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">addStatsDomain</span><span class="p">(</span><span class="s2">&quot;envoy-mobile.envoyproxy.io&quot;</span><span class="p">)</span>
