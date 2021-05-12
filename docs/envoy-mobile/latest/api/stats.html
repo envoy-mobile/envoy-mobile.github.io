@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Pulse (Stats) &mdash; envoy-mobile 0.4.0.04282021-95abd4 documentation</title>
+  <title>Pulse (Stats) &mdash; envoy-mobile 0.4.0.04282021-9827cf documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.0.04282021-95abd4
+                0.4.0.04282021-9827cf
               </div>
             
           
@@ -194,6 +194,11 @@
 <h2><code class="docutils literal notranslate"><span class="pre">PulseClient</span></code><a class="headerlink" href="#pulseclient" title="Permalink to this headline">¶</a></h2>
 <p>Pulse is Envoy Mobile’s stats library, used for capturing client application time series
 metrics. Currently the following types of metrics are supported: <code class="docutils literal notranslate"><span class="pre">Counter</span></code>, <code class="docutils literal notranslate"><span class="pre">Gauge</span></code>, <code class="docutils literal notranslate"><span class="pre">Timer</span></code>, and <code class="docutils literal notranslate"><span class="pre">Distribution</span></code>.</p>
+<p>Pulse also supports custom tags (cardinality). For each type of the metrics, there are two ways to add custom tags:</p>
+<ol class="arabic simple">
+<li>on metrics creation</li>
+<li>on metrics reporting</li>
+</ol>
 <p>This library (like all of Envoy Mobile) is under active development.</p>
 <p>To leverage Pulse, obtain an instance of a <code class="docutils literal notranslate"><span class="pre">PulseClient</span></code> from an Envoy Mobile <code class="docutils literal notranslate"><span class="pre">Engine</span></code>
 (refer to <a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">Starting Envoy</span></a> for building an engine instance), and use it to
@@ -212,6 +217,21 @@ a <code class="docutils literal notranslate"><span class="pre">Counter</span></c
 serves as the identifier of the counter. The string formed from the example code above is
 <code class="docutils literal notranslate"><span class="pre">foo.bar</span></code>.</p>
 <p>Store the instance of the counter, then use it to increment as necessary.</p>
+<p>In addition, to attach custom tags on metric creation:</p>
+<p><strong>Kotlin example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pulseClient</span><span class="o">.</span><span class="n">counter</span><span class="p">(</span>
+  <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">),</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">),</span>
+  <span class="n">tags</span> <span class="o">=</span> <span class="n">TagsBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;Android&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;app_type&quot;</span><span class="p">,</span> <span class="s2">&quot;rider&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Swift example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pulseClient</span><span class="o">.</span><span class="n">counter</span><span class="p">(</span>
+  <span class="n">elements</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">],</span>
+  <span class="n">tags</span><span class="p">:</span> <span class="n">TagsBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;Android&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s2">&quot;app_type&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;rider&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="counter">
 <h2><code class="docutils literal notranslate"><span class="pre">Counter</span></code><a class="headerlink" href="#counter" title="Permalink to this headline">¶</a></h2>
@@ -229,6 +249,23 @@ serves as the identifier of the counter. The string formed from the example code
 <span class="o">//</span> <span class="n">Increment</span> <span class="n">the</span> <span class="n">counter</span> <span class="n">by</span> <span class="mi">5</span>
 <span class="o">//</span> <span class="n">Swift</span>
 <span class="n">counter</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span><span class="n">count</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">Counter</span></code> can be incremented with custom tags. To be concise, this doc shows examples of attching custom tagging for <code class="docutils literal notranslate"><span class="pre">Counter</span></code> on increment. Similar APIs are available for all metrics types to attach tags on metrics reporting.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Increment</span> <span class="n">the</span> <span class="n">counter</span> <span class="n">by</span> <span class="mi">5</span> <span class="k">with</span> <span class="n">tags</span>
+<span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">counter</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span>
+  <span class="n">tags</span><span class="p">:</span> <span class="n">TagsBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;Android&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;app_type&quot;</span><span class="p">,</span> <span class="s2">&quot;rider&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(),</span>
+  <span class="n">count</span><span class="p">:</span> <span class="mi">5</span>
+<span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Increment</span> <span class="n">the</span> <span class="n">counter</span> <span class="n">by</span> <span class="mi">5</span> <span class="k">with</span> <span class="n">tags</span>
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">counter</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span>
+  <span class="n">tags</span><span class="p">:</span> <span class="n">TagsBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;Android&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s2">&quot;app_type&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;rider&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+  <span class="n">count</span><span class="p">:</span> <span class="mi">5</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
