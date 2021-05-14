@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.4.0.04282021-463244 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.4.0.04282021-4f4b43 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.0.04282021-463244
+                0.4.0.04282021-4f4b43
               </div>
             
           
@@ -86,7 +86,24 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../start/start.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#streamclient"><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enginebuilder"><code class="docutils literal notranslate"><span class="pre">EngineBuilder</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#making-requests">Making requests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stats.html">Pulse (Stats)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../start/building/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../start/examples/hello_world.html">Hello World</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#streamclient"><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code></a></li>
@@ -97,6 +114,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#addloglevel"><code class="docutils literal notranslate"><span class="pre">addLogLevel</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addstatsdomain"><code class="docutils literal notranslate"><span class="pre">addStatsDomain</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addstatsflushseconds"><code class="docutils literal notranslate"><span class="pre">addStatsFlushSeconds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addstreamidletimeoutseconds"><code class="docutils literal notranslate"><span class="pre">addStreamIdleTimeoutSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addappversion"><code class="docutils literal notranslate"><span class="pre">addAppVersion</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addappid"><code class="docutils literal notranslate"><span class="pre">addAppId</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addvirtualclusters"><code class="docutils literal notranslate"><span class="pre">addVirtualClusters</span></code></a></li>
@@ -291,6 +309,21 @@ will be emitted.</p>
 
 <span class="o">//</span> <span class="n">Swift</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">addStatsFlushSeconds</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="addstreamidletimeoutseconds">
+<h3><code class="docutils literal notranslate"><span class="pre">addStreamIdleTimeoutSeconds</span></code><a class="headerlink" href="#addstreamidletimeoutseconds" title="Permalink to this headline">¶</a></h3>
+<p>Specifies the length of time a stream should wait without a headers or data event before timing out.
+Defaults to 15 seconds.
+See <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-stream-idle-timeout">the Envoy docs</a>
+for further information.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addStreamIdleTimeoutSeconds</span><span class="p">(</span><span class="mi">5</span><span class="n">L</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addStreamIdleTimeoutSeconds</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
