@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Pulse (Stats) &mdash; envoy-mobile 0.4.0.04282021-b708ef documentation</title>
+  <title>Pulse (Stats) &mdash; envoy-mobile 0.4.0.04282021-bc5849 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.0.04282021-b708ef
+                0.4.0.04282021-bc5849
               </div>
             
           
@@ -303,10 +303,10 @@ You can view the cumulative stats like quantile data (p50/p90/etc.) and average 
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">new</span> <span class="n">duration</span> <span class="n">to</span> <span class="n">the</span> <span class="n">underlying</span> <span class="n">timer</span> <span class="n">distribution</span>
 <span class="o">//</span> <span class="n">Kotlin</span>
-<span class="n">timer</span><span class="o">.</span><span class="n">completeWithDuration</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">timer</span><span class="o">.</span><span class="n">recordDuration</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="o">//</span> <span class="n">Swift</span>
-<span class="n">timer</span><span class="o">.</span><span class="n">completeWithDuration</span><span class="p">(</span><span class="n">durationMs</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">timer</span><span class="o">.</span><span class="n">recordDuration</span><span class="p">(</span><span class="n">durationMs</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
