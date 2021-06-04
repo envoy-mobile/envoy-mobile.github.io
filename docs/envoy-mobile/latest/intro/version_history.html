@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Version history &mdash; envoy-mobile 0.4.1.05282021-36aef3 documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.4.1.05282021-a48d49 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.1.05282021-36aef3
+                0.4.1.05282021-a48d49
               </div>
             
           
@@ -90,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="comparison.html">Comparison to similar systems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_help.html">Getting help</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Version history</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#may-28-2021">0.4.1 (May 28, 2021)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#march-23-2021">0.4.0 (March 23, 2021)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#july-23-2020">0.3.1 (July 23, 2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mar-26-2020">0.3.0 (Mar 26, 2020)</a></li>
@@ -175,6 +176,23 @@
             
   <div class="section" id="version-history">
 <h1>Version history<a class="headerlink" href="#version-history" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="may-28-2021">
+<h2>0.4.1 (May 28, 2021)<a class="headerlink" href="#may-28-2021" title="Permalink to this headline">¶</a></h2>
+<p>Bugfixes:</p>
+<ul class="simple">
+<li>Fixes platform-bridged filters crash when resumed asynchronously after stream termination.</li>
+<li>Disables route timeout by default.</li>
+</ul>
+<p>Features:</p>
+<ul class="simple">
+<li>Connection classes will open minimum of 2 under most circumstances to a given endpoint and distribute requests between them (previously, only 1).</li>
+<li>Adds Pulse support for stats tags.</li>
+<li>Enables configuration of stream idle timeout.</li>
+<li>Introduces a Python interface compatible with the popular Requests library.</li>
+<li>Adds experimental QUIC integration test.</li>
+<li>Adds pure JVM support.</li>
+</ul>
+</div>
 <div class="section" id="march-23-2021">
 <h2>0.4.0 (March 23, 2021)<a class="headerlink" href="#march-23-2021" title="Permalink to this headline">¶</a></h2>
 <p>This is a large release. Moving forward the team will aim to release smaller version updates.
