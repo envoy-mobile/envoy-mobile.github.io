@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.4.1.06042021-9e1fc0 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.4.1.06042021-92c60e documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.1.06042021-9e1fc0
+                0.4.1.06042021-92c60e
               </div>
             
           
@@ -112,7 +112,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#adddnsfailurerefreshseconds"><code class="docutils literal notranslate"><span class="pre">addDNSFailureRefreshSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adddnsrefreshseconds"><code class="docutils literal notranslate"><span class="pre">addDNSRefreshSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addloglevel"><code class="docutils literal notranslate"><span class="pre">addLogLevel</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#addstatsdomain"><code class="docutils literal notranslate"><span class="pre">addStatsDomain</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addgrpcstatsdomain"><code class="docutils literal notranslate"><span class="pre">addGrpcStatsDomain</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addstatsflushseconds"><code class="docutils literal notranslate"><span class="pre">addStatsFlushSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addstreamidletimeoutseconds"><code class="docutils literal notranslate"><span class="pre">addStreamIdleTimeoutSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addappversion"><code class="docutils literal notranslate"><span class="pre">addAppVersion</span></code></a></li>
@@ -280,8 +280,8 @@ rate, as it is required for Envoy Mobile to recover and continue making requests
 </pre></div>
 </div>
 </div>
-<div class="section" id="addstatsdomain">
-<h3><code class="docutils literal notranslate"><span class="pre">addStatsDomain</span></code><a class="headerlink" href="#addstatsdomain" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="addgrpcstatsdomain">
+<h3><code class="docutils literal notranslate"><span class="pre">addGrpcStatsDomain</span></code><a class="headerlink" href="#addgrpcstatsdomain" title="Permalink to this headline">¶</a></h3>
 <p>Specify a domain which implements the
 <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/83908423d46a37574e9a35627df1f3dd9634e5ec/library/common/config_template.cc#L139-L145">stats endpoint</a>
 in order to take advantage of the
@@ -293,10 +293,10 @@ will be emitted.</p>
 <p>Passing <code class="docutils literal notranslate"><span class="pre">nil</span></code>/<code class="docutils literal notranslate"><span class="pre">null</span></code> disables stats emission, and this is the default value.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addStatsDomain</span><span class="p">(</span><span class="s2">&quot;envoy-mobile.envoyproxy.io&quot;</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addGrpcStatsDomain</span><span class="p">(</span><span class="s2">&quot;envoy-mobile.envoyproxy.io&quot;</span><span class="p">)</span>
 
 <span class="o">//</span> <span class="n">Swift</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addStatsDomain</span><span class="p">(</span><span class="s2">&quot;envoy-mobile.envoyproxy.io&quot;</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addGrpcStatsDomain</span><span class="p">(</span><span class="s2">&quot;envoy-mobile.envoyproxy.io&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
