@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.4.2.07262021-32641e documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.4.2.07262021-d6373d documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.2.07262021-32641e
+                0.4.2.07262021-d6373d
               </div>
             
           
@@ -86,24 +86,7 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../start/start.html">Getting Started</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="api.html">API</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#streamclient"><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#enginebuilder"><code class="docutils literal notranslate"><span class="pre">EngineBuilder</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#making-requests">Making requests</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
-<li class="toctree-l3"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
-<li class="toctree-l3"><a class="reference internal" href="stats.html">Pulse (Stats)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../start/building/building.html">Building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../start/examples/hello_world.html">Hello World</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#streamclient"><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code></a></li>
@@ -111,6 +94,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#addconnecttimeoutseconds"><code class="docutils literal notranslate"><span class="pre">addConnectTimeoutSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adddnsfailurerefreshseconds"><code class="docutils literal notranslate"><span class="pre">addDNSFailureRefreshSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adddnsrefreshseconds"><code class="docutils literal notranslate"><span class="pre">addDNSRefreshSeconds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adddnsquerytimeoutseconds"><code class="docutils literal notranslate"><span class="pre">addDNSQueryTimeoutSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adddnspreresolvehostnames"><code class="docutils literal notranslate"><span class="pre">addDNSPreresolveHostnames</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addloglevel"><code class="docutils literal notranslate"><span class="pre">addLogLevel</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addgrpcstatsdomain"><code class="docutils literal notranslate"><span class="pre">addGrpcStatsDomain</span></code></a></li>
@@ -270,24 +254,34 @@ rate, as it is required for Envoy Mobile to recover and continue making requests
 </pre></div>
 </div>
 </div>
+<div class="section" id="adddnsquerytimeoutseconds">
+<h3><code class="docutils literal notranslate"><span class="pre">addDNSQueryTimeoutSeconds</span></code><a class="headerlink" href="#adddnsquerytimeoutseconds" title="Permalink to this headline">¶</a></h3>
+<p>Specify the interval at which Envoy should timeout a DNS query.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addDNSQueryTimeoutSeconds</span><span class="p">(</span><span class="mi">60</span><span class="n">L</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addDNSQueryTimeoutSeconds</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="adddnspreresolvehostnames">
 <h3><code class="docutils literal notranslate"><span class="pre">addDNSPreresolveHostnames</span></code><a class="headerlink" href="#adddnspreresolvehostnames" title="Permalink to this headline">¶</a></h3>
-<p>Add a list of hostnames to preresolve on Engine startup.
-The configuration is expected as a JSON list.</p>
 <div class="admonition attention">
 <p class="first admonition-title">Attention</p>
 <p class="last">This API is non-ideal as it exposes lower-level internals of Envoy than desired by this
 project.
 <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/1581">#1581</a> tracks enhancing this API.</p>
 </div>
-<p><strong>Example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addDNSPreresolveHostnames</span><span class="p">(</span><span class="s2">&quot;[{</span><span class="se">\&quot;</span><span class="s2">address</span><span class="se">\&quot;</span><span class="s2">: </span><span class="se">\&quot;</span><span class="s2">foo.com&quot;</span><span class="p">,</span> \<span class="s2">&quot;port_value</span><span class="se">\&quot;</span><span class="s2">: 443}]&quot;</span><span class="p">)</span>
-
-<span class="o">//</span> <span class="n">Swift</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addDNSPreresolveHostnames</span><span class="p">(</span><span class="s2">&quot;[{</span><span class="se">\&quot;</span><span class="s2">address</span><span class="se">\&quot;</span><span class="s2">: </span><span class="se">\&quot;</span><span class="s2">foo.com&quot;</span><span class="p">,</span> \<span class="s2">&quot;port_value</span><span class="se">\&quot;</span><span class="s2">: 443}]&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
+<p>Add a list of hostnames to preresolve on Engine startup.
+The configuration is expected as a JSON list.</p>
+<blockquote>
+<div><p>// Kotlin
+builder.addDNSPreresolveHostnames(“[{“address”: “foo.com”, “port_value”: 443}]”)</p>
+<p>// Swift
+builder.addDNSPreresolveHostnames(“[{“address”: “foo.com”, “port_value”: 443}]”)</p>
+</div></blockquote>
 </div>
 <div class="section" id="addloglevel">
 <h3><code class="docutils literal notranslate"><span class="pre">addLogLevel</span></code><a class="headerlink" href="#addloglevel" title="Permalink to this headline">¶</a></h3>
