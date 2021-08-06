@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.4.2.07282021-8c00fe documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.4.2.07282021-2e31d6 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.2.07282021-8c00fe
+                0.4.2.07282021-2e31d6
               </div>
             
           
@@ -440,7 +440,9 @@ will be queued automatically, and this function is typically used purely for obs
 <p>Specify a closure to be called when Envoy’s engine emits an event.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
-<span class="o">//</span> <span class="n">This</span> <span class="n">interface</span> <span class="ow">is</span> <span class="n">pending</span> <span class="k">for</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setEventTracker</span> <span class="p">({</span>
+  <span class="o">//</span> <span class="n">Track</span> <span class="n">the</span> <span class="n">events</span><span class="o">.</span> <span class="n">Events</span> <span class="n">are</span> <span class="n">passed</span> <span class="ow">in</span> <span class="k">as</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;.</span>
+<span class="p">})</span>
 
 <span class="o">//</span> <span class="n">Swift</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">setEventTracker</span> <span class="p">{</span> <span class="n">event</span> <span class="ow">in</span>
