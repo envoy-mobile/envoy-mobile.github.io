@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.4.3.20211020-58d994 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.4.3.20211020-ec05fa documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.3.20211020-58d994
+                0.4.3.20211020-ec05fa
               </div>
             
           
@@ -86,24 +86,7 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../start/start.html">Getting Started</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="api.html">API</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#streamclient"><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#enginebuilder"><code class="docutils literal notranslate"><span class="pre">EngineBuilder</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#making-requests">Making requests</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
-<li class="toctree-l3"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
-<li class="toctree-l3"><a class="reference internal" href="stats.html">Pulse (Stats)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../start/building/building.html">Building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../start/examples/hello_world.html">Hello World</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#streamclient"><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code></a></li>
@@ -126,6 +109,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#setlogger"><code class="docutils literal notranslate"><span class="pre">setLogger</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#seteventtracker"><code class="docutils literal notranslate"><span class="pre">setEventTracker</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addstringaccessor"><code class="docutils literal notranslate"><span class="pre">addStringAccessor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enablenetworkpathmonitor"><code class="docutils literal notranslate"><span class="pre">enableNetworkPathMonitor</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
@@ -234,7 +218,7 @@
 <h2><code class="docutils literal notranslate"><span class="pre">EngineBuilder</span></code><a class="headerlink" href="#enginebuilder" title="Permalink to this headline">¶</a></h2>
 <p>This type is used to configure an instance of <code class="docutils literal notranslate"><span class="pre">Engine</span></code> before finally
 creating the engine using <code class="docutils literal notranslate"><span class="pre">.build()</span></code>.</p>
-<p>Available builders are 1:1 between iOS/Android, and are documented below.</p>
+<p>Available builders are nearly all 1:1 between iOS/Android, and are documented below.</p>
 <div class="section" id="addconnecttimeoutseconds">
 <h3><code class="docutils literal notranslate"><span class="pre">addConnectTimeoutSeconds</span></code><a class="headerlink" href="#addconnecttimeoutseconds" title="Permalink to this headline">¶</a></h3>
 <p>Specify the timeout for new network connections to hosts in Envoy Mobile clusters.</p>
@@ -493,6 +477,23 @@ will be queued automatically, and this function is typically used purely for obs
 
 <span class="o">//</span> <span class="n">Swift</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">addStringAccessor</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s2">&quot;demo-accessor&quot;</span><span class="p">,</span> <span class="n">accessor</span><span class="p">:</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&quot;PlatformString&quot;</span> <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enablenetworkpathmonitor">
+<h3><code class="docutils literal notranslate"><span class="pre">enableNetworkPathMonitor</span></code><a class="headerlink" href="#enablenetworkpathmonitor" title="Permalink to this headline">¶</a></h3>
+<p>Configure the engine to use <code class="docutils literal notranslate"><span class="pre">NWPathMonitor</span></code> rather than <code class="docutils literal notranslate"><span class="pre">SCNetworkReachability</span></code>
+on supported platforms (iOS 12+) to update the preferred Envoy network cluster (e.g. WLAN vs WWAN).</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">Only available on iOS 12 or later.</p>
+</div>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="o">//</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">enableNetworkPathMonitor</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
