@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analysis of binary size &mdash; envoy-mobile 0.4.3.20211020-d0c984 documentation</title>
+  <title>Analysis of binary size &mdash; envoy-mobile 0.4.3.20211020-49fdec documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.3.20211020-d0c984
+                0.4.3.20211020-49fdec
               </div>
             
           
@@ -323,7 +323,7 @@ config used in this type of analysis is:</p>
 <div class="section" id="open-issues-regarding-size">
 <h2>Open issues regarding size<a class="headerlink" href="#open-issues-regarding-size" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">perf/size</span></code> is a label tagging all current open issues that can improve
-binary size. Check out the issues <a class="reference external" href="https://github.com/lyft/envoy-mobile/labels/perf%2Fsize">here</a>. After performing
+binary size. Check out the issues <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/labels/perf%2Fsize">here</a>. After performing
 any change that tries to address these issues you should run through the
 analysis pipeline described above, and make sure your changes match
 expectations.</p>
@@ -333,7 +333,7 @@ expectations.</p>
 <div class="section" id="ios">
 <h3>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h3>
 <p>When compiling Envoy Mobile for <code class="docutils literal notranslate"><span class="pre">arm64</span></code> only, we found the final size to be
-<strong>approximately 4.6 MB</strong> as of <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/v0.2.3.03062020">v0.2.3.03062020</a>.</p>
+<strong>approximately 4.6 MB</strong> as of <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/tree/v0.2.3.03062020">v0.2.3.03062020</a>.</p>
 <p>This analysis was done by:</p>
 <ul class="simple">
 <li>Compiling the <a class="reference external" href="https://github.com/rebello95/EnvoyMobileAnalysis/tree/v0.2.3.03062020/AnalysisVariant">analysis variant example app</a> for release</li>
@@ -356,13 +356,13 @@ expectations.</p>
 </div>
 <div class="section" id="android">
 <h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
-<p>This is being done in <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/742">#742</a>.</p>
+<p>This is being done in <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/742">#742</a>.</p>
 </div>
 </div>
 <div class="section" id="ci-integration">
 <h2>CI integration<a class="headerlink" href="#ci-integration" title="Permalink to this headline">¶</a></h2>
 <p>CI validates that no PR increases the binary size of the library above a specific
-threshold specified in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/d0c98434b72da1bdabbc09288450ae90e3ee3c44/.github/workflows/perf.yml">perf.yml configuration</a>.</p>
+threshold specified in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/49fdec1b5646227ee338590f2cc5651227442181/.github/workflows/perf.yml">perf.yml configuration</a>.</p>
 <p>The status of this job is reported on PRs in the <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">/</span> <span class="pre">size_compare</span></code> task.</p>
 </div>
 </div>

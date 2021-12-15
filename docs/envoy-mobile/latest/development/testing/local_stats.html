@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Local Stats &mdash; envoy-mobile 0.4.3.20211020-d0c984 documentation</title>
+  <title>Local Stats &mdash; envoy-mobile 0.4.3.20211020-49fdec documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.3.20211020-d0c984
+                0.4.3.20211020-49fdec
               </div>
             
           
@@ -180,15 +180,15 @@
             
   <div class="section" id="local-stats">
 <span id="testing-local-stats"></span><h1>Local Stats<a class="headerlink" href="#local-stats" title="Permalink to this headline">¶</a></h1>
-<p>The <cite>local-stats</cite> <a class="reference external" href="https://github.com/lyft/envoy-mobile/tree/local-stats">branch</a> allows a
+<p>The <cite>local-stats</cite> <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/tree/local-stats">branch</a> allows a
 developer to run a local statsd server, and see stats emissions from a client running in the
 simulator/emulator. Unless network tunneling is set up this is not going to work in a physical
 device, as the statsd server is running on the computer’s local network.</p>
 <div class="section" id="config">
 <h2>Config<a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/local-stats/library/common/config_template.cc">config template</a>
+<p>The <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/local-stats/library/common/config_template.cc">config template</a>
 has already been updated to use a local statsd server. However, if you are using Android to test,
-the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/local-stats/library/common/config_template.cc#L203">static address</a>
+the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/local-stats/library/common/config_template.cc#L203">static address</a>
 used for the server should be changed to <code class="docutils literal notranslate"><span class="pre">10.0.2.2</span></code> per the <a class="reference external" href="https://developer.android.com/studio/run/emulator-networking">Set up Android Emulator networking</a>
 docs.</p>
 </div>
@@ -205,7 +205,7 @@ the repo with:</p>
 </li>
 </ol>
 <blockquote>
-<div><p>An example <code class="docutils literal notranslate"><span class="pre">config.js</span></code> file. Note that the port must match the port in the <a class="reference external" href="https://github.com/lyft/envoy-mobile/blob/local-stats/library/common/config_template.cc#L203">config_template</a>:</p>
+<div><p>An example <code class="docutils literal notranslate"><span class="pre">config.js</span></code> file. Note that the port must match the port in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/local-stats/library/common/config_template.cc#L203">config_template</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="n">port</span><span class="p">:</span> <span class="mi">8125</span>
 <span class="p">,</span> <span class="n">backends</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;./backends/console&quot;</span> <span class="p">]</span>

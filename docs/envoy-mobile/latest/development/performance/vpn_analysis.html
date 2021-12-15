@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>VPN analysis &mdash; envoy-mobile 0.4.3.20211020-d0c984 documentation</title>
+  <title>VPN analysis &mdash; envoy-mobile 0.4.3.20211020-49fdec documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.3.20211020-d0c984
+                0.4.3.20211020-49fdec
               </div>
             
           
@@ -180,7 +180,7 @@
 <span id="id1"></span><h1>VPN analysis<a class="headerlink" href="#vpn-analysis" title="Permalink to this headline">¶</a></h1>
 <p>Given the fact that Envoy Mobile utilizes raw BSD sockets for performing API
 calls today (investigations into which have been detailed in
-<a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/13">#13</a>), we wanted to validate the behavior of the library
+<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/13">#13</a>), we wanted to validate the behavior of the library
 when working with VPNs.</p>
 <p>In order for us to consider Envoy Mobile to be “working properly” with respect
 to VPNs, it needs to:</p>
@@ -256,7 +256,7 @@ errors before finally destroying its connection. An example of these logs
 is available in <a class="reference external" href="https://gist.github.com/rebello95/da87c5029bc465f70a63861d015ee726">this gist</a>.</p>
 <p>The reachability findings outlined below suggest that we could potentially
 mitigate this delay by observing reachability updates from the OS, and work
-is being tracked in <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/727">#727</a>.</p>
+is being tracked in <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/727">#727</a>.</p>
 <p><strong>Reachability</strong></p>
 <p>On iOS, we added additional logging to indicate reachability state from
 <code class="docutils literal notranslate"><span class="pre">SCNetworkReachability</span></code> while enabling and disabling the VPN. During these
@@ -278,7 +278,7 @@ be attributed to the above reasoning.</p>
 <h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
 <p>Based on the above investigations, Envoy Mobile handles VPN connections
 properly for the most part on both iOS and Android.</p>
-<p>There is room for improvement as outlined in <a class="reference external" href="https://github.com/lyft/envoy-mobile/issues/727">#727</a>,
+<p>There is room for improvement as outlined in <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/727">#727</a>,
 where the library could potentially more aggressively switch connections
 based on the OS notifying the library of a VPN enablement/disablement.</p>
 </div>
