@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.4.3.20211020-db1b97 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.4.3.20211020-4b3b59 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.3.20211020-db1b97
+                0.4.3.20211020-4b3b59
               </div>
             
           
@@ -113,6 +113,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#adddnsrefreshseconds"><code class="docutils literal notranslate"><span class="pre">addDNSRefreshSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adddnsquerytimeoutseconds"><code class="docutils literal notranslate"><span class="pre">addDNSQueryTimeoutSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adddnspreresolvehostnames"><code class="docutils literal notranslate"><span class="pre">addDNSPreresolveHostnames</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adddnsfallbacknameservers"><code class="docutils literal notranslate"><span class="pre">addDNSFallbackNameservers</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addloglevel"><code class="docutils literal notranslate"><span class="pre">addLogLevel</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addgrpcstatsdomain"><code class="docutils literal notranslate"><span class="pre">addGrpcStatsDomain</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addstatsflushseconds"><code class="docutils literal notranslate"><span class="pre">addStatsFlushSeconds</span></code></a></li>
@@ -302,6 +303,17 @@ builder.addDNSPreresolveHostnames(“[{“address”: “foo.com”, “port_val
 <p>// Swift
 builder.addDNSPreresolveHostnames(“[{“address”: “foo.com”, “port_value”: 443}]”)</p>
 </div></blockquote>
+</div>
+<div class="section" id="adddnsfallbacknameservers">
+<h3><code class="docutils literal notranslate"><span class="pre">addDNSFallbackNameservers</span></code><a class="headerlink" href="#adddnsfallbacknameservers" title="Permalink to this headline">¶</a></h3>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">This API is only available for Kotlin.</p>
+</div>
+<p>Add a list of IP addresses to use as fallback DNS name servers.</p>
+<blockquote>
+<div>// Kotlin
+builder.addDNSFallbackNameservers(listOf&lt;String&gt;(“8.8.8.8”))</div></blockquote>
 </div>
 <div class="section" id="addloglevel">
 <h3><code class="docutils literal notranslate"><span class="pre">addLogLevel</span></code><a class="headerlink" href="#addloglevel" title="Permalink to this headline">¶</a></h3>
