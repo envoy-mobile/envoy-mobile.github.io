@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Starting Envoy &mdash; envoy-mobile 0.4.3.20211020-c8d660 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.4.3.20211020-0c0112 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.3.20211020-c8d660
+                0.4.3.20211020-0c0112
               </div>
             
           
@@ -86,7 +86,24 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../start/start.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#streamclient"><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enginebuilder"><code class="docutils literal notranslate"><span class="pre">EngineBuilder</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#making-requests">Making requests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grpc.html">gRPC streams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stats.html">Pulse (Stats)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../start/building/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../start/examples/hello_world.html">Hello World</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Starting Envoy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#streamclient"><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code></a></li>
@@ -97,6 +114,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#adddnsquerytimeoutseconds"><code class="docutils literal notranslate"><span class="pre">addDNSQueryTimeoutSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adddnspreresolvehostnames"><code class="docutils literal notranslate"><span class="pre">addDNSPreresolveHostnames</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adddnsfallbacknameservers"><code class="docutils literal notranslate"><span class="pre">addDNSFallbackNameservers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enablednsfilterunroutablefamilies"><code class="docutils literal notranslate"><span class="pre">enableDNSFilterUnroutableFamilies</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addloglevel"><code class="docutils literal notranslate"><span class="pre">addLogLevel</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addgrpcstatsdomain"><code class="docutils literal notranslate"><span class="pre">addGrpcStatsDomain</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addstatsflushseconds"><code class="docutils literal notranslate"><span class="pre">addStatsFlushSeconds</span></code></a></li>
@@ -295,10 +313,25 @@ builder.addDNSPreresolveHostnames(“[{“address”: “foo.com”, “port_val
 <p class="first admonition-title">Attention</p>
 <p class="last">This API is only available for Kotlin.</p>
 </div>
-<p>Add a list of IP addresses to use as fallback DNS name servers.</p>
+<p>Add a list of IP addresses to use as fallback DNS name servers.
+See <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/network/dns_resolver/cares/v3/cares_dns_resolver.proto#extensions-network-dns-resolver-cares-v3-caresdnsresolverconfig">the Envoy docs</a>
+for further information.</p>
 <blockquote>
 <div>// Kotlin
 builder.addDNSFallbackNameservers(listOf&lt;String&gt;(“8.8.8.8”))</div></blockquote>
+</div>
+<div class="section" id="enablednsfilterunroutablefamilies">
+<h3><code class="docutils literal notranslate"><span class="pre">enableDNSFilterUnroutableFamilies</span></code><a class="headerlink" href="#enablednsfilterunroutablefamilies" title="Permalink to this headline">¶</a></h3>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">This API is only available for Kotlin.</p>
+</div>
+<p>Specify whether to filter unroutable IP families during DNS resolution or not.
+See <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/network/dns_resolver/cares/v3/cares_dns_resolver.proto#extensions-network-dns-resolver-cares-v3-caresdnsresolverconfig">the Envoy docs</a>
+for further information.</p>
+<blockquote>
+<div>// Kotlin
+builder.enableDNSFilterUnroutableFamilies(true)</div></blockquote>
 </div>
 <div class="section" id="addloglevel">
 <h3><code class="docutils literal notranslate"><span class="pre">addLogLevel</span></code><a class="headerlink" href="#addloglevel" title="Permalink to this headline">¶</a></h3>
