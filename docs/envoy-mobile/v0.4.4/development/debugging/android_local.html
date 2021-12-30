@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Debugging the Hello World App (Android) &mdash; envoy-mobile tag-v0.4.4 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="IntelliJ Development" href="../tools/intellij.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> envoy-mobile
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                tag-v0.4.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../development.html">Development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../performance/performance.html">Performance analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html">Releasing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html#pre-release-versioning">Pre-release versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tools.html">Development Tools</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Debugging the Hello World App (Android)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#goals">Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-the-environment">Setting up the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-envoy-mobile-project-into-android-studio">Adding Envoy-Mobile Project into Android Studio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#entering-a-debugging-session">Entering a debugging session</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">envoy-mobile</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../development.html">Development</a> &raquo;</li>
+        
+      <li>Debugging the Hello World App (Android)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/development/debugging/android_local.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="debugging-the-hello-world-app-android">
+<span id="debugging-android-instructions"></span><h1>Debugging the Hello World App (Android)<a class="headerlink" href="#debugging-the-hello-world-app-android" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>As a developer you can compile your <cite>envoy-mobile</cite> repository and the generated <cite>.aar</cite> will be automatically recognized by Android Studio</li>
+<li><cite>envoy-mobile</cite> can be compiled to a single arch for debugging</li>
+<li>While breaking on a C++ function, Android Studio should present the source file and highlight the line where the breakpoint hit with all scope information</li>
+<li>The workflow works both on emulator and device</li>
+</ul>
+</div>
+<div class="section" id="setting-up-the-environment">
+<h2>Setting up the environment<a class="headerlink" href="#setting-up-the-environment" title="Permalink to this headline">¶</a></h2>
+<p>Before we start, you’ll need to download Android Studio and the <a class="reference external" href="https://plugins.jetbrains.com/plugin/9185-bazel">Bazel plugin</a>, you can find it in Preferences -&gt; Plugins
+.</p>
+<ol class="arabic simple">
+<li>Go <a class="reference external" href="https://developer.android.com/studio/">here</a> and install Android Studio.</li>
+<li>Install the bazel plugin</li>
+</ol>
+</div>
+<div class="section" id="adding-envoy-mobile-project-into-android-studio">
+<h2>Adding Envoy-Mobile Project into Android Studio<a class="headerlink" href="#adding-envoy-mobile-project-into-android-studio" title="Permalink to this headline">¶</a></h2>
+<p>With your environment setup, open Android Studio.</p>
+<ol class="arabic simple">
+<li>Add a new bazel project by clicking here:</li>
+</ol>
+<img alt="../../_images/add-project.png" src="../../_images/add-project.png" />
+<ol class="arabic simple" start="2">
+<li>Select your repository root path as follows and hit Next:</li>
+</ol>
+<img alt="../../_images/select-em.png" src="../../_images/select-em.png" />
+<ol class="arabic simple" start="3">
+<li>Import the bazelproject file from the root and hit Next:</li>
+</ol>
+<img alt="../../_images/import-project.png" src="../../_images/import-project.png" />
+<ol class="arabic simple" start="4">
+<li>You’ll see a screen similar to this. Click Finish.</li>
+</ol>
+<img alt="../../_images/final-step-project.png" src="../../_images/final-step-project.png" />
+<ol class="arabic simple" start="5">
+<li>Once Android Studio completes loading click on the Bazel Sync icon:</li>
+</ol>
+<img alt="../../_images/bazel-sync.png" src="../../_images/bazel-sync.png" />
+</div>
+<div class="section" id="entering-a-debugging-session">
+<h2>Entering a debugging session<a class="headerlink" href="#entering-a-debugging-session" title="Permalink to this headline">¶</a></h2>
+<p>With the project ready, you can now start debugging with Android Studio.</p>
+<ol class="arabic simple">
+<li>Compile your envoy-mobile with debug symbols to the architecture of the device or emulator you are about to run.</li>
+</ol>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./bazelw build android_dist --config=android --fat_apk_cpu=x86 -c dbg
+</pre></div>
+</div>
+<p>Android supported archs are <cite>arm64_v8a</cite>, <cite>armeabi-v7a</cite>, <cite>x86</cite>, <cite>x86_64</cite>.</p>
+<ol class="arabic simple" start="2">
+<li>From Android Studio select the <cite>Example App x86 (Debug)</cite> configuration and hit the debug icon. Note: if you don’t see this option go to “Add configuration” and it’ll be there on the Bazel category, just select it and hit Ok.</li>
+<li>Optionally you could create symbolic breakpoints before running by going to the Debugger tab.</li>
+</ol>
+<p>Your environment should look like this at this point:</p>
+<img alt="../../_images/environment.png" src="../../_images/environment.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../tools/intellij.html" class="btn btn-neutral" title="IntelliJ Development" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021 Lyft, Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
