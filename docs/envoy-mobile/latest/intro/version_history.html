@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Version history &mdash; envoy-mobile 0.4.4-4710ef documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.4.5-a7f96c documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.4-4710ef
+                0.4.5-a7f96c
               </div>
             
           
@@ -91,6 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_help.html">Getting help</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Version history</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pending-release">Pending Release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#january-13-2022">0.4.5 (January 13, 2022)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#december-30-2021">0.4.4 (December 30, 2021)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#october-20-2021">0.4.3 (October 20, 2021)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#july-27-2021">0.4.2 (July 27, 2021)</a></li>
@@ -183,10 +184,19 @@
 <div class="section" id="pending-release">
 <h2>Pending Release<a class="headerlink" href="#pending-release" title="Permalink to this headline">¶</a></h2>
 <p>Bugfixes:</p>
+<p>Features:</p>
+</div>
+<div class="section" id="january-13-2022">
+<h2>0.4.5 (January 13, 2022)<a class="headerlink" href="#january-13-2022" title="Permalink to this headline">¶</a></h2>
+<p>Based off Envoy <a class="reference external" href="https://github.com/envoyproxy/envoy/releases/tag/v1.21.0">v1.21.0</a></p>
+<p>Bugfixes:</p>
 <ul class="simple">
 <li>Decompressor: decompress even when <cite>no-transform</cite> is specified  (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/1995">#1995</a>)</li>
 </ul>
 <p>Features:</p>
+<ul class="simple">
+<li>HTTP: any negotiated ALPN now passed up as <cite>x-envoy-upstream-alpn</cite> header (:issue: <cite>#1965 &lt;1965&gt;</cite>)</li>
+</ul>
 </div>
 <div class="section" id="december-30-2021">
 <h2>0.4.4 (December 30, 2021)<a class="headerlink" href="#december-30-2021" title="Permalink to this headline">¶</a></h2>
