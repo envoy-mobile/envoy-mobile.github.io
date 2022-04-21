@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Releasing &mdash; envoy-mobile 0.4.5-6a8251 documentation</title>
+  <title>Releasing &mdash; envoy-mobile 0.4.5-d3157b documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.5-6a8251
+                0.4.5-d3157b
               </div>
             
           
@@ -96,6 +96,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#pre-release-versioning">Pre-release versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gpg-key">GPG Key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../testing/testing.html">Testing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tools/tools.html">Development Tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../debugging/android_local.html">Debugging the Hello World App (Android)</a></li>
@@ -175,9 +176,9 @@
 <h2>Prepare for release<a class="headerlink" href="#prepare-for-release" title="Permalink to this headline">¶</a></h2>
 <p>Before cutting the release, submit and merge a PR with the following changes:</p>
 <ol class="arabic simple">
-<li>Bump the version in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/6a82511f44a6cd7b691a3ce0ace1dfb2a510fa98/EnvoyMobile.podspec">EnvoyMobile.podspec</a> file</li>
-<li>Bump the version in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/6a82511f44a6cd7b691a3ce0ace1dfb2a510fa98/VERSION">VERSION</a> file</li>
-<li>Provide a brief overview of the release in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/6a82511f44a6cd7b691a3ce0ace1dfb2a510fa98/docs/root/intro/version_history.rst">version history documentation</a></li>
+<li>Bump the version in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/d3157b286e7e9f7c2ec7743fd660561fe40c7f29/EnvoyMobile.podspec">EnvoyMobile.podspec</a> file</li>
+<li>Bump the version in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/d3157b286e7e9f7c2ec7743fd660561fe40c7f29/VERSION">VERSION</a> file</li>
+<li>Provide a brief overview of the release in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/d3157b286e7e9f7c2ec7743fd660561fe40c7f29/docs/root/intro/version_history.rst">version history documentation</a></li>
 </ol>
 </div>
 <div class="section" id="publish-release-and-artifacts">
@@ -204,6 +205,32 @@ directory, run:</p>
 <h1>Pre-release versioning<a class="headerlink" href="#pre-release-versioning" title="Permalink to this headline">¶</a></h1>
 <p>Pre-releases are published on a weekly basis. The versioning scheme we use is <code class="docutils literal notranslate"><span class="pre">X.Y.Z.{mmddyy}</span></code>.
 For example: January 25, 2020: <code class="docutils literal notranslate"><span class="pre">0.3.1.012520</span></code>.</p>
+</div>
+<div class="section" id="gpg-key">
+<h1>GPG Key<a class="headerlink" href="#gpg-key" title="Permalink to this headline">¶</a></h1>
+<p>On 2024-04-20 the GPG key used to sign releases will expire. To extend the key’s expiration date,
+follow these steps:</p>
+<p>Import the key locally:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo $GPG_KEY | base64 --decode &gt; signing-key
+$ gpg --passphrase $GPG_PASSPHRASE --batch --import signing-key
+$ gpg --list-keys
+</pre></div>
+</div>
+<p>Follow the instructions here on
+<a class="reference external" href="https://central.sonatype.org/publish/requirements/gpg/#dealing-with-expired-keys">Dealing with Expired Keys</a>
+to extend the key and sub key expiration dates.</p>
+<p>Re-distribute the new public key:</p>
+<blockquote>
+<div>$ gpg –keyserver keyserver.ubuntu.com –send-keys $KEY_ID</div></blockquote>
+<p>Export the public/private keys, store them in a safe place:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg -a --export $KEY_ID &gt; envoy.mobile.gpg.public
+$ gpg -a --export-secret-keys $KEY_ID &gt; envoy.mobile.gpg.private
+</pre></div>
+</div>
+<p>Update the GitHub Action <code class="docutils literal notranslate"><span class="pre">GPG_KEY</span></code> secret with the Base64 encoded value
+of the private key.</p>
+<blockquote>
+<div>$ cat envoy.mobile.gpg.private | base64</div></blockquote>
 </div>
 
 
