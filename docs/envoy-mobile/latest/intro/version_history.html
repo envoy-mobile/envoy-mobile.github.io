@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Version history &mdash; envoy-mobile 0.4.5-e3bc9d documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.4.6-8f229d documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.5-e3bc9d
+                0.4.6-8f229d
               </div>
             
           
@@ -183,16 +183,32 @@
 <h1>Version history<a class="headerlink" href="#version-history" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="pending-release">
 <h2>Pending Release<a class="headerlink" href="#pending-release" title="Permalink to this headline">¶</a></h2>
+<p>Breaking changes:</p>
+<ul class="simple">
+<li>iOS: the minimum supported iOS version is now 12.0 (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2084">#2084</a>)</li>
+</ul>
 <p>Bugfixes:</p>
 <ul class="simple">
-<li>Android: Fix <cite>NoClassDefFoundError</cite> errors when using <cite>addDNSFallbackNameservers</cite>
-or <cite>addH2RawDomains</cite> with Android versions older than API level 24.</li>
-<li>iOS: Fix reachability which has been broken since February 11.</li>
+<li>happy eyeballs: fix missing runtime configuration  (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2068">#2068</a>)</li>
+<li>iOS: fix CocoaPods releases (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2175">#2175</a>)</li>
+<li>android: fix Maven releases (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2183">#2183</a>)</li>
+<li>dns: prevent dns refresh if network is unchanged (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2122">#2122</a>)</li>
+<li>happy eyeballs: fix crash on Android (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2132">#2132</a>)</li>
+<li>ios: fix termination crash in ProvisionalDispatcher (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2059">#2059</a>)</li>
 </ul>
 <p>Features:</p>
 <ul class="simple">
-<li>API: added Envoy’s response flags to final stream intel (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2009">#2009</a>)</li>
-<li>size: The size of the dynamic library was reduced by ~46% (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2053">#2053</a>)</li>
+<li>api: added Envoy’s response flags to final stream intel (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2009">#2009</a>)</li>
+<li>size: the size of the dynamic library was reduced by ~46% (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2053">#2053</a>)</li>
+<li>tls: updated the bundled root certificates (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2016">#2016</a>)</li>
+<li>api: expose “received byte count” in the Java API (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2004">#2004</a>)</li>
+<li>bazel: allow configuring Android toolchain versions (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2041">#2041</a>)</li>
+<li>ios: add explicit flow control onSendWindowAvailable to public interface (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2046">#2046</a>)</li>
+<li>api: add option to add a list of H2-Raw domain names (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2088">#2088</a>)</li>
+<li>ios: add support for toggling trust chain verification (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2104">#2104</a>)</li>
+<li>api: add support for configuring minimum DNS refresh rate and per-host max connections (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2123">#2123</a>)</li>
+<li>h3/quic: add experimental option to the Android/JVM EngineBuilder (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2163">#2163</a>)</li>
+<li>android: include debug info in release binary (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2188">#2188</a>)</li>
 </ul>
 </div>
 <div class="section" id="january-13-2022">
