@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Version history &mdash; envoy-mobile 0.4.6-75cef7 documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.4.6-f9a352 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.6-75cef7
+                0.4.6-f9a352
               </div>
             
           
@@ -186,7 +186,7 @@
 <h2>Pending Release<a class="headerlink" href="#pending-release" title="Permalink to this headline">¶</a></h2>
 <p>Breaking changes:</p>
 <ul class="simple">
-<li>None</li>
+<li>api: replace the <cite>drainConnections()</cite> method with a broader <cite>resetConnectivityState()</cite>. (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2225">#2225</a>).</li>
 </ul>
 <p>Bugfixes:</p>
 <ul class="simple">
@@ -195,6 +195,7 @@
 <p>Features:</p>
 <ul class="simple">
 <li>api: add option to extend the keepalive timeout when any frame is received on the owning HTTP/2 connection. (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2229">#2229</a>)</li>
+<li>api: add option to control whether Envoy should drain connections after a soft DNS refresh completes. (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2225">#2225</a>, <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2242">#2242</a>)</li>
 </ul>
 </div>
 <div class="section" id="april-26-2022">
