@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Version history &mdash; envoy-mobile 0.4.6-9d3d34 documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.4.6-71c4f6 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.4.6-9d3d34
+                0.4.6-71c4f6
               </div>
             
           
@@ -192,11 +192,15 @@
 <ul class="simple">
 <li>iOS: change release artifacts to use xcframeworks (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2216">#2216</a>)</li>
 <li>iOS: fix CocoaPods releases (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2215">#2215</a>)</li>
+<li>fix bug where writing prevented the read loop from running (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2221">#2221</a>)</li>
+<li>Android: update Kotlin standard libraries to 1.6.21 (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2256">#2256</a>)</li>
 </ul>
 <p>Features:</p>
 <ul class="simple">
 <li>api: add option to extend the keepalive timeout when any frame is received on the owning HTTP/2 connection. (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2229">#2229</a>)</li>
 <li>api: add option to control whether Envoy should drain connections after a soft DNS refresh completes. (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2225">#2225</a>, <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2242">#2242</a>)</li>
+<li>configuration: enable h2 ping by default. (:issue: <cite>#2270 &lt;2270&gt;</cite>)</li>
+<li>android: enable the filtering of unroutable families by default. (:issues: <cite>#2267 &lt;2267&gt;</cite>)</li>
 </ul>
 </div>
 <div class="section" id="april-26-2022">
