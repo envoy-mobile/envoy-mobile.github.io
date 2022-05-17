@@ -1,71 +1,38 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>gRPC streams &mdash; envoy-mobile 0.4.6.20220513-4-ad7ac5 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gRPC streams &mdash; envoy-mobile 0.4.6.20220513-4-6d227f documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Pulse (Stats)" href="stats.html" />
     <link rel="prev" title="HTTP requests and streams" href="http.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
-
-          
+        <div class="wy-side-nav-search" >
             <a href="../index.html" class="icon icon-home"> envoy-mobile
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                0.4.6.20220513-4-ad7ac5
+                0.4.6.20220513-4-6d227f
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -73,20 +40,28 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../start/start.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../start/start.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">gRPC streams</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quick-start">Quick start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grpcclient"><code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grpcrequestheaders"><code class="docutils literal notranslate"><span class="pre">GRPCRequestHeaders</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grpcstreamprototype"><code class="docutils literal notranslate"><span class="pre">GRPCStreamPrototype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grpcstream"><code class="docutils literal notranslate"><span class="pre">GRPCStream</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="stats.html">Pulse (Stats)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../start/building/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../start/examples/hello_world.html">Hello World</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="starting_envoy.html">Starting Envoy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">HTTP requests and streams</a></li>
@@ -104,73 +79,33 @@
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">envoy-mobile</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../start/start.html">Getting Started</a> &raquo;</li>
-        
           <li><a href="api.html">API</a> &raquo;</li>
-        
       <li>gRPC streams</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../_sources/api/grpc.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="grpc-streams">
+             
+  <section id="grpc-streams">
 <span id="api-grpc"></span><h1>gRPC streams<a class="headerlink" href="#grpc-streams" title="Permalink to this headline">¶</a></h1>
 <p>Envoy Mobile provides support for gRPC as a thin interface built on top of its <a class="reference internal" href="http.html#api-http"><span class="std std-ref">HTTP APIs</span></a>.</p>
 <p>gRPC APIs are designed to be used in conjunction with protobuf libraries such as
@@ -178,11 +113,11 @@
 <a class="reference external" href="https://github.com/protocolbuffers/protobuf/tree/master/java">Java Protobuf</a>.</p>
 <p>Envoy Mobile implements the gRPC protocol, accepting and returning serialized protobuf models.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">In the future, Envoy Mobile will provide much more comprehensive integration with gRPC and protobuf,
+<p class="admonition-title">Note</p>
+<p>In the future, Envoy Mobile will provide much more comprehensive integration with gRPC and protobuf,
 utilizing annotations for enhanced functionality.</p>
 </div>
-<div class="section" id="quick-start">
+<section id="quick-start">
 <h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
 <p>Below are some quick examples for getting started with gRPC streams. See the individual class references
 in the later sections of this page for in-depth information on how each type is used.</p>
@@ -236,16 +171,16 @@ in the later sections of this page for in-depth information on how each type is 
   <span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="grpcclient">
+</section>
+<section id="grpcclient">
 <h2><code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code><a class="headerlink" href="#grpcclient" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code> type provides the ability to start gRPC streams, and is backed by Envoy Mobile’s
 <code class="docutils literal notranslate"><span class="pre">StreamClient</span></code> interface (typically instantiated using a <code class="docutils literal notranslate"><span class="pre">StreamClientBuilder</span></code>).</p>
 <p>To create a <code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code>, simply <a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">create a stream client</span></a> and pass it to the initializer:</p>
 <p><code class="docutils literal notranslate"><span class="pre">grpcClient</span> <span class="pre">=</span> <span class="pre">GRPCClient(streamClient)</span></code></p>
 <p>This client can then be used with the types outlined below for starting gRPC streams.</p>
-</div>
-<div class="section" id="grpcrequestheaders">
+</section>
+<section id="grpcrequestheaders">
 <h2><code class="docutils literal notranslate"><span class="pre">GRPCRequestHeaders</span></code><a class="headerlink" href="#grpcrequestheaders" title="Permalink to this headline">¶</a></h2>
 <p>Envoy Mobile provides a <code class="docutils literal notranslate"><span class="pre">GRPCRequestHeadersBuilder</span></code> which acts very similarly to the <code class="docutils literal notranslate"><span class="pre">RequestHeadersBuilder</span></code>
 type. Upon calling <code class="docutils literal notranslate"><span class="pre">build()</span></code>, it returns a <code class="docutils literal notranslate"><span class="pre">GRPCRequestHeaders</span></code> instance - a subclass of <code class="docutils literal notranslate"><span class="pre">RequestHeaders</span></code>
@@ -265,8 +200,8 @@ configured specifically for gRPC streams.</p>
   <span class="o">.</span><span class="n">build</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="grpcstreamprototype">
+</section>
+<section id="grpcstreamprototype">
 <h2><code class="docutils literal notranslate"><span class="pre">GRPCStreamPrototype</span></code><a class="headerlink" href="#grpcstreamprototype" title="Permalink to this headline">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">GRPCStreamPrototype</span></code> is used to configure gRPC streams prior to starting them by assigning callbacks
 to be invoked when response data is received on the stream.</p>
@@ -305,8 +240,8 @@ the complete protobuf message data.</p>
   <span class="o">.</span><span class="n">setOnCancel</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="grpcstream">
+</section>
+<section id="grpcstream">
 <h2><code class="docutils literal notranslate"><span class="pre">GRPCStream</span></code><a class="headerlink" href="#grpcstream" title="Permalink to this headline">¶</a></h2>
 <p>gRPC streams are started by calling <code class="docutils literal notranslate"><span class="pre">start()</span></code> on a <code class="docutils literal notranslate"><span class="pre">GRPCStreamPrototype</span></code>.</p>
 <p>Doing so returns a <code class="docutils literal notranslate"><span class="pre">GRPCStream</span></code> which allows the sender to interact with the stream.</p>
@@ -355,62 +290,34 @@ stream.</p>
 <span class="n">stream</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="stats.html" class="btn btn-neutral float-right" title="Pulse (Stats)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="http.html" class="btn btn-neutral" title="HTTP requests and streams" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="http.html" class="btn btn-neutral float-left" title="HTTP requests and streams" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="stats.html" class="btn btn-neutral float-right" title="Pulse (Stats)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2022 Lyft, Inc.
-
-    </p>
+    <p>&#169; Copyright 2022 Lyft, Inc..</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });

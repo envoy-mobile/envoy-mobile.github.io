@@ -1,71 +1,38 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Releasing &mdash; envoy-mobile 0.4.6.20220513-4-ad7ac5 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Releasing &mdash; envoy-mobile 0.4.6.20220513-4-6d227f documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Testing" href="../testing/testing.html" />
     <link rel="prev" title="VPN analysis" href="../performance/vpn_analysis.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
-
-          
+        <div class="wy-side-nav-search" >
             <a href="../../index.html" class="icon icon-home"> envoy-mobile
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                0.4.6.20220513-4-ad7ac5
+                0.4.6.20220513-4-6d227f
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -73,17 +40,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../start/start.html">Getting Started</a></li>
@@ -105,100 +62,61 @@
 </li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">envoy-mobile</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../development.html">Development</a> &raquo;</li>
-        
       <li>Releasing</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../_sources/development/releasing/releasing.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="releasing">
+             
+  <section id="releasing">
 <span id="releasing-instructions"></span><h1>Releasing<a class="headerlink" href="#releasing" title="Permalink to this headline">¶</a></h1>
 <p>The following workflow should be followed to create and publish a new Envoy Mobile
 <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/releases">release</a>.</p>
-<div class="section" id="prepare-for-release">
+<section id="prepare-for-release">
 <h2>Prepare for release<a class="headerlink" href="#prepare-for-release" title="Permalink to this headline">¶</a></h2>
 <p>Before cutting the release, submit and merge a PR with the following changes:</p>
 <ol class="arabic simple">
-<li>Bump the version in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/ad7ac5e95bb0a6af9aa16b367131ab1ebf19fc87/VERSION">VERSION</a> file</li>
-<li>Provide a brief overview of the release in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/ad7ac5e95bb0a6af9aa16b367131ab1ebf19fc87/docs/root/intro/version_history.rst">version history documentation</a></li>
+<li><p>Bump the version in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/6d227f4173ff31f2166ffa41870eda08fe45d060/VERSION">VERSION</a> file</p></li>
+<li><p>Provide a brief overview of the release in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/6d227f4173ff31f2166ffa41870eda08fe45d060/docs/root/intro/version_history.rst">version history documentation</a></p></li>
 </ol>
-</div>
-<div class="section" id="publish-release-and-artifacts">
+</section>
+<section id="publish-release-and-artifacts">
 <h2>Publish release and artifacts<a class="headerlink" href="#publish-release-and-artifacts" title="Permalink to this headline">¶</a></h2>
 <p>After merging the above changes, a new release may be
 <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/releases">tagged</a>.</p>
 <p>Upon tagging the release, jobs automatically kick off on main which:</p>
 <ul class="simple">
-<li>Creates a GitHub release, along with iOS &amp; Android build artifacts</li>
-<li>Publishes the release to Maven &amp; CocoaPods</li>
-<li>Publishes the most recent version of the Envoy Mobile docs</li>
+<li><p>Creates a GitHub release, along with iOS &amp; Android build artifacts</p></li>
+<li><p>Publishes the release to Maven &amp; CocoaPods</p></li>
+<li><p>Publishes the most recent version of the Envoy Mobile docs</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="pre-release-versioning">
+</section>
+</section>
+<section id="pre-release-versioning">
 <h1>Pre-release versioning<a class="headerlink" href="#pre-release-versioning" title="Permalink to this headline">¶</a></h1>
 <p>Pre-releases are published on a weekly basis. The versioning scheme we use is <code class="docutils literal notranslate"><span class="pre">X.Y.Z.{yyyymmdd}</span></code>.
 For example: January 25, 2020: <code class="docutils literal notranslate"><span class="pre">0.3.1.20200125</span></code>.</p>
-</div>
-<div class="section" id="gpg-key">
+</section>
+<section id="gpg-key">
 <h1>GPG Key<a class="headerlink" href="#gpg-key" title="Permalink to this headline">¶</a></h1>
 <p>On 2024-04-20 the GPG key used to sign releases will expire. To extend the key’s expiration date,
 follow these steps:</p>
@@ -213,7 +131,8 @@ $ gpg --list-keys
 to extend the key and sub key expiration dates.</p>
 <p>Re-distribute the new public key:</p>
 <blockquote>
-<div>$ gpg –keyserver keyserver.ubuntu.com –send-keys $KEY_ID</div></blockquote>
+<div><p>$ gpg –keyserver keyserver.ubuntu.com –send-keys $KEY_ID</p>
+</div></blockquote>
 <p>Export the public/private keys, store them in a safe place:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg -a --export $KEY_ID &gt; envoy.mobile.gpg.public
 $ gpg -a --export-secret-keys $KEY_ID &gt; envoy.mobile.gpg.private
@@ -222,62 +141,35 @@ $ gpg -a --export-secret-keys $KEY_ID &gt; envoy.mobile.gpg.private
 <p>Update the GitHub Action <code class="docutils literal notranslate"><span class="pre">GPG_KEY</span></code> secret with the Base64 encoded value
 of the private key.</p>
 <blockquote>
-<div>$ cat envoy.mobile.gpg.private | base64</div></blockquote>
-</div>
+<div><p>$ cat envoy.mobile.gpg.private | base64</p>
+</div></blockquote>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../testing/testing.html" class="btn btn-neutral float-right" title="Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../performance/vpn_analysis.html" class="btn btn-neutral" title="VPN analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../performance/vpn_analysis.html" class="btn btn-neutral float-left" title="VPN analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../testing/testing.html" class="btn btn-neutral float-right" title="Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2022 Lyft, Inc.
-
-    </p>
+    <p>&#169; Copyright 2022 Lyft, Inc..</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
