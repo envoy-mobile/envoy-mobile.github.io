@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version history &mdash; envoy-mobile 0.4.6-134248 documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.4.6-a0aa98 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.4.6-134248
+                0.4.6-a0aa98
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -104,10 +104,11 @@
 <h2>Pending Release<a class="headerlink" href="#pending-release" title="Permalink to this headline">¶</a></h2>
 <p>Breaking changes:</p>
 <ul class="simple">
-<li><p>api: replace the <cite>drainConnections()</cite> method with a broader <cite>resetConnectivityState()</cite>. (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2225">#2225</a>).</p></li>
+<li><p>api: replace the <code class="docutils literal notranslate"><span class="pre">drainConnections()</span></code> method with a broader <code class="docutils literal notranslate"><span class="pre">resetConnectivityState()</span></code>. (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2225">#2225</a>).</p></li>
 <li><p>api: disallow setting ‘host’ header directly (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2275">#2275</a>)</p></li>
 <li><p>net: enable happy eyeballs by default (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2272">#2272</a>)</p></li>
 <li><p>iOS: remove support for installing via CocoaPods, which had not worked since 2020 (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2215">#2215</a>)</p></li>
+<li><p>iOS: enable usage of <code class="docutils literal notranslate"><span class="pre">NWPathMonitor</span></code> by default (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2329">#2329</a>)</p></li>
 </ul>
 <p>Bugfixes:</p>
 <ul class="simple">

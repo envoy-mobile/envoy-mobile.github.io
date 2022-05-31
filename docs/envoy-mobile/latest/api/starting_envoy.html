@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.4.6-134248 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.4.6-a0aa98 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.4.6-134248
+                0.4.6-a0aa98
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -450,17 +450,13 @@ will be queued automatically, and this function is typically used purely for obs
 <section id="enablenetworkpathmonitor">
 <h3><code class="docutils literal notranslate"><span class="pre">enableNetworkPathMonitor</span></code><a class="headerlink" href="#enablenetworkpathmonitor" title="Permalink to this headline">¶</a></h3>
 <p>Configure the engine to use <code class="docutils literal notranslate"><span class="pre">NWPathMonitor</span></code> rather than <code class="docutils literal notranslate"><span class="pre">SCNetworkReachability</span></code>
-on supported platforms (iOS 12+) to update the preferred Envoy network cluster (e.g. WLAN vs WWAN).</p>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>Only available on iOS 12 or later.</p>
-</div>
+to update the preferred Envoy network cluster (e.g. WLAN vs WWAN). Defaults to true.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
 <span class="o">//</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>
 
 <span class="o">//</span> <span class="n">Swift</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">enableNetworkPathMonitor</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">enableNetworkPathMonitor</span><span class="p">(</span><span class="n">false</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
