@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.4.6-4cfbd9 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.4.6-a18c48 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.4.6-4cfbd9
+                0.4.6-a18c48
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -85,7 +85,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#setlogger"><code class="docutils literal notranslate"><span class="pre">setLogger</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#seteventtracker"><code class="docutils literal notranslate"><span class="pre">setEventTracker</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addstringaccessor"><code class="docutils literal notranslate"><span class="pre">addStringAccessor</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#enablenetworkpathmonitor"><code class="docutils literal notranslate"><span class="pre">enableNetworkPathMonitor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setnetworkmonitoringmode"><code class="docutils literal notranslate"><span class="pre">setNetworkMonitoringMode</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablehappyeyeballs"><code class="docutils literal notranslate"><span class="pre">enableHappyEyeballs</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enableinterfacebinding"><code class="docutils literal notranslate"><span class="pre">enableInterfaceBinding</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#h2extendkeepalivetimeout"><code class="docutils literal notranslate"><span class="pre">h2ExtendKeepaliveTimeout</span></code></a></li>
@@ -448,16 +448,16 @@ will be queued automatically, and this function is typically used purely for obs
 </pre></div>
 </div>
 </section>
-<section id="enablenetworkpathmonitor">
-<h3><code class="docutils literal notranslate"><span class="pre">enableNetworkPathMonitor</span></code><a class="headerlink" href="#enablenetworkpathmonitor" title="Permalink to this headline">¶</a></h3>
-<p>Configure the engine to use <code class="docutils literal notranslate"><span class="pre">NWPathMonitor</span></code> rather than <code class="docutils literal notranslate"><span class="pre">SCNetworkReachability</span></code>
-to update the preferred Envoy network cluster (e.g. WLAN vs WWAN). Defaults to true.</p>
+<section id="setnetworkmonitoringmode">
+<h3><code class="docutils literal notranslate"><span class="pre">setNetworkMonitoringMode</span></code><a class="headerlink" href="#setnetworkmonitoringmode" title="Permalink to this headline">¶</a></h3>
+<p>Configure how the engine observes network reachability state changes to update the preferred Envoy network cluster (e.g. WLAN vs WWAN).
+Defaults to <code class="docutils literal notranslate"><span class="pre">NWPathMonitor</span></code>, but can be configured to use <code class="docutils literal notranslate"><span class="pre">SCNetworkReachability</span></code> or be disabled completely.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
 <span class="o">//</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>
 
 <span class="o">//</span> <span class="n">Swift</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">enableNetworkPathMonitor</span><span class="p">(</span><span class="n">false</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setNetworkMonitoringMode</span><span class="p">(</span><span class="o">.</span><span class="n">pathMonitor</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
