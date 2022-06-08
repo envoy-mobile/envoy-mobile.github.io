@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.4.6-c616e9 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.4.6-9d7d98 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.4.6-c616e9
+                0.4.6-9d7d98
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -89,6 +89,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#enablehappyeyeballs"><code class="docutils literal notranslate"><span class="pre">enableHappyEyeballs</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enableinterfacebinding"><code class="docutils literal notranslate"><span class="pre">enableInterfaceBinding</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#h2extendkeepalivetimeout"><code class="docutils literal notranslate"><span class="pre">h2ExtendKeepaliveTimeout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addkeyvaluestore"><code class="docutils literal notranslate"><span class="pre">addKeyValueStore</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
@@ -494,6 +495,31 @@ to update the preferred Envoy network cluster (e.g. WLAN vs WWAN). Defaults to t
 
 <span class="o">//</span> <span class="n">Swift</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">h2ExtendKeepaliveTimeout</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="addkeyvaluestore">
+<h3><code class="docutils literal notranslate"><span class="pre">addKeyValueStore</span></code><a class="headerlink" href="#addkeyvaluestore" title="Permalink to this headline">¶</a></h3>
+<p>Implementations of a public KeyValueStore interface may be added in their respective languages and
+made available to the library. General usage is supported, but typical future usage will be in
+support of HTTP and endpoint property caching.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addKeyValueStore</span><span class="p">(</span><span class="s2">&quot;io.envoyproxy.envoymobile.MyKeyValueStore&quot;</span><span class="p">,</span> <span class="n">MyKeyValueStoreImpl</span><span class="p">())</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="o">//</span> <span class="n">Coming</span> <span class="n">soon</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>The library also contains a simple Android-specific KeyValueStore implementation based on Android’s
+SharedPreferences.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Android</span>
+<span class="n">val</span> <span class="n">preferences</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">getSharedPreferences</span><span class="p">(</span><span class="s2">&quot;io.envoyproxy.envoymobile.MyPreferences&quot;</span><span class="p">,</span> <span class="n">Context</span><span class="o">.</span><span class="n">MODE_PRIVATE</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addKeyValueStore</span><span class="p">(</span><span class="s2">&quot;io.envoyproxy.envoymobile.MyKeyValueStore&quot;</span><span class="p">,</span> <span class="n">SharedPreferencesStore</span><span class="p">(</span><span class="n">preferences</span><span class="p">))</span>
+
+<span class="o">//</span> <span class="n">iOS</span>
+<span class="o">//</span> <span class="n">Coming</span> <span class="n">soon</span><span class="o">.</span>
 </pre></div>
 </div>
 </section>
