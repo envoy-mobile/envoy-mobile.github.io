@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.4.6-2ea19b documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.4.6-92cea6 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.4.6-2ea19b
+                0.4.6-92cea6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -87,6 +87,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#addstringaccessor"><code class="docutils literal notranslate"><span class="pre">addStringAccessor</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setnetworkmonitoringmode"><code class="docutils literal notranslate"><span class="pre">setNetworkMonitoringMode</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablehappyeyeballs"><code class="docutils literal notranslate"><span class="pre">enableHappyEyeballs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enablegzip"><code class="docutils literal notranslate"><span class="pre">enableGzip</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enablebrotli"><code class="docutils literal notranslate"><span class="pre">enableBrotli</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enableinterfacebinding"><code class="docutils literal notranslate"><span class="pre">enableInterfaceBinding</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#h2extendkeepalivetimeout"><code class="docutils literal notranslate"><span class="pre">h2ExtendKeepaliveTimeout</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addkeyvaluestore"><code class="docutils literal notranslate"><span class="pre">addKeyValueStore</span></code></a></li>
@@ -470,6 +472,30 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">NWPathM
 
 <span class="o">//</span> <span class="n">Swift</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">enableHappyEyeballs</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="enablegzip">
+<h3><code class="docutils literal notranslate"><span class="pre">enableGzip</span></code><a class="headerlink" href="#enablegzip" title="Permalink to this headline">¶</a></h3>
+<p>Specify whether to enable transparent response Gzip decompression. Defaults to true.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">enableGzip</span><span class="p">(</span><span class="n">false</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">enableGzip</span><span class="p">(</span><span class="n">false</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="enablebrotli">
+<h3><code class="docutils literal notranslate"><span class="pre">enableBrotli</span></code><a class="headerlink" href="#enablebrotli" title="Permalink to this headline">¶</a></h3>
+<p>Specify whether to enable transparent response Brotli decompression. Defaults to false.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">enableBrotli</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">enableBrotli</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
