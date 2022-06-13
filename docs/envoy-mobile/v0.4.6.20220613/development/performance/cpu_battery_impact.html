@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analysis of CPU/battery impact &mdash; envoy-mobile 0.4.6.20220613-ab6ef0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Device connectivity analysis" href="device_connectivity.html" />
+    <link rel="prev" title="Analysis of binary size" href="binary_size.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> envoy-mobile
+          </a>
+              <div class="version">
+                0.4.6.20220613-ab6ef0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../development.html">Development</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="performance.html">Performance analysis</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="binary_size.html">Analysis of binary size</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Analysis of CPU/battery impact</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#experimentation-method">Experimentation method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#open-issues">Open issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="device_connectivity.html">Device connectivity analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpn_analysis.html">VPN analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html">Releasing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html#pre-release-versioning">Pre-release versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html#gpg-key">GPG Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tools.html">Development Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/android_local.html">Debugging the Hello World App (Android)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/ios_local.html">Build &amp; run the example iOS apps</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">envoy-mobile</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../development.html">Development</a> &raquo;</li>
+          <li><a href="performance.html">Performance analysis</a> &raquo;</li>
+      <li>Analysis of CPU/battery impact</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/development/performance/cpu_battery_impact.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="analysis-of-cpu-battery-impact">
+<span id="dev-performance-cpu-battery"></span><h1>Analysis of CPU/battery impact<a class="headerlink" href="#analysis-of-cpu-battery-impact" title="Permalink to this headline">¶</a></h1>
+<p>We utilized 2 apps (1 control, 1 variant) on each platform to validate
+performance using the native networking stacks versus Envoy Mobile:</p>
+<ul class="simple">
+<li><p><strong>Control:</strong> Made a request every <code class="docutils literal notranslate"><span class="pre">200ms</span></code> to an endpoint without Envoy compiled in the app.</p></li>
+<li><p><strong>Envoy:</strong> Made the same request at the same interval, but using Envoy Mobile.</p></li>
+</ul>
+<p>All request/response caching was disabled.</p>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<section id="ios">
+<h3>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h3>
+<p>Valid through SHA <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/tree/v0.2.3.03062020">v0.2.3.03062020</a>.</p>
+<p>Envoy:</p>
+<ul class="simple">
+<li><p>Avg CPU: ~4%</p></li>
+<li><p>Avg memory: 46MB</p></li>
+<li><p>Battery: Negligible</p></li>
+</ul>
+<p>Control:</p>
+<ul class="simple">
+<li><p>Avg CPU: ~4%</p></li>
+<li><p>Avg memory: 29MB</p></li>
+<li><p>Battery: Negligible</p></li>
+</ul>
+<p><strong>Based on these results, control and Envoy are relatively similar with a slight increase in memory using Envoy.</strong></p>
+</section>
+<section id="android">
+<h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
+<p>Valid through SHA <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/tree/v0.3.0.05122020">v0.3.0.05122020</a>.</p>
+<p>Envoy:</p>
+<ul class="simple">
+<li><p>Avg CPU: ~5.16%</p></li>
+<li><p>Avg memory: 109MB</p></li>
+<li><p>Battery: 0.2%/min</p></li>
+</ul>
+<p>Control:</p>
+<ul class="simple">
+<li><p>Avg CPU: ~2.94%</p></li>
+<li><p>Avg memory: 52MB</p></li>
+<li><p>Battery: 0.23%/min</p></li>
+</ul>
+<p><strong>Based on these results, control and Envoy are relatively similar.</strong></p>
+</section>
+</section>
+<section id="experimentation-method">
+<h2>Experimentation method<a class="headerlink" href="#experimentation-method" title="Permalink to this headline">¶</a></h2>
+<section id="id1">
+<h3>iOS<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The sample apps checked into
+<a class="reference external" href="https://github.com/rebello95/EnvoyMobileAnalysis/tree/v0.2.3.03062020">this analysis repository</a>
+were used to run the analysis outlined in this document.</p>
+<p>For the analysis, we utilized Xcode Instruments to monitor the 2 sample apps
+while they ran in the foreground for a few minutes.</p>
+<p>Control requests were made using <code class="docutils literal notranslate"><span class="pre">URLSession</span></code>, with the session
+configuration’s cache set to <code class="docutils literal notranslate"><span class="pre">nil</span></code> (disabling caching).</p>
+<p>Variant requests were made using the <code class="docutils literal notranslate"><span class="pre">EnvoyClient</span></code>.</p>
+<p>Both apps were run (one at a time) on a physical device (iPhone XS, iOS 13.3.1)
+while running Instruments.</p>
+<p>Additional screenshots from the analysis are available on the
+<a class="reference external" href="https://github.com/rebello95/EnvoyMobileAnalysis/releases/tag/v0.2.3.03062020">release</a>.</p>
+</section>
+<section id="id2">
+<h3>Android<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Modified versions of the “hello world” example apps were used to run these experiments:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/tree/8636711/examples/kotlin/control">Android control app</a></p></li>
+<li><p><a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/tree/8636711/examples/kotlin/hello_world">Android Envoy app</a></p></li>
+</ul>
+<p>Getting the build:</p>
+<ol class="arabic simple">
+<li><p>Build the library using <code class="docutils literal notranslate"><span class="pre">./bazelw</span> <span class="pre">build</span> <span class="pre">android_dist</span> <span class="pre">--config=android</span> <span class="pre">--fat_apk_cpu=armeabi-v7a</span></code></p></li>
+<li><p>Control: <code class="docutils literal notranslate"><span class="pre">./bazelw</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/control:hello_control_kt</span></code></p></li>
+<li><p>Envoy: <code class="docutils literal notranslate"><span class="pre">./bazelw</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/hello_world:hello_envoy_kt</span> <span class="pre">--fat_apk_cpu=armeabi-v7a</span></code></p></li>
+</ol>
+<p>Battery usage experiment steps:</p>
+<ol class="arabic simple">
+<li><p>Set a phone’s display to sleep after 30 minutes of inactivity</p></li>
+<li><p>Unplug the phone from all power sources</p></li>
+<li><p>Open up the demo app</p></li>
+<li><p>Wait for the phone to sleep</p></li>
+<li><p>Look at the battery drain the battery settings in the phone to see the battery usage and drainage</p></li>
+</ol>
+<p>Alternative profiling methods tried:</p>
+<p>1. <a class="reference external" href="https://play.google.com/store/apps/details?id=com.digibites.accubattery&amp;hl=en_US">AccuBattery</a>:
+We were unable to get the running time of a given application on AccuBattery to more accurately identify battery usage per minute</p>
+<p>2. <a class="reference external" href="https://github.com/google/battery-historian">Battery Historian</a>:
+We were unable to get reliable data using this method. Often times, the battery usage of an application appears to use no batteries</p>
+<p>CPU usage experiment steps:</p>
+<ol class="arabic simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">adb</span> <span class="pre">shell</span> <span class="pre">top</span> <span class="pre">-H</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">envoy</span></code> to get the CPU usage of the application (the <code class="docutils literal notranslate"><span class="pre">-H</span></code> flag displays the running threads)</p></li>
+<li><p>Wait 10minutes to gather a sample set of data to analyze</p></li>
+<li><p>Take the average CPU% and MEM%</p></li>
+</ol>
+</section>
+</section>
+<section id="open-issues">
+<h2>Open issues<a class="headerlink" href="#open-issues" title="Permalink to this headline">¶</a></h2>
+<p>For current issues with CPU/battery, please see issues with the
+<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/labels/perf%2Fcpu">perf/cpu label</a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="binary_size.html" class="btn btn-neutral float-left" title="Analysis of binary size" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="device_connectivity.html" class="btn btn-neutral float-right" title="Device connectivity analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 Lyft, Inc..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
