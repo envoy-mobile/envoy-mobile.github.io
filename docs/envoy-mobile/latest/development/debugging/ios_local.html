@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Build &amp; run the example iOS apps &mdash; envoy-mobile 0.4.6-01cd29 documentation</title>
+  <title>Build &amp; run the example iOS apps &mdash; envoy-mobile 0.4.6-218e31 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
@@ -30,7 +30,7 @@
             <a href="../../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.4.6-01cd29
+                0.4.6-218e31
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -125,24 +125,19 @@ compiled source files in C/C++/Objective-C/Objective-C++/Swift:</p>
 </section>
 <section id="running-on-a-real-iphone">
 <h2>Running on a real iPhone<a class="headerlink" href="#running-on-a-real-iphone" title="Permalink to this headline">¶</a></h2>
-<p>Although building and running on a physical device is
-<a class="reference external" href="https://github.com/buildbuddy-io/rules_xcodeproj/issues/285">not yet officially supported</a>
-by rules_xcodeproj, following these steps may work:</p>
+<p>You can build and run the example iOS apps on a physical iPhone by
+following these steps:</p>
 <ol class="arabic simple">
-<li><p>Add <code class="docutils literal notranslate"><span class="pre">build</span> <span class="pre">--ios_multi_cpus=arm64</span></code> to <code class="docutils literal notranslate"><span class="pre">.bazelrc</span></code>.</p></li>
-<li><p>Add a <code class="docutils literal notranslate"><span class="pre">.mobileprovision</span></code> provisioning profile capable of signing
-the app you want to run next to its <code class="docutils literal notranslate"><span class="pre">BUILD</span></code> file.
-E.g. <code class="docutils literal notranslate"><span class="pre">examples/swift/hello_world/dev.mobileprovision</span></code></p></li>
-<li><p>Set the provisioning profile on the <code class="docutils literal notranslate"><span class="pre">ios_application</span></code> you want to
-run. E.g. <code class="docutils literal notranslate"><span class="pre">provisioning_profile</span> <span class="pre">=</span> <span class="pre">&quot;dev.mobileprovision&quot;,</span></code></p></li>
-<li><p>Remove all apps without a provisioning profile from the <code class="docutils literal notranslate"><span class="pre">xcodeproj</span></code>
-configuration in Envoy Mobile’s root <code class="docutils literal notranslate"><span class="pre">BUILD</span></code> file.</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">TEAM_ID</span></code> value in <code class="docutils literal notranslate"><span class="pre">examples/BUILD</span></code> to your Apple
+Developer Team ID found in the
+<a class="reference external" href="https://developer.apple.com/account/#!/membership">Apple Developer Portal</a>.</p></li>
+<li><p>If needed, change the <code class="docutils literal notranslate"><span class="pre">PROFILE_NAME</span></code> value to the name shown by
+clicking the (i) next to “Xcode Managed Profile” in Xcode’s
+“Signing and Capabilities” tab.</p></li>
 <li><p>Follow the same steps as defined in the
 <a class="reference internal" href="#using-xcode"><span class="std std-ref">Using the Xcode GUI</span></a> section above, but
 targeting your device instead of a simulator.</p></li>
 </ol>
-<p><em>Note: You may need to clean from Xcode with cmd-shift-k between device
-runs.</em></p>
 </section>
 </section>
 
