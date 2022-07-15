@@ -20,6 +20,7 @@ kramdown:
   syntax_highlighter: rouge
 
 include:
+  - _images
   - _static
   - _sources
 
