@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version history &mdash; envoy-mobile 0.4.6-abbfad documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.4.6-8f91f1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.4.6-abbfad
+                0.4.6-8f91f1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -106,7 +106,6 @@
 <ul class="simple">
 <li><p>api: replace the <code class="docutils literal notranslate"><span class="pre">drainConnections()</span></code> method with a broader <code class="docutils literal notranslate"><span class="pre">resetConnectivityState()</span></code>. (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2225">#2225</a>).</p></li>
 <li><p>api: disallow setting ‘host’ header directly (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2275">#2275</a>)</p></li>
-<li><p>api: add experimental option to force all connections to use IPv6 (:issue: <cite>#2379 &lt;2379&gt;</cite>, :issue: <cite>#2396 &lt;2396&gt;</cite>)</p></li>
 <li><p>android: respect Android’s NetworkSecurityPolicy isCleartextTrafficPermitted APIs.</p></li>
 <li><p>net: enable happy eyeballs by default (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2272">#2272</a>)</p></li>
 <li><p>iOS: remove support for installing via CocoaPods, which had not worked since 2020 (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/2215">#2215</a>)</p></li>
@@ -145,6 +144,8 @@ Support for using multiple engines concurrently is coming later. (<a class="refe
 <li><p>api: improved C++ APIs compatibility with Java / Kotlin / Swift (:issue <cite>#2362 &lt;2362&gt;</cite>)</p></li>
 <li><p>api: add option to use the a <code class="docutils literal notranslate"><span class="pre">getaddrinfo</span></code>-based system DNS resolver instead of c-ares (:issue: <cite>#2419 &lt;2419&gt;</cite>)</p></li>
 <li><p>iOS: add <code class="docutils literal notranslate"><span class="pre">KeyValueStore</span></code> protocol conformance to <code class="docutils literal notranslate"><span class="pre">UserDefaults</span></code> (:issue: <cite>#2452 &lt;2452&gt;</cite>)</p></li>
+<li><p>iOS: add experimental option to force all connections to use IPv6. (:issue: <cite>#2396 &lt;2396&gt;</cite>)</p></li>
+<li><p>android: force the use of IPv6 addresses for all connections. (:issue: <cite>#2510 &lt;2510&gt;</cite>)</p></li>
 </ul>
 </section>
 <section id="april-26-2022">
