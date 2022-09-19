@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Stats &mdash; envoy-mobile 0.5.0.20220919-3f252b documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Custom Envoy" href="custom_envoy.html" />
+    <link rel="prev" title="Testing" href="testing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> envoy-mobile
+          </a>
+              <div class="version">
+                0.5.0.20220919-3f252b
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../development.html">Development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../performance/performance.html">Performance analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html">Releasing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html#pre-release-versioning">Pre-release versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html#gpg-key">GPG Key</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="testing.html">Testing</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Local Stats</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#config">Config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steps">Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="custom_envoy.html">Custom Envoy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing.html#common-c-c-tests">Common (C/C++) tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing.html#java-tests">Java tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing.html#kotlin-tests">Kotlin tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing.html#swift-tests">Swift tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing.html#coverage">Coverage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tools.html">Development Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/android_local.html">Debugging the Hello World App (Android)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/ios_local.html">Build &amp; run the example iOS apps</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">envoy-mobile</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../development.html">Development</a> &raquo;</li>
+          <li><a href="testing.html">Testing</a> &raquo;</li>
+      <li>Local Stats</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/development/testing/local_stats.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="local-stats">
+<span id="testing-local-stats"></span><h1>Local Stats<a class="headerlink" href="#local-stats" title="Permalink to this headline">¶</a></h1>
+<p>The <cite>local-stats</cite> <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/tree/local-stats">branch</a> allows a
+developer to run a local statsd server, and see stats emissions from a client running in the
+simulator/emulator. Unless network tunneling is set up this is not going to work in a physical
+device, as the statsd server is running on the computer’s local network.</p>
+<section id="config">
+<h2>Config<a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/local-stats/library/common/config_template.cc">config template</a>
+has already been updated to use a local statsd server. However, if you are using Android to test,
+the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/local-stats/library/common/config_template.cc#L203">static address</a>
+used for the server should be changed to <code class="docutils literal notranslate"><span class="pre">10.0.2.2</span></code> per the <a class="reference external" href="https://developer.android.com/studio/run/emulator-networking">Set up Android Emulator networking</a>
+docs.</p>
+</section>
+<section id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Build the desired dist target following the build docs <a class="reference internal" href="../../start/building/building.html#building"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>Start statsd locally. You can do this by cloning <a class="reference external" href="https://github.com/statsd/statsd">statsd</a> and running from within the root of
+the repo with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">node</span> <span class="n">stats</span><span class="o">.</span><span class="n">js</span> <span class="n">config</span><span class="o">.</span><span class="n">js</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><p>An example <code class="docutils literal notranslate"><span class="pre">config.js</span></code> file. Note that the port must match the port in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/local-stats/library/common/config_template.cc#L203">config_template</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="n">port</span><span class="p">:</span> <span class="mi">8125</span>
+<span class="p">,</span> <span class="n">backends</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;./backends/console&quot;</span> <span class="p">]</span>
+<span class="p">,</span> <span class="n">servers</span><span class="p">:</span> <span class="p">[{</span><span class="n">server</span><span class="p">:</span> <span class="s2">&quot;./servers/tcp&quot;</span><span class="p">,</span> <span class="n">debug</span><span class="p">:</span> <span class="n">true</span><span class="p">}]</span>
+<span class="p">,</span> <span class="n">debug</span><span class="p">:</span> <span class="n">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Run the <a class="reference internal" href="../../start/examples/hello_world.html#hello-world"><span class="std std-ref">example</span></a> app.</p></li>
+<li><p>Stats should appear in the terminal window you are running <code class="docutils literal notranslate"><span class="pre">statsd</span></code> in.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="testing.html" class="btn btn-neutral float-left" title="Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="custom_envoy.html" class="btn btn-neutral float-right" title="Custom Envoy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 Lyft, Inc..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
