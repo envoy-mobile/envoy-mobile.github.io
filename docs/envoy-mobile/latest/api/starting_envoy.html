@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-232df8 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-c461cd documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-232df8
+                0.5.0-c461cd
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -70,8 +70,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#adddnsrefreshseconds"><code class="docutils literal notranslate"><span class="pre">addDNSRefreshSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adddnsquerytimeoutseconds"><code class="docutils literal notranslate"><span class="pre">addDNSQueryTimeoutSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adddnspreresolvehostnames"><code class="docutils literal notranslate"><span class="pre">addDNSPreresolveHostnames</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#adddnsfallbacknameservers"><code class="docutils literal notranslate"><span class="pre">addDNSFallbackNameservers</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#enablednsfilterunroutablefamilies"><code class="docutils literal notranslate"><span class="pre">enableDNSFilterUnroutableFamilies</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addloglevel"><code class="docutils literal notranslate"><span class="pre">addLogLevel</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addgrpcstatsdomain"><code class="docutils literal notranslate"><span class="pre">addGrpcStatsDomain</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addstatsflushseconds"><code class="docutils literal notranslate"><span class="pre">addStatsFlushSeconds</span></code></a></li>
@@ -230,34 +228,6 @@ The configuration is expected as a JSON list.</p>
 builder.addDNSPreresolveHostnames(“[{&quot;address&quot;: &quot;foo.com”, &quot;port_value&quot;: 443}]”)</p>
 <p>// Swift
 builder.addDNSPreresolveHostnames(“[{&quot;address&quot;: &quot;foo.com”, &quot;port_value&quot;: 443}]”)</p>
-</div></blockquote>
-</section>
-<section id="adddnsfallbacknameservers">
-<h3><code class="docutils literal notranslate"><span class="pre">addDNSFallbackNameservers</span></code><a class="headerlink" href="#adddnsfallbacknameservers" title="Permalink to this headline">¶</a></h3>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>This API is only available for Kotlin.</p>
-</div>
-<p>Add a list of IP addresses to use as fallback DNS name servers.
-See <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/network/dns_resolver/cares/v3/cares_dns_resolver.proto#extensions-network-dns-resolver-cares-v3-caresdnsresolverconfig">the Envoy docs</a>
-for further information.</p>
-<blockquote>
-<div><p>// Kotlin
-builder.addDNSFallbackNameservers(listOf&lt;String&gt;(“8.8.8.8”))</p>
-</div></blockquote>
-</section>
-<section id="enablednsfilterunroutablefamilies">
-<h3><code class="docutils literal notranslate"><span class="pre">enableDNSFilterUnroutableFamilies</span></code><a class="headerlink" href="#enablednsfilterunroutablefamilies" title="Permalink to this headline">¶</a></h3>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>This API is only available for Kotlin.</p>
-</div>
-<p>Specify whether to filter unroutable IP families during DNS resolution or not.
-See <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/network/dns_resolver/cares/v3/cares_dns_resolver.proto#extensions-network-dns-resolver-cares-v3-caresdnsresolverconfig">the Envoy docs</a>
-for further information.</p>
-<blockquote>
-<div><p>// Kotlin
-builder.enableDNSFilterUnroutableFamilies(true)</p>
 </div></blockquote>
 </section>
 <section id="addloglevel">
