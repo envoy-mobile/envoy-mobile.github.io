@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build &amp; run the example iOS apps &mdash; envoy-mobile 0.5.0.20221024-3cb670 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Debugging the Hello World App (Android)" href="android_local.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> envoy-mobile
+          </a>
+              <div class="version">
+                0.5.0.20221024-3cb670
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../development.html">Development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../performance/performance.html">Performance analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html">Releasing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html#pre-release-versioning">Pre-release versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html#gpg-key">GPG Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tools.html">Development Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="android_local.html">Debugging the Hello World App (Android)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Build &amp; run the example iOS apps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-xcode-gui">Using the Xcode GUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-on-a-real-iphone">Running on a real iPhone</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">envoy-mobile</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../development.html">Development</a> &raquo;</li>
+      <li>Build &amp; run the example iOS apps</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/development/debugging/ios_local.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="build-run-the-example-ios-apps">
+<span id="debugging-ios-instructions"></span><h1>Build &amp; run the example iOS apps<a class="headerlink" href="#build-run-the-example-ios-apps" title="Permalink to this headline">¶</a></h1>
+<p><em>Note: This document assumes that you have installed the
+:ref:`iOS build requirements &lt;ios_requirements&gt;`_.</em></p>
+<p>The fastest way to build and run the sample iOS apps is to run the
+following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">bazelw</span> <span class="n">run</span> <span class="o">//</span><span class="n">examples</span><span class="o">/</span><span class="n">swift</span><span class="o">/</span><span class="n">hello_world</span><span class="p">:</span><span class="n">app</span>
+</pre></div>
+</div>
+<p>This will build and run the Hello World iOS app in a new iOS Simulator.</p>
+<section id="using-the-xcode-gui">
+<span id="using-xcode"></span><h2>Using the Xcode GUI<a class="headerlink" href="#using-the-xcode-gui" title="Permalink to this headline">¶</a></h2>
+<p>Envoy Mobile makes use of the
+<a class="reference external" href="https://github.com/buildbuddy-io/rules_xcodeproj">rules_xcodeproj</a>
+project to add support for many of Xcode’s development, debugging and
+profiling features to Envoy Mobile.</p>
+<p>To start, run <code class="docutils literal notranslate"><span class="pre">./bazelw</span> <span class="pre">run</span> <span class="pre">//:xcodeproj</span></code> to generate an Xcode project
+and <code class="docutils literal notranslate"><span class="pre">xed</span> <span class="pre">.</span></code> to open it in Xcode (or double-click <code class="docutils literal notranslate"><span class="pre">Envoy.xcodeproj</span></code>
+in Finder).</p>
+<p>In Xcode’s scheme selector, pick the app target you want to build (e.g.
+<code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">World</span> <span class="pre">App</span></code>), pick a Simulator to run it on,
+then hit cmd-R to build and run.</p>
+<p>From there, most Xcode features should just work for all transitively
+compiled source files in C/C++/Objective-C/Objective-C++/Swift:</p>
+<ul class="simple">
+<li><p>Auto-complete</p></li>
+<li><p>Syntax highlighting</p></li>
+<li><p>Go to definition</p></li>
+<li><p>Breakpoints</p></li>
+<li><p>LLDB console</p></li>
+<li><p>Thread navigator</p></li>
+<li><p>Symbols</p></li>
+<li><p>Metrics like CPU/memory/networking/energy</p></li>
+<li><p>Profiling with Instruments</p></li>
+</ul>
+<p><a class="reference internal" href="../../_images/xcode_breakpoint.jpg"><img alt="xcode_breakpoint" src="../../_images/xcode_breakpoint.jpg" style="width: 45%;" /></a> <a class="reference internal" href="../../_images/instruments.jpg"><img alt="instruments" src="../../_images/instruments.jpg" style="width: 45%;" /></a></p>
+</section>
+<section id="running-on-a-real-iphone">
+<h2>Running on a real iPhone<a class="headerlink" href="#running-on-a-real-iphone" title="Permalink to this headline">¶</a></h2>
+<p>You can build and run the example iOS apps on a physical iPhone by
+following these steps:</p>
+<ol class="arabic simple">
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">TEAM_ID</span></code> value in <code class="docutils literal notranslate"><span class="pre">examples/BUILD</span></code> to your Apple
+Developer Team ID found in the
+<a class="reference external" href="https://developer.apple.com/account/#!/membership">Apple Developer Portal</a>.</p></li>
+<li><p>If needed, change the <code class="docutils literal notranslate"><span class="pre">PROFILE_NAME</span></code> value to the name shown by
+clicking the (i) next to “Xcode Managed Profile” in Xcode’s
+“Signing and Capabilities” tab.</p></li>
+<li><p>Follow the same steps as defined in the
+<a class="reference internal" href="#using-xcode"><span class="std std-ref">Using the Xcode GUI</span></a> section above, but
+targeting your device instead of a simulator.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="android_local.html" class="btn btn-neutral float-left" title="Debugging the Hello World App (Android)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 Lyft, Inc..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
