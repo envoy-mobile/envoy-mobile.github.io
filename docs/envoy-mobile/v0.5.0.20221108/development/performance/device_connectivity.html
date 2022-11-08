@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Device connectivity analysis &mdash; envoy-mobile 0.5.0.20221108-625ec5 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="VPN analysis" href="vpn_analysis.html" />
+    <link rel="prev" title="Analysis of CPU/battery impact" href="cpu_battery_impact.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> envoy-mobile
+          </a>
+              <div class="version">
+                0.5.0.20221108-625ec5
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../development.html">Development</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="performance.html">Performance analysis</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="binary_size.html">Analysis of binary size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpu_battery_impact.html">Analysis of CPU/battery impact</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Device connectivity analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#experimentation-method">Experimentation method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#open-issues">Open issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vpn_analysis.html">VPN analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html">Releasing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html#pre-release-versioning">Pre-release versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html#gpg-key">GPG Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tools.html">Development Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/android_local.html">Debugging the Hello World App (Android)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/ios_local.html">Build &amp; run the example iOS apps</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">envoy-mobile</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../development.html">Development</a> &raquo;</li>
+          <li><a href="performance.html">Performance analysis</a> &raquo;</li>
+      <li>Device connectivity analysis</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/development/performance/device_connectivity.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="device-connectivity-analysis">
+<span id="dev-performance-connectivity"></span><h1>Device connectivity analysis<a class="headerlink" href="#device-connectivity-analysis" title="Permalink to this headline">¶</a></h1>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<p>Envoy Mobile currently handles switching preferred networks between wifi/cellular based on
+reachability updates from the OS. After switching to a new preferred network, all future requests
+made through the library will use the new connection.</p>
+<section id="ios">
+<h3>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h3>
+<p>The above approach has proven successful for unary requests, but has been problematic for long-lived
+streams due to the fact that the library does not aggressively shut down these streams when the
+preferred network changes, causing them to sometimes hang until they time out.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Issues <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/541">#541</a> and <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/13">#13</a> are being used to track the behavior of
+long-lived streams, as well as using native platform sockets to alleviate the issues above.</p>
+</div>
+</section>
+<section id="android">
+<h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
+<p>We did not observe any issues when switching between background/foreground or between wifi/cellular.</p>
+</section>
+</section>
+<section id="experimentation-method">
+<h2>Experimentation method<a class="headerlink" href="#experimentation-method" title="Permalink to this headline">¶</a></h2>
+<p>Modified versions of the “hello world” example apps were used to run the following experiments,
+validating that the library is able to continue making successful requests after each change.</p>
+<p>Lifecycle experiment steps:</p>
+<ol class="arabic simple">
+<li><p>Open the example application</p></li>
+<li><p>Background the application</p></li>
+<li><p>Foreground the application</p></li>
+</ol>
+<p>Network experimentation steps:</p>
+<ol class="arabic simple">
+<li><p>Turn on wifi</p></li>
+<li><p>Open the example application</p></li>
+<li><p>Turn off wifi</p></li>
+<li><p>Turn on wifi</p></li>
+<li><p>Turn on airplane mode</p></li>
+<li><p>Turn off airplane mode</p></li>
+</ol>
+<section id="ios-configuration">
+<h3>iOS configuration<a class="headerlink" href="#ios-configuration" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Build the library with debugging symbols (using <code class="docutils literal notranslate"><span class="pre">--copt=-ggdb3</span></code>)</p></li>
+<li><p>Add the outputted <code class="docutils literal notranslate"><span class="pre">Envoy.framework</span></code> to the example app</p></li>
+<li><p>In the active scheme of the app’s Xcode <code class="docutils literal notranslate"><span class="pre">Environment</span> <span class="pre">Variables</span></code>, set <code class="docutils literal notranslate"><span class="pre">CFNETWORK_DIAGNOSTICS=3</span></code> to enable more verbose <code class="docutils literal notranslate"><span class="pre">CFNetwork</span></code> logs</p></li>
+<li><p>Set Envoy’s logs to <code class="docutils literal notranslate"><span class="pre">trace</span></code></p></li>
+</ol>
+</section>
+<section id="android-configuration">
+<h3>Android configuration<a class="headerlink" href="#android-configuration" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Build the library</p></li>
+<li><p>Build and run the example app:</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">./bazelw</span> <span class="pre">mobile-install</span> <span class="pre">//examples/kotlin/hello_world:hello_envoy_kt</span> <span class="pre">--fat_apk_cpu=armeabi-v7a</span></code></p>
+</section>
+</section>
+<section id="open-issues">
+<h2>Open issues<a class="headerlink" href="#open-issues" title="Permalink to this headline">¶</a></h2>
+<p>For current issues with device conditions, please see issues with the
+<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/labels/perf%2Fdevice">perf/device label</a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cpu_battery_impact.html" class="btn btn-neutral float-left" title="Analysis of CPU/battery impact" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vpn_analysis.html" class="btn btn-neutral float-right" title="VPN analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 Lyft, Inc..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
