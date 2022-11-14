@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analysis of binary size &mdash; envoy-mobile 0.5.0.20221114-4aebbf documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Analysis of CPU/battery impact" href="cpu_battery_impact.html" />
+    <link rel="prev" title="Performance analysis" href="performance.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> envoy-mobile
+          </a>
+              <div class="version">
+                0.5.0.20221114-4aebbf
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../development.html">Development</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="performance.html">Performance analysis</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Analysis of binary size</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#object-files-analysis">Object files analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#open-issues-regarding-size">Open issues regarding size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#current-status">Current status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ci-integration">CI integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cpu_battery_impact.html">Analysis of CPU/battery impact</a></li>
+<li class="toctree-l3"><a class="reference internal" href="device_connectivity.html">Device connectivity analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpn_analysis.html">VPN analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html">Releasing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html#pre-release-versioning">Pre-release versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releasing/releasing.html#gpg-key">GPG Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tools.html">Development Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/android_local.html">Debugging the Hello World App (Android)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../debugging/ios_local.html">Build &amp; run the example iOS apps</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">envoy-mobile</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../development.html">Development</a> &raquo;</li>
+          <li><a href="performance.html">Performance analysis</a> &raquo;</li>
+      <li>Analysis of binary size</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/development/performance/binary_size.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="analysis-of-binary-size">
+<span id="dev-performance-size"></span><h1>Analysis of binary size<a class="headerlink" href="#analysis-of-binary-size" title="Permalink to this headline">¶</a></h1>
+<p>In order to be able to tackle binary size analysis,
+the Envoy Mobile team has standardized the process in this document.</p>
+<section id="object-files-analysis">
+<h2>Object files analysis<a class="headerlink" href="#object-files-analysis" title="Permalink to this headline">¶</a></h2>
+<section id="getting-a-binary">
+<h3>Getting a binary<a class="headerlink" href="#getting-a-binary" title="Permalink to this headline">¶</a></h3>
+<p>In order to have consistency of results this is the toolchain used to build the
+binary for analysis:</p>
+<ol class="arabic simple">
+<li><p>clang-8</p></li>
+<li><p>lld (installed with clang)</p></li>
+<li><p>arm64 machine</p></li>
+</ol>
+<p>The arm64 machine used to build the test binary was an arm64 ec2 a1.2xlarge
+instance with Ubuntu 18.04. The following script was run to set up the
+necessary tools:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic toolchain</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span> <span class="n">openjdk</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="n">jdk</span> <span class="n">python</span> <span class="nb">zip</span> <span class="n">unzip</span> \
+  <span class="n">software</span><span class="o">-</span><span class="n">properties</span><span class="o">-</span><span class="n">common</span> <span class="n">make</span> <span class="n">cmake</span> <span class="n">bc</span> <span class="n">libtool</span> <span class="n">ninja</span><span class="o">-</span><span class="n">build</span> <span class="n">automake</span> \
+  <span class="n">time</span> <span class="n">apt</span><span class="o">-</span><span class="n">transport</span><span class="o">-</span><span class="n">https</span>
+<span class="c1"># clang-8</span>
+<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">releases</span><span class="o">.</span><span class="n">llvm</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mf">8.0.0</span><span class="o">/</span><span class="n">clang</span><span class="o">+</span><span class="n">llvm</span><span class="o">-</span><span class="mf">8.0.0</span><span class="o">-</span><span class="n">aarch64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">xz</span>
+<span class="n">sudo</span> <span class="n">tar</span> <span class="o">-</span><span class="n">C</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span> <span class="o">-</span><span class="n">xvf</span> <span class="n">clang</span><span class="o">+</span><span class="n">llvm</span><span class="o">-</span><span class="mf">8.0.0</span><span class="o">-</span><span class="n">aarch64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">xz</span> <span class="o">--</span><span class="n">strip</span> <span class="mi">1</span>
+<span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">clang</span><span class="o">+</span><span class="n">llvm</span><span class="o">-</span><span class="mf">8.0.0</span><span class="o">-</span><span class="n">aarch64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">xz</span>
+<span class="c1"># bazel 0.26.1</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">bazelbuild</span><span class="o">/</span><span class="n">bazel</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="mf">0.26.1</span><span class="o">/</span><span class="n">bazel</span><span class="o">-</span><span class="mf">0.26.1</span><span class="o">-</span><span class="n">dist</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">bazel_build</span>
+<span class="n">unzip</span> <span class="o">-</span><span class="n">o</span> <span class="n">bazel</span><span class="o">-</span><span class="mf">0.26.1</span><span class="o">-</span><span class="n">dist</span><span class="o">.</span><span class="n">zip</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">bazel_build</span>
+<span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">bazel</span><span class="o">-</span><span class="mf">0.26.1</span><span class="o">-</span><span class="n">dist</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">cd</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">bazel_build</span>
+<span class="n">env</span> <span class="n">EXTRA_BAZEL_ARGS</span><span class="o">=</span><span class="s2">&quot;--host_javabase=@local_jdk//:jdk&quot;</span> <span class="n">bash</span> <span class="o">./</span><span class="nb">compile</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">sudo</span> <span class="n">cp</span> <span class="n">output</span><span class="o">/</span><span class="n">bazel</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bazel</span>
+<span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">bazel_build</span>
+<span class="c1"># bloaty</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">google</span><span class="o">/</span><span class="n">bloaty</span>
+<span class="n">cd</span> <span class="n">bloaty</span>
+<span class="n">mkdir</span> <span class="n">build</span>
+<span class="n">cd</span> <span class="n">build</span>
+<span class="n">cmake</span> <span class="o">..</span>
+<span class="n">make</span> <span class="o">-</span><span class="n">j6</span>
+<span class="n">cp</span> <span class="n">bloaty</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bloaty</span>
+</pre></div>
+</div>
+<p>The binary being compiled is <code class="docutils literal notranslate"><span class="pre">//test/performance:test_binary_size</span></code>.
+The binary is getting built with the following build command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">bazelw</span> <span class="n">build</span> <span class="o">//</span><span class="n">test</span><span class="o">/</span><span class="n">performance</span><span class="p">:</span><span class="n">test_binary_size</span> <span class="o">--</span><span class="n">config</span><span class="o">=</span><span class="n">sizeopt</span> <span class="o">--</span><span class="n">copt</span><span class="o">=-</span><span class="n">ggdb3</span> <span class="o">--</span><span class="n">linkopt</span><span class="o">=-</span><span class="n">fuse</span><span class="o">-</span><span class="n">ld</span><span class="o">=</span><span class="n">lld</span>
+</pre></div>
+</div>
+<p>Thus the binary is compiled with the following flags pertinent to reducing
+binary size:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">opt</span></code>: bazel compilation option for size optimization. Due to <code class="docutils literal notranslate"><span class="pre">sizeopt</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--copt</span> <span class="pre">-Os</span></code>: optimize for size. Due to <code class="docutils literal notranslate"><span class="pre">sizeopt</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--copt=-ggdb3</span></code>: keep debug symbols. Later stripped with <code class="docutils literal notranslate"><span class="pre">strip</span></code>. Explicitly added.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--linkopt=-fuse-ld=lld</span></code>: use the lld linker. Explicitly added.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--define=google_grpc=disabled</span></code>: more info in the <a class="reference external" href="envoy_docs">envoy docs</a>. Due to the project’s <code class="docutils literal notranslate"><span class="pre">.bazelrc</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--define=signal_trace=disabled</span></code>: more info in the <a class="reference external" href="envoy_docs">envoy docs</a>. Due to the project’s <code class="docutils literal notranslate"><span class="pre">.bazelrc</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--define=tcmalloc=disabled</span></code>: more info in the <a class="reference external" href="envoy_docs">envoy docs</a>. Due to the project’s <code class="docutils literal notranslate"><span class="pre">.bazelrc</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--define=hot_restart=disabled</span></code>: more info in the <a class="reference external" href="envoy_docs">envoy docs</a>. Due to the project’s <code class="docutils literal notranslate"><span class="pre">.bazelrc</span></code>.</p></li>
+</ol>
+<p>After compiling, the binary can be stripped of all symbols by using <code class="docutils literal notranslate"><span class="pre">strip</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">strip</span> <span class="o">-</span><span class="n">s</span> <span class="n">bazel</span><span class="o">-</span><span class="nb">bin</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">performance</span><span class="o">/</span><span class="n">test_binary_size</span>
+</pre></div>
+</div>
+<p>The unstripped and stripped binary can then be used for analysis.</p>
+</section>
+<section id="analysis">
+<h3>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h3>
+<p>While there are a lot of tools out there that can be used for binary size
+analysis (otool, objdump, jtool), <a class="reference external" href="https://github.com/google/bloaty">Bloaty</a>
+has been the tool of choice to run object file analysis.</p>
+<p>Bloaty’s layering of data sources is extremely helpful in being able to explode
+the binary in all sorts of different ways. For example, one can look at the
+composition of each compile unit in terms of sections:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bloaty --debug-file=bin/test_binary_size -c envoy.bloaty -d sections,bloaty_package,compileunits bin/test_binary_size.stripped
+...
+7.7%   109Ki   7.7%   110Ki bazel-out/aarch64-opt/bin/external/envoy_api/envoy/api/v2/route/route.pb.cc
+  81.9%  89.6Ki  81.4%  89.6Ki .text
+  13.6%  14.9Ki  13.5%  14.9Ki .eh_frame
+  3.1%  3.45Ki   3.1%  3.45Ki .eh_frame_hdr
+  1.3%  1.48Ki   1.3%  1.48Ki .data
+  0.0%       0   0.6%     672 .bss
+  0.1%      72   0.1%      72 .rodata
+</pre></div>
+</div>
+<p>Or one might want to see how sections of the binary map to compilation units:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bloaty --debug-file=bin/test_binary_size -c envoy.bloaty -d bloaty_package,compileunits,sections bin/test_binary_size.stripped
+...
+13.2%   929Ki  13.0%   929Ki .rodata
+    81.2%   755Ki  81.2%   755Ki [section .rodata]
+    15.4%   143Ki  15.4%   143Ki boringssl/
+        37.9%  54.4Ki  37.9%  54.4Ki external/boringssl/src/crypto/obj/obj.c
+        21.7%  31.1Ki  21.7%  31.1Ki external/boringssl/src/third_party/fiat/curve25519.c
+        17.3%  24.9Ki  17.3%  24.9Ki external/boringssl/src/crypto/fipsmodule/bcm.c
+        11.3%  16.2Ki  11.3%  16.2Ki external/boringssl/err_data.c
+         4.5%  6.39Ki   4.5%  6.39Ki [55 Others]
+         0.9%  1.26Ki   0.9%  1.26Ki external/boringssl/src/crypto/x509v3/v3_crld.c
+         0.7%  1.06Ki   0.7%  1.06Ki external/boringssl/src/crypto/asn1/tasn_typ.c
+</pre></div>
+</div>
+<p>These different representations will give you perspective about how different
+changes in the binary will affect size. Note that the <code class="docutils literal notranslate"><span class="pre">envoy.bloaty</span></code> config
+refers to a bloaty config that has regexes to capture output. The example
+config used in this type of analysis is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">custom_data_source</span><span class="p">:</span> <span class="p">{</span>
+  <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;bloaty_package&quot;</span>
+  <span class="n">base_data_source</span><span class="p">:</span> <span class="s2">&quot;compileunits&quot;</span>
+
+  <span class="c1">#envoy source code.</span>
+  <span class="n">rewrite</span><span class="p">:</span> <span class="p">{</span>
+    <span class="n">pattern</span><span class="p">:</span> <span class="s2">&quot;^(external/envoy/source/)(</span><span class="se">\\</span><span class="s2">w+/)(</span><span class="se">\\</span><span class="s2">w+)&quot;</span>
+    <span class="n">replacement</span><span class="p">:</span> <span class="s2">&quot;envoy </span><span class="se">\\</span><span class="s2">2&quot;</span>
+  <span class="p">}</span>
+
+  <span class="c1">#envoy third party libraries.</span>
+  <span class="n">rewrite</span><span class="p">:</span> <span class="p">{</span>
+      <span class="n">pattern</span><span class="p">:</span> <span class="s2">&quot;^(external/)(</span><span class="se">\\</span><span class="s2">w+/)&quot;</span>
+      <span class="n">replacement</span><span class="p">:</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">2&quot;</span>
+  <span class="p">}</span>
+
+  <span class="c1">#all compiled protos.</span>
+  <span class="n">rewrite</span><span class="p">:</span> <span class="p">{</span>
+      <span class="n">pattern</span><span class="p">:</span> <span class="s2">&quot;([.pb.cc | .pb.validate.cc])$&quot;</span>
+      <span class="n">replacement</span><span class="p">:</span> <span class="s2">&quot;compiled protos&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="open-issues-regarding-size">
+<h2>Open issues regarding size<a class="headerlink" href="#open-issues-regarding-size" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">perf/size</span></code> is a label tagging all current open issues that can improve
+binary size. Check out the issues <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/labels/perf%2Fsize">here</a>. After performing
+any change that tries to address these issues you should run through the
+analysis pipeline described above, and make sure your changes match
+expectations.</p>
+</section>
+<section id="current-status">
+<h2>Current status<a class="headerlink" href="#current-status" title="Permalink to this headline">¶</a></h2>
+<section id="ios">
+<h3>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h3>
+<p>When compiling Envoy Mobile for <code class="docutils literal notranslate"><span class="pre">arm64</span></code> only, we found the final size to be
+<strong>approximately 4.6 MB</strong> as of <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/tree/v0.2.3.03062020">v0.2.3.03062020</a>.</p>
+<p>This analysis was done by:</p>
+<ul class="simple">
+<li><p>Compiling the <a class="reference external" href="https://github.com/rebello95/EnvoyMobileAnalysis/tree/v0.2.3.03062020/AnalysisVariant">analysis variant example app</a> for release</p></li>
+<li><p>Exporing the app for Ad Hoc distribution using Xcode</p></li>
+<li><p>Enabling app thinning for <code class="docutils literal notranslate"><span class="pre">arm64</span></code> only</p></li>
+<li><p>Investigating the <code class="docutils literal notranslate"><span class="pre">.ipa</span></code> file and/or <code class="docutils literal notranslate"><span class="pre">App</span> <span class="pre">Thinning</span> <span class="pre">Size</span> <span class="pre">Report.txt</span></code></p></li>
+<li><p>Doing the same for the <a class="reference external" href="https://github.com/rebello95/EnvoyMobileAnalysis/tree/v0.2.3.03062020/AnalysisControl">analysis control example app</a> in that repository, and comparing the size differences</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Control</span><span class="p">:</span>
+<span class="n">App</span> <span class="o">+</span> <span class="n">On</span> <span class="n">Demand</span> <span class="n">Resources</span> <span class="n">size</span><span class="p">:</span> <span class="mi">27</span> <span class="n">KB</span> <span class="n">compressed</span><span class="p">,</span> <span class="mi">113</span> <span class="n">KB</span> <span class="n">uncompressed</span>
+<span class="n">App</span> <span class="n">size</span><span class="p">:</span> <span class="mi">27</span> <span class="n">KB</span> <span class="n">compressed</span><span class="p">,</span> <span class="mi">113</span> <span class="n">KB</span> <span class="n">uncompressed</span>
+
+<span class="n">Variant</span><span class="p">:</span>
+<span class="n">App</span> <span class="o">+</span> <span class="n">On</span> <span class="n">Demand</span> <span class="n">Resources</span> <span class="n">size</span><span class="p">:</span> <span class="mf">4.6</span> <span class="n">MB</span> <span class="n">compressed</span><span class="p">,</span> <span class="mf">13.8</span> <span class="n">MB</span> <span class="n">uncompressed</span>
+<span class="n">App</span> <span class="n">size</span><span class="p">:</span> <span class="mf">4.6</span> <span class="n">MB</span> <span class="n">compressed</span><span class="p">,</span> <span class="mf">13.8</span> <span class="n">MB</span> <span class="n">uncompressed</span>
+
+<span class="n">Net</span><span class="p">:</span> <span class="mf">4.6</span> <span class="n">MB</span> <span class="n">compressed</span><span class="p">,</span> <span class="mf">13.8</span> <span class="n">MB</span> <span class="n">uncompressed</span>
+</pre></div>
+</div>
+</section>
+<section id="android">
+<h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
+<p>This is being done in <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/742">#742</a>.</p>
+</section>
+</section>
+<section id="ci-integration">
+<h2>CI integration<a class="headerlink" href="#ci-integration" title="Permalink to this headline">¶</a></h2>
+<p>CI validates that no PR increases the binary size of the library above a specific
+threshold specified in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/4aebbffc2395726a4509d23d41869bcc70ef6a7b/.github/workflows/perf.yml">perf.yml configuration</a>.</p>
+<p>The status of this job is reported on PRs in the <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">/</span> <span class="pre">size_compare</span></code> task.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="performance.html" class="btn btn-neutral float-left" title="Performance analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpu_battery_impact.html" class="btn btn-neutral float-right" title="Analysis of CPU/battery impact" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 Lyft, Inc..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
