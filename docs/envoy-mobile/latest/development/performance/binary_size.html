@@ -2,20 +2,18 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<script type="text/javascript">
 
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'G-DXJEH1ZRXX']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DXJEH1ZRXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DXJEH1ZRXX');
     </script>
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Analysis of binary size &mdash; envoy-mobile 0.5.0-c70dcf documentation</title>
+  <title>Analysis of binary size &mdash; envoy-mobile 0.5.0-45ff33 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
@@ -42,7 +40,7 @@
             <a href="../../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-c70dcf
+                0.5.0-45ff33
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -281,7 +279,7 @@ expectations.</p>
 <section id="ci-integration">
 <h2>CI integration<a class="headerlink" href="#ci-integration" title="Permalink to this headline">¶</a></h2>
 <p>CI validates that no PR increases the binary size of the library above a specific
-threshold specified in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/c70dcf316dcd86abd8af4ca9d9ee1338f3fd1f9b/.github/workflows/perf.yml">perf.yml configuration</a>.</p>
+threshold specified in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/45ff331ceb29cd553360d1abf021dbf4cb8916fc/.github/workflows/perf.yml">perf.yml configuration</a>.</p>
 <p>The status of this job is reported on PRs in the <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">/</span> <span class="pre">size_compare</span></code> task.</p>
 </section>
 </section>
