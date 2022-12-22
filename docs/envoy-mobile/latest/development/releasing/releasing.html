@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Releasing &mdash; envoy-mobile 0.5.0-30440c documentation</title>
+  <title>Releasing &mdash; envoy-mobile 0.5.0-28db3d documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
@@ -24,7 +24,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -40,7 +42,7 @@
             <a href="../../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-30440c
+                0.5.0-28db3d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -97,19 +99,19 @@
            <div itemprop="articleBody">
              
   <section id="releasing">
-<span id="releasing-instructions"></span><h1>Releasing<a class="headerlink" href="#releasing" title="Permalink to this headline">¶</a></h1>
+<span id="releasing-instructions"></span><h1>Releasing<a class="headerlink" href="#releasing" title="Permalink to this heading">¶</a></h1>
 <p>The following workflow should be followed to create and publish a new Envoy Mobile
 <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/releases">release</a>.</p>
 <section id="prepare-for-release">
-<h2>Prepare for release<a class="headerlink" href="#prepare-for-release" title="Permalink to this headline">¶</a></h2>
+<h2>Prepare for release<a class="headerlink" href="#prepare-for-release" title="Permalink to this heading">¶</a></h2>
 <p>Before cutting the release, submit and merge a PR with the following changes:</p>
 <ol class="arabic simple">
-<li><p>Bump the version in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/30440c1f1001d09177a1eb6cf8c31b266af6e81f/VERSION">VERSION</a> file</p></li>
-<li><p>Provide a brief overview of the release in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/30440c1f1001d09177a1eb6cf8c31b266af6e81f/docs/root/intro/version_history.rst">version history documentation</a></p></li>
+<li><p>Bump the version in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/28db3d51c018a722703ce7b43f99b2713ce9b071/VERSION">VERSION</a> file</p></li>
+<li><p>Provide a brief overview of the release in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/28db3d51c018a722703ce7b43f99b2713ce9b071/docs/root/intro/version_history.rst">version history documentation</a></p></li>
 </ol>
 </section>
 <section id="publish-release-and-artifacts">
-<h2>Publish release and artifacts<a class="headerlink" href="#publish-release-and-artifacts" title="Permalink to this headline">¶</a></h2>
+<h2>Publish release and artifacts<a class="headerlink" href="#publish-release-and-artifacts" title="Permalink to this heading">¶</a></h2>
 <p>After merging the above changes, a new release may be
 <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/releases">tagged</a>.</p>
 <p>Upon tagging the release, jobs automatically kick off on main which:</p>
@@ -121,12 +123,12 @@
 </section>
 </section>
 <section id="pre-release-versioning">
-<h1>Pre-release versioning<a class="headerlink" href="#pre-release-versioning" title="Permalink to this headline">¶</a></h1>
+<h1>Pre-release versioning<a class="headerlink" href="#pre-release-versioning" title="Permalink to this heading">¶</a></h1>
 <p>Pre-releases are published on a weekly basis. The versioning scheme we use is <code class="docutils literal notranslate"><span class="pre">X.Y.Z.{yyyymmdd}</span></code>.
 For example: January 25, 2020: <code class="docutils literal notranslate"><span class="pre">0.3.1.20200125</span></code>.</p>
 </section>
 <section id="gpg-key">
-<h1>GPG Key<a class="headerlink" href="#gpg-key" title="Permalink to this headline">¶</a></h1>
+<h1>GPG Key<a class="headerlink" href="#gpg-key" title="Permalink to this heading">¶</a></h1>
 <p>On 2024-04-20 the GPG key used to sign releases will expire. To extend the key’s expiration date,
 follow these steps:</p>
 <p>Import the key locally:</p>

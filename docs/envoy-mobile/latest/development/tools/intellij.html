@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IntelliJ Development &mdash; envoy-mobile 0.5.0-30440c documentation</title>
+  <title>IntelliJ Development &mdash; envoy-mobile 0.5.0-28db3d documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
@@ -24,7 +24,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -40,7 +42,7 @@
             <a href="../../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-30440c
+                0.5.0-28db3d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -101,10 +103,10 @@
            <div itemprop="articleBody">
              
   <section id="intellij-development">
-<span id="id1"></span><h1>IntelliJ Development<a class="headerlink" href="#intellij-development" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>IntelliJ Development<a class="headerlink" href="#intellij-development" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://github.com/bazelbuild/intellij">bazelbuild/intellij</a> is an IntelliJ plugin for Bazel projects.</p>
 <section id="using-intellij-with-envoy-mobile">
-<h2>Using IntelliJ with Envoy Mobile<a class="headerlink" href="#using-intellij-with-envoy-mobile" title="Permalink to this headline">¶</a></h2>
+<h2>Using IntelliJ with Envoy Mobile<a class="headerlink" href="#using-intellij-with-envoy-mobile" title="Permalink to this heading">¶</a></h2>
 <p>To get started using IntelliJ with Envoy Mobile:</p>
 <ol class="arabic simple">
 <li><p>Download a supported <a class="reference external" href="https://www.jetbrains.com/idea/download/other.html">IntelliJ version</a> supported by the Bazel plugin</p></li>
@@ -113,7 +115,7 @@
 </ol>
 </section>
 <section id="known-issues">
-<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>IntelliJ is unable to find the appropriate <cite>ANDROID_HOME</cite> and <cite>ANDROID_NDK_HOME</cite> which is the reason we need to hard code it <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/tree/cdf8353b126590ef9369883ca9eba85613c81bdc/WORKSPACE#L94-L96">locally</a></p></li>
 <li><p>Ongoing issues related to the <a class="reference external" href="https://github.com/bazelbuild/intellij/issues/529">Bazel plugin</a> so we’ll update <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/tree/57fb4d405d11c89f028b10e6e00c7b5aa3d8ddd2/.bazelrc#L4">.bazelrc</a> to set <cite>–incompatible_depset_is_not_iterable</cite></p></li>

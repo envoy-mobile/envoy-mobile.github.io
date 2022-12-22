@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Analysis of binary size &mdash; envoy-mobile 0.5.0-30440c documentation</title>
+  <title>Analysis of binary size &mdash; envoy-mobile 0.5.0-28db3d documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
@@ -24,7 +24,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -40,7 +42,7 @@
             <a href="../../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-30440c
+                0.5.0-28db3d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -106,13 +108,13 @@
            <div itemprop="articleBody">
              
   <section id="analysis-of-binary-size">
-<span id="dev-performance-size"></span><h1>Analysis of binary size<a class="headerlink" href="#analysis-of-binary-size" title="Permalink to this headline">¶</a></h1>
+<span id="dev-performance-size"></span><h1>Analysis of binary size<a class="headerlink" href="#analysis-of-binary-size" title="Permalink to this heading">¶</a></h1>
 <p>In order to be able to tackle binary size analysis,
 the Envoy Mobile team has standardized the process in this document.</p>
 <section id="object-files-analysis">
-<h2>Object files analysis<a class="headerlink" href="#object-files-analysis" title="Permalink to this headline">¶</a></h2>
+<h2>Object files analysis<a class="headerlink" href="#object-files-analysis" title="Permalink to this heading">¶</a></h2>
 <section id="getting-a-binary">
-<h3>Getting a binary<a class="headerlink" href="#getting-a-binary" title="Permalink to this headline">¶</a></h3>
+<h3>Getting a binary<a class="headerlink" href="#getting-a-binary" title="Permalink to this heading">¶</a></h3>
 <p>In order to have consistency of results this is the toolchain used to build the
 binary for analysis:</p>
 <ol class="arabic simple">
@@ -174,7 +176,7 @@ binary size:</p>
 <p>The unstripped and stripped binary can then be used for analysis.</p>
 </section>
 <section id="analysis">
-<h3>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h3>
+<h3>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">¶</a></h3>
 <p>While there are a lot of tools out there that can be used for binary size
 analysis (otool, objdump, jtool), <a class="reference external" href="https://github.com/google/bloaty">Bloaty</a>
 has been the tool of choice to run object file analysis.</p>
@@ -238,7 +240,7 @@ config used in this type of analysis is:</p>
 </section>
 </section>
 <section id="open-issues-regarding-size">
-<h2>Open issues regarding size<a class="headerlink" href="#open-issues-regarding-size" title="Permalink to this headline">¶</a></h2>
+<h2>Open issues regarding size<a class="headerlink" href="#open-issues-regarding-size" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">perf/size</span></code> is a label tagging all current open issues that can improve
 binary size. Check out the issues <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/labels/perf%2Fsize">here</a>. After performing
 any change that tries to address these issues you should run through the
@@ -246,9 +248,9 @@ analysis pipeline described above, and make sure your changes match
 expectations.</p>
 </section>
 <section id="current-status">
-<h2>Current status<a class="headerlink" href="#current-status" title="Permalink to this headline">¶</a></h2>
+<h2>Current status<a class="headerlink" href="#current-status" title="Permalink to this heading">¶</a></h2>
 <section id="ios">
-<h3>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h3>
+<h3>iOS<a class="headerlink" href="#ios" title="Permalink to this heading">¶</a></h3>
 <p>When compiling Envoy Mobile for <code class="docutils literal notranslate"><span class="pre">arm64</span></code> only, we found the final size to be
 <strong>approximately 4.6 MB</strong> as of <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/tree/v0.2.3.03062020">v0.2.3.03062020</a>.</p>
 <p>This analysis was done by:</p>
@@ -272,14 +274,14 @@ expectations.</p>
 </div>
 </section>
 <section id="android">
-<h3>Android<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
+<h3>Android<a class="headerlink" href="#android" title="Permalink to this heading">¶</a></h3>
 <p>This is being done in <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/742">#742</a>.</p>
 </section>
 </section>
 <section id="ci-integration">
-<h2>CI integration<a class="headerlink" href="#ci-integration" title="Permalink to this headline">¶</a></h2>
+<h2>CI integration<a class="headerlink" href="#ci-integration" title="Permalink to this heading">¶</a></h2>
 <p>CI validates that no PR increases the binary size of the library above a specific
-threshold specified in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/30440c1f1001d09177a1eb6cf8c31b266af6e81f/.github/workflows/perf.yml">perf.yml configuration</a>.</p>
+threshold specified in the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/28db3d51c018a722703ce7b43f99b2713ce9b071/.github/workflows/perf.yml">perf.yml configuration</a>.</p>
 <p>The status of this job is reported on PRs in the <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">/</span> <span class="pre">size_compare</span></code> task.</p>
 </section>
 </section>

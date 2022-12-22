@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comparison to similar systems &mdash; envoy-mobile 0.5.0-30440c documentation</title>
+  <title>Comparison to similar systems &mdash; envoy-mobile 0.5.0-28db3d documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -24,7 +24,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,7 +42,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-30440c
+                0.5.0-28db3d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -95,7 +97,7 @@
            <div itemprop="articleBody">
              
   <section id="comparison-to-similar-systems">
-<h1>Comparison to similar systems<a class="headerlink" href="#comparison-to-similar-systems" title="Permalink to this headline">¶</a></h1>
+<h1>Comparison to similar systems<a class="headerlink" href="#comparison-to-similar-systems" title="Permalink to this heading">¶</a></h1>
 <p>The Envoy Mobile proposed roadmap has similarities to several existing systems. They are compared
 below.</p>
 <div class="admonition attention">
@@ -104,7 +106,7 @@ below.</p>
 date. If that is the case please let us know and we will fix it.</p>
 </div>
 <section id="id1">
-<h2><a class="reference external" href="https://chromium.googlesource.com/chromium/src/+/master/components/cronet/">Cronet</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2><a class="reference external" href="https://chromium.googlesource.com/chromium/src/+/master/components/cronet/">Cronet</a><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
 <p>Cronet is Google’s cross-platform client networking library that is used by all of its mobile
 applications and several other companies including Snap. In terms of goals, Cronet is a subset of
 Envoy Mobile targeted at advanced client networking protocols, with the caveat that it already
@@ -113,7 +115,7 @@ integration, etc. With that said, there is a lot to learn from Cronet in terms o
 QUIC in a robust and production ready way.</p>
 </section>
 <section id="proxygen-and-mvfst">
-<h2><a class="reference external" href="https://github.com/facebook/proxygen">proxygen</a> and <a class="reference external" href="https://github.com/facebookincubator/mvfst">mvfst</a><a class="headerlink" href="#proxygen-and-mvfst" title="Permalink to this headline">¶</a></h2>
+<h2><a class="reference external" href="https://github.com/facebook/proxygen">proxygen</a> and <a class="reference external" href="https://github.com/facebookincubator/mvfst">mvfst</a><a class="headerlink" href="#proxygen-and-mvfst" title="Permalink to this heading">¶</a></h2>
 <p>proxygen is Facebook’s high performance HTTP proxy library, written on top of a Finagle like
 C++ library called wangle. mvfst is Facebook’s recently open sourced QUIC implementation. Both
 libraries are used by Facebook in their mobile applications, but none of the mobile integration
@@ -121,7 +123,7 @@ code has been open sourced. Like Cronet, Envoy Mobile’s goals are a superset o
 mvfst provide.</p>
 </section>
 <section id="id2">
-<h2><a class="reference external" href="https://www.grpc.io/">gRPC</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2><a class="reference external" href="https://www.grpc.io/">gRPC</a><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
 <p>gRPC is a multi-platform message passing system out of Google. It uses an IDL to describe an RPC
 library and then implements application specific runtimes for a variety of different languages. The
 underlying transport is HTTP/2. gRPC does have mobile client libraries, though the production

@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HTTP requests and streams &mdash; envoy-mobile 0.5.0-30440c documentation</title>
+  <title>HTTP requests and streams &mdash; envoy-mobile 0.5.0-28db3d documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -24,7 +24,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,7 +42,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-30440c
+                0.5.0-28db3d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -117,11 +119,11 @@
            <div itemprop="articleBody">
              
   <section id="http-requests-and-streams">
-<span id="api-http"></span><h1>HTTP requests and streams<a class="headerlink" href="#http-requests-and-streams" title="Permalink to this headline">¶</a></h1>
+<span id="api-http"></span><h1>HTTP requests and streams<a class="headerlink" href="#http-requests-and-streams" title="Permalink to this heading">¶</a></h1>
 <p>Streams are first-class citizens in Envoy Mobile, and are supported out-of-the-box.</p>
 <p>Unary requests (single request / single response) are also supported using the same interfaces.</p>
 <section id="quick-start">
-<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this heading">¶</a></h2>
 <p>Below are some quick examples for getting started with HTTP streams. See the individual class references
 in the later sections of this page for in-depth information on how each type is used.</p>
 <p>Start and interact with an HTTP stream in <strong>Kotlin</strong>:</p>
@@ -178,7 +180,7 @@ in the later sections of this page for in-depth information on how each type is 
 </div>
 </section>
 <section id="requestheaders">
-<h2><code class="docutils literal notranslate"><span class="pre">RequestHeaders</span></code><a class="headerlink" href="#requestheaders" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">RequestHeaders</span></code><a class="headerlink" href="#requestheaders" title="Permalink to this heading">¶</a></h2>
 <p>Creating a stream is done by initializing a <code class="docutils literal notranslate"><span class="pre">RequestHeaders</span></code> instance via a <code class="docutils literal notranslate"><span class="pre">RequestHeadersBuilder</span></code>,
 then passing it to a previously created <a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">StreamClient instance</span></a>.</p>
 <p><strong>Kotlin</strong>:</p>
@@ -201,7 +203,7 @@ then passing it to a previously created <a class="reference internal" href="star
 </div>
 </section>
 <section id="streamprototype">
-<h2><code class="docutils literal notranslate"><span class="pre">StreamPrototype</span></code><a class="headerlink" href="#streamprototype" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">StreamPrototype</span></code><a class="headerlink" href="#streamprototype" title="Permalink to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">StreamPrototype</span></code> is used to configure streams prior to starting them by assigning callbacks
 to be invoked when response data is received on the stream.</p>
 <p>To create a <code class="docutils literal notranslate"><span class="pre">StreamPrototype</span></code>, use an instance of <code class="docutils literal notranslate"><span class="pre">StreamClient</span></code>.</p>
@@ -239,7 +241,7 @@ to be invoked when response data is received on the stream.</p>
 </div>
 </section>
 <section id="retrypolicy">
-<h2><code class="docutils literal notranslate"><span class="pre">RetryPolicy</span></code><a class="headerlink" href="#retrypolicy" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">RetryPolicy</span></code><a class="headerlink" href="#retrypolicy" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">RetryPolicy</span></code> type allows for customizing retry rules that should be applied to an outbound
 request. These rules are added by calling <code class="docutils literal notranslate"><span class="pre">addRetryPolicy(...)</span></code> on the <code class="docutils literal notranslate"><span class="pre">RequestHeadersBuilder</span></code>,
 and are applied when the request headers are sent.</p>
@@ -250,7 +252,7 @@ and are applied when the request headers are sent.</p>
 </ul>
 </section>
 <section id="stream">
-<h2><code class="docutils literal notranslate"><span class="pre">Stream</span></code><a class="headerlink" href="#stream" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">Stream</span></code><a class="headerlink" href="#stream" title="Permalink to this heading">¶</a></h2>
 <p>Streams are started by calling <code class="docutils literal notranslate"><span class="pre">start()</span></code> on a <code class="docutils literal notranslate"><span class="pre">StreamPrototype</span></code>.</p>
 <p>Doing so returns a <code class="docutils literal notranslate"><span class="pre">Stream</span></code> which allows the sender to interact with the stream.</p>
 <p><strong>Kotlin</strong>:</p>
@@ -295,7 +297,7 @@ and are applied when the request headers are sent.</p>
 </div>
 </section>
 <section id="unary-requests">
-<h2>Unary requests<a class="headerlink" href="#unary-requests" title="Permalink to this headline">¶</a></h2>
+<h2>Unary requests<a class="headerlink" href="#unary-requests" title="Permalink to this heading">¶</a></h2>
 <p>As mentioned above, unary requests are made using the same types that handle streams.</p>
 <p>Sending a unary request is done simply by closing the <code class="docutils literal notranslate"><span class="pre">Stream</span></code> after the
 set of headers/data/trailers has been written.</p>

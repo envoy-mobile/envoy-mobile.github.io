@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VPN analysis &mdash; envoy-mobile 0.5.0-30440c documentation</title>
+  <title>VPN analysis &mdash; envoy-mobile 0.5.0-28db3d documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
@@ -24,7 +24,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -40,7 +42,7 @@
             <a href="../../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-30440c
+                0.5.0-28db3d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -105,7 +107,7 @@
            <div itemprop="articleBody">
              
   <section id="vpn-analysis">
-<span id="id1"></span><h1>VPN analysis<a class="headerlink" href="#vpn-analysis" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>VPN analysis<a class="headerlink" href="#vpn-analysis" title="Permalink to this heading">¶</a></h1>
 <p>Given the fact that Envoy Mobile utilizes raw BSD sockets for performing API
 calls today (investigations into which have been detailed in
 <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/13">#13</a>), we wanted to validate the behavior of the library
@@ -119,9 +121,9 @@ to VPNs, it needs to:</p>
 <li><p>Mirror this behavior on both iOS and Android</p></li>
 </ul>
 <section id="investigation">
-<h2>Investigation<a class="headerlink" href="#investigation" title="Permalink to this headline">¶</a></h2>
+<h2>Investigation<a class="headerlink" href="#investigation" title="Permalink to this heading">¶</a></h2>
 <section id="experiment">
-<h3>Experiment<a class="headerlink" href="#experiment" title="Permalink to this headline">¶</a></h3>
+<h3>Experiment<a class="headerlink" href="#experiment" title="Permalink to this heading">¶</a></h3>
 <p>The following approach was taken to experiment with VPN connections on both
 iOS and Android:</p>
 <ol class="arabic simple">
@@ -147,7 +149,7 @@ than switching onto the VPN when it was enabled).</p>
 </section>
 </section>
 <section id="deep-dive">
-<h2>Deep dive<a class="headerlink" href="#deep-dive" title="Permalink to this headline">¶</a></h2>
+<h2>Deep dive<a class="headerlink" href="#deep-dive" title="Permalink to this heading">¶</a></h2>
 <p><strong>Enabling the VPN</strong></p>
 <p>Our understanding of why Envoy Mobile sends traffic through VPNs the way it
 does is as follows.</p>
@@ -201,7 +203,7 @@ switch traffic onto the VPN slightly faster than Envoy Mobile. This can likely
 be attributed to the above reasoning.</p>
 </section>
 <section id="conclusions">
-<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this heading">¶</a></h2>
 <p>Based on the above investigations, Envoy Mobile handles VPN connections
 properly for the most part on both iOS and Android.</p>
 <p>There is room for improvement as outlined in <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/727">#727</a>,

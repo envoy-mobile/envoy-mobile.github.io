@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Testing &mdash; envoy-mobile 0.5.0-30440c documentation</title>
+  <title>Testing &mdash; envoy-mobile 0.5.0-28db3d documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
@@ -24,7 +24,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -40,7 +42,7 @@
             <a href="../../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-30440c
+                0.5.0-28db3d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -102,7 +104,7 @@
            <div itemprop="articleBody">
              
   <section id="testing">
-<span id="id1"></span><h1>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="local_stats.html">Local Stats</a><ul>
@@ -119,27 +121,27 @@ project.</p>
 and are run on CI for all PRs and merges to main.</p>
 <p>Tests may be run locally as outlined below.</p>
 <section id="common-c-c-tests">
-<h2>Common (C/C++) tests<a class="headerlink" href="#common-c-c-tests" title="Permalink to this headline">¶</a></h2>
+<h2>Common (C/C++) tests<a class="headerlink" href="#common-c-c-tests" title="Permalink to this heading">¶</a></h2>
 <p>To run the entire C/C++ test suite locally, use the following Bazel command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">./bazelw</span> <span class="pre">test</span> <span class="pre">--test_output=all</span> <span class="pre">//test/common/...</span></code></p>
 </section>
 <section id="java-tests">
-<h2>Java tests<a class="headerlink" href="#java-tests" title="Permalink to this headline">¶</a></h2>
+<h2>Java tests<a class="headerlink" href="#java-tests" title="Permalink to this heading">¶</a></h2>
 <p>To run the entire Java unit test suite locally, use the following Bazel command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">./bazelw</span> <span class="pre">test</span> <span class="pre">--test_output=all</span> <span class="pre">--build_tests_only</span> <span class="pre">//test/java/...</span></code></p>
 </section>
 <section id="kotlin-tests">
-<h2>Kotlin tests<a class="headerlink" href="#kotlin-tests" title="Permalink to this headline">¶</a></h2>
+<h2>Kotlin tests<a class="headerlink" href="#kotlin-tests" title="Permalink to this heading">¶</a></h2>
 <p>To run the entire Kotlin unit test suite locally, use the following Bazel command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">./bazelw</span> <span class="pre">test</span> <span class="pre">--test_output=all</span> <span class="pre">--build_tests_only</span> <span class="pre">//test/kotlin/...</span></code></p>
 </section>
 <section id="swift-tests">
-<h2>Swift tests<a class="headerlink" href="#swift-tests" title="Permalink to this headline">¶</a></h2>
+<h2>Swift tests<a class="headerlink" href="#swift-tests" title="Permalink to this heading">¶</a></h2>
 <p>To run the entire Swift unit test suite locally, use the following Bazel command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">./bazelw</span> <span class="pre">test</span> <span class="pre">--config=ios</span> <span class="pre">--test_output=all</span> <span class="pre">--build_tests_only</span> <span class="pre">//test/swift/...</span></code></p>
 </section>
 <section id="coverage">
-<h2>Coverage<a class="headerlink" href="#coverage" title="Permalink to this headline">¶</a></h2>
+<h2>Coverage<a class="headerlink" href="#coverage" title="Permalink to this heading">¶</a></h2>
 <p>Currently, CI runs coverage jobs whenever any of the common (C/C++ code) under
 <code class="docutils literal notranslate"><span class="pre">library/common/...</span></code> or <code class="docutils literal notranslate"><span class="pre">test/common/...</span></code> changes; and on all commits to main.
 The coverage job will fail if the resulting coverage percentage falls below the project’s

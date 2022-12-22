@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pulse (Stats) &mdash; envoy-mobile 0.5.0-30440c documentation</title>
+  <title>Pulse (Stats) &mdash; envoy-mobile 0.5.0-28db3d documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -24,7 +24,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,7 +42,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-30440c
+                0.5.0-28db3d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -115,9 +117,9 @@
            <div itemprop="articleBody">
              
   <section id="pulse-stats">
-<span id="api-stats"></span><h1>Pulse (Stats)<a class="headerlink" href="#pulse-stats" title="Permalink to this headline">¶</a></h1>
+<span id="api-stats"></span><h1>Pulse (Stats)<a class="headerlink" href="#pulse-stats" title="Permalink to this heading">¶</a></h1>
 <section id="pulseclient">
-<h2><code class="docutils literal notranslate"><span class="pre">PulseClient</span></code><a class="headerlink" href="#pulseclient" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">PulseClient</span></code><a class="headerlink" href="#pulseclient" title="Permalink to this heading">¶</a></h2>
 <p>Pulse is Envoy Mobile’s stats library, used for capturing client application time series
 metrics. Currently the following types of metrics are supported: <code class="docutils literal notranslate"><span class="pre">Counter</span></code>, <code class="docutils literal notranslate"><span class="pre">Gauge</span></code>, <code class="docutils literal notranslate"><span class="pre">Timer</span></code>, and <code class="docutils literal notranslate"><span class="pre">Distribution</span></code>.</p>
 <p>Pulse also supports custom tags (cardinality). For each type of the metrics, there are two ways to add custom tags:</p>
@@ -160,7 +162,7 @@ serves as the identifier of the counter. The string formed from the example code
 </div>
 </section>
 <section id="counter">
-<h2><code class="docutils literal notranslate"><span class="pre">Counter</span></code><a class="headerlink" href="#counter" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">Counter</span></code><a class="headerlink" href="#counter" title="Permalink to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">Counter</span></code> can be incremented by calling the <code class="docutils literal notranslate"><span class="pre">increment()</span></code> method when applicable.</p>
 <p>The count argument of <code class="docutils literal notranslate"><span class="pre">increment</span></code> is defaulted with a value of <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
 <p><strong>Example</strong>:</p>
@@ -196,7 +198,7 @@ serves as the identifier of the counter. The string formed from the example code
 </div>
 </section>
 <section id="gauge">
-<h2><code class="docutils literal notranslate"><span class="pre">Gauge</span></code><a class="headerlink" href="#gauge" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">Gauge</span></code><a class="headerlink" href="#gauge" title="Permalink to this heading">¶</a></h2>
 <p>The value of a <code class="docutils literal notranslate"><span class="pre">Gauge</span></code> can be incremented, decremented, or reassigned.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">gauge</span> <span class="n">to</span> <span class="mi">5</span>
@@ -223,7 +225,7 @@ serves as the identifier of the counter. The string formed from the example code
 </div>
 </section>
 <section id="timer">
-<h2><code class="docutils literal notranslate"><span class="pre">Timer</span></code><a class="headerlink" href="#timer" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">Timer</span></code><a class="headerlink" href="#timer" title="Permalink to this heading">¶</a></h2>
 <p>Use <code class="docutils literal notranslate"><span class="pre">Timer</span></code> to track a distribution of time durations.
 You can view the cumulative stats like quantile data (p50/p90/etc.) and average durations.</p>
 <p><strong>Example</strong>:</p>
@@ -237,7 +239,7 @@ You can view the cumulative stats like quantile data (p50/p90/etc.) and average 
 </div>
 </section>
 <section id="distribution">
-<h2><code class="docutils literal notranslate"><span class="pre">Distribution</span></code><a class="headerlink" href="#distribution" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">Distribution</span></code><a class="headerlink" href="#distribution" title="Permalink to this heading">¶</a></h2>
 <p>Use <code class="docutils literal notranslate"><span class="pre">Distribution</span></code> to track a distribution of int values.
 You can view the cumulative stats like quantile data (p50/p90/etc.), sum, and averages.</p>
 <p><strong>Example</strong>:</p>

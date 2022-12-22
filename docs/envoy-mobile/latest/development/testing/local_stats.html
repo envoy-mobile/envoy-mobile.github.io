@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Local Stats &mdash; envoy-mobile 0.5.0-30440c documentation</title>
+  <title>Local Stats &mdash; envoy-mobile 0.5.0-28db3d documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
@@ -24,7 +24,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -40,7 +42,7 @@
             <a href="../../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-30440c
+                0.5.0-28db3d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -107,13 +109,13 @@
            <div itemprop="articleBody">
              
   <section id="local-stats">
-<span id="testing-local-stats"></span><h1>Local Stats<a class="headerlink" href="#local-stats" title="Permalink to this headline">¶</a></h1>
+<span id="testing-local-stats"></span><h1>Local Stats<a class="headerlink" href="#local-stats" title="Permalink to this heading">¶</a></h1>
 <p>The <cite>local-stats</cite> <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/tree/local-stats">branch</a> allows a
 developer to run a local statsd server, and see stats emissions from a client running in the
 simulator/emulator. Unless network tunneling is set up this is not going to work in a physical
 device, as the statsd server is running on the computer’s local network.</p>
 <section id="config">
-<h2>Config<a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h2>
+<h2>Config<a class="headerlink" href="#config" title="Permalink to this heading">¶</a></h2>
 <p>The <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/local-stats/library/common/config_template.cc">config template</a>
 has already been updated to use a local statsd server. However, if you are using Android to test,
 the <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/blob/local-stats/library/common/config_template.cc#L203">static address</a>
@@ -121,7 +123,7 @@ used for the server should be changed to <code class="docutils literal notransla
 docs.</p>
 </section>
 <section id="steps">
-<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
+<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p>Build the desired dist target following the build docs <a class="reference internal" href="../../start/building/building.html#building"><span class="std std-ref">here</span></a>.</p></li>
 <li><p>Start statsd locally. You can do this by cloning <a class="reference external" href="https://github.com/statsd/statsd">statsd</a> and running from within the root of
