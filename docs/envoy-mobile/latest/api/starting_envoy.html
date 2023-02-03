@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-cd3b8f documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-754aa5 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -38,7 +38,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-cd3b8f
+                0.5.0-754aa5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -100,6 +100,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#forceipv6"><code class="docutils literal notranslate"><span class="pre">forceIPv6</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enableplatformcertificatesvalidation"><code class="docutils literal notranslate"><span class="pre">enablePlatformCertificatesValidation</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enableproxying"><code class="docutils literal notranslate"><span class="pre">enableProxying</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enablednscache"><code class="docutils literal notranslate"><span class="pre">enableDNSCache</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
@@ -553,6 +554,22 @@ Available on Android only.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">enableProxying</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="enablednscache">
+<h3><code class="docutils literal notranslate"><span class="pre">enableDNSCache</span></code><a class="headerlink" href="#enablednscache" title="Permalink to this heading">¶</a></h3>
+<p>Specify whether to enable DNS cache. Note that DNS cache requires an addition of
+a key value store named ‘reserved.platform_store’.</p>
+<p>The interval at which results are saved to the key value store defaults to 1s
+but can also be set explicitly.</p>
+<p>A maximum of 100 entries will be stored.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">enableDNSCache</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">saveInterval</span><span class="p">:</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">enableDNSCache</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">saveInterval</span><span class="p">:</span> <span class="mi">60</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
