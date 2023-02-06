@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version history &mdash; envoy-mobile 0.5.0-fd7ce9 documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.5.0-72cbe0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -38,7 +38,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-fd7ce9
+                0.5.0-72cbe0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -120,6 +120,8 @@
 <li><p>swift/kotlin: add <cite>cancel</cite> method to <cite>GRPCStream`</cite> type (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/24780">#24780</a>).</p></li>
 <li><p>all: enable HTTP/3 by default in Engine builders.</p></li>
 <li><p>api: remove <code class="docutils literal notranslate"><span class="pre">extendKeepaliveTimeout</span></code> method from engine builders.</p></li>
+<li><p>api: move Java and C++ addVirtualClusters taking concatenated cluster YAML to addVirtualCluster with one cluster config at a time (:issue: <cite>#25297 &lt;25297&gt;</cite>, :issue: <cite>#25259 &lt;25259&gt;</cite>)</p></li>
+<li><p>api: move Java and C++ dnsPreresolveHostnames from taking concatenated cluster YAML to taking a list of String hostnames (:issue: <cite>#25297 &lt;25297&gt;</cite>, :issue: <cite>#25259 &lt;25259&gt;</cite>)</p></li>
 </ul>
 <p>Bugfixes:</p>
 <ul class="simple">

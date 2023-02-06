@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-fd7ce9 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-72cbe0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -38,7 +38,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-fd7ce9
+                0.5.0-72cbe0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -225,14 +225,15 @@ rate, as it is required for Envoy Mobile to recover and continue making requests
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>This API is non-ideal as it exposes lower-level internals of Envoy than desired by this
-project.
-<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/1581">#1581</a> tracks enhancing this API.</p>
+project.</p>
 </div>
 <p>Add a list of hostnames to preresolve on Engine startup.
-The configuration is expected as a JSON list.</p>
+For Swift, the configuration is expected as a JSON list.
+<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/1581">#1581</a> tracks enhancing this API.
+For Kotlin, the configuration is expected as a list of hostnames</p>
 <blockquote>
 <div><p>// Kotlin
-builder.addDNSPreresolveHostnames(“[{&quot;address&quot;: &quot;foo.com”, &quot;port_value&quot;: 443}]”)</p>
+builder.addDNSPreresolveHostnames(“{“lyft.com”, “google.com”}”)</p>
 <p>// Swift
 builder.addDNSPreresolveHostnames(“[{&quot;address&quot;: &quot;foo.com”, &quot;port_value&quot;: 443}]”)</p>
 </div></blockquote>
@@ -349,10 +350,10 @@ This functionality is used for stat segmentation.</p>
 </div>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addVirtualClusters</span><span class="p">(</span><span class="s2">&quot;[{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">vcluster</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">headers</span><span class="se">\&quot;</span><span class="s2">:[{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">:path</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">exact_match</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">/v1/vcluster</span><span class="se">\&quot;</span><span class="s2">}]}]&quot;</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addVirtualCluster</span><span class="p">(</span><span class="s2">&quot;{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">vcluster</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">headers</span><span class="se">\&quot;</span><span class="s2">:[{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">:path</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">exact_match</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">/v1/vcluster</span><span class="se">\&quot;</span><span class="s2">}]}&quot;</span><span class="p">)</span>
 
 <span class="o">//</span> <span class="n">Swift</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addVirtualClusters</span><span class="p">(</span><span class="s2">&quot;[{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">vcluster</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">headers</span><span class="se">\&quot;</span><span class="s2">:[{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">:path</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">exact_match</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">/v1/vcluster</span><span class="se">\&quot;</span><span class="s2">}]}]&quot;</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addVirtualCluster</span><span class="p">(</span><span class="s2">&quot;{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">vcluster</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">headers</span><span class="se">\&quot;</span><span class="s2">:[{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">:path</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">exact_match</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">/v1/vcluster</span><span class="se">\&quot;</span><span class="s2">}]}&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
