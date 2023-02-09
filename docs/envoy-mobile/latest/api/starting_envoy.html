@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-48364f documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-587e9d documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -38,7 +38,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-48364f
+                0.5.0-587e9d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -84,7 +84,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#addpertryidletimeoutseconds"><code class="docutils literal notranslate"><span class="pre">addPerTryIdleTimeoutSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addappversion"><code class="docutils literal notranslate"><span class="pre">addAppVersion</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addappid"><code class="docutils literal notranslate"><span class="pre">addAppId</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#addvirtualclusters"><code class="docutils literal notranslate"><span class="pre">addVirtualClusters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addvirtualcluster"><code class="docutils literal notranslate"><span class="pre">addVirtualCluster</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enableadmininterface"><code class="docutils literal notranslate"><span class="pre">enableAdminInterface</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setonenginerunning"><code class="docutils literal notranslate"><span class="pre">setOnEngineRunning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setlogger"><code class="docutils literal notranslate"><span class="pre">setLogger</span></code></a></li>
@@ -224,20 +224,12 @@ rate, as it is required for Envoy Mobile to recover and continue making requests
 </section>
 <section id="adddnspreresolvehostnames">
 <h3><code class="docutils literal notranslate"><span class="pre">addDNSPreresolveHostnames</span></code><a class="headerlink" href="#adddnspreresolvehostnames" title="Permalink to this heading">¶</a></h3>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>This API is non-ideal as it exposes lower-level internals of Envoy than desired by this
-project.</p>
-</div>
-<p>Add a list of hostnames to preresolve on Engine startup.
-For Swift, the configuration is expected as a JSON list.
-<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/1581">#1581</a> tracks enhancing this API.
-For Kotlin, the configuration is expected as a list of hostnames</p>
+<p>Add a list of hostnames to preresolve on Engine startup.</p>
 <blockquote>
 <div><p>// Kotlin
-builder.addDNSPreresolveHostnames(“{“lyft.com”, “google.com”}”)</p>
+builder.addDNSPreresolveHostnames(listOf(“lyft.com”, “google.com”))</p>
 <p>// Swift
-builder.addDNSPreresolveHostnames(“[{&quot;address&quot;: &quot;foo.com”, &quot;port_value&quot;: 443}]”)</p>
+builder.addDNSPreresolveHostnames([“lyft.com”, “google.com”])</p>
 </div></blockquote>
 </section>
 <section id="addloglevel">
@@ -340,10 +332,10 @@ This information is sent as metadata when flushing stats.</p>
 </pre></div>
 </div>
 </section>
-<section id="addvirtualclusters">
-<h3><code class="docutils literal notranslate"><span class="pre">addVirtualClusters</span></code><a class="headerlink" href="#addvirtualclusters" title="Permalink to this heading">¶</a></h3>
-<p>Specify the virtual clusters config for Envoy Mobile’s configuration.
-The configuration is expected as a JSON list.
+<section id="addvirtualcluster">
+<h3><code class="docutils literal notranslate"><span class="pre">addVirtualCluster</span></code><a class="headerlink" href="#addvirtualcluster" title="Permalink to this heading">¶</a></h3>
+<p>Add a virtual cluster config for Envoy Mobile’s configuration.
+The configuration is expected as a JSON object.
 This functionality is used for stat segmentation.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
