@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-bb554f documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-525d2a documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -38,7 +38,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-bb554f
+                0.5.0-525d2a
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,9 +93,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#setnetworkmonitoringmode"><code class="docutils literal notranslate"><span class="pre">setNetworkMonitoringMode</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablehappyeyeballs"><code class="docutils literal notranslate"><span class="pre">enableHappyEyeballs</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablegzipdecompression"><code class="docutils literal notranslate"><span class="pre">enableGzipDecompression</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#enablegzipcompression"><code class="docutils literal notranslate"><span class="pre">enableGzipCompression</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablebrotlidecompression"><code class="docutils literal notranslate"><span class="pre">enableBrotliDecompression</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#enablebrotlicompression"><code class="docutils literal notranslate"><span class="pre">enableBrotliCompression</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablesockettagging"><code class="docutils literal notranslate"><span class="pre">enableSocketTagging</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enableinterfacebinding"><code class="docutils literal notranslate"><span class="pre">enableInterfaceBinding</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addkeyvaluestore"><code class="docutils literal notranslate"><span class="pre">addKeyValueStore</span></code></a></li>
@@ -465,20 +463,6 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">NWPathM
 <p>Default values from the <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/compression/gzip/decompressor/v3/gzip.proto">gzip decompressor proto</a>
 are used.</p>
 </section>
-<section id="enablegzipcompression">
-<h3><code class="docutils literal notranslate"><span class="pre">enableGzipCompression</span></code><a class="headerlink" href="#enablegzipcompression" title="Permalink to this heading">¶</a></h3>
-<p>Specify whether to enable transparent request Gzip compression. Defaults to false.</p>
-<p><strong>Example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">enableGzipCompression</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
-
-<span class="o">//</span> <span class="n">Swift</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">enableGzipCompression</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Default values from the <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/compression/gzip/compressor/v3/gzip.proto">gzip compressor proto</a>
-are used.</p>
-</section>
 <section id="enablebrotlidecompression">
 <h3><code class="docutils literal notranslate"><span class="pre">enableBrotliDecompression</span></code><a class="headerlink" href="#enablebrotlidecompression" title="Permalink to this heading">¶</a></h3>
 <p>Specify whether to enable transparent response Brotli decompression. Defaults to false.</p>
@@ -491,20 +475,6 @@ are used.</p>
 </pre></div>
 </div>
 <p>Default values from the <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/compression/brotli/decompressor/v3/brotli.proto">brotli decompressor proto</a>
-are used.</p>
-</section>
-<section id="enablebrotlicompression">
-<h3><code class="docutils literal notranslate"><span class="pre">enableBrotliCompression</span></code><a class="headerlink" href="#enablebrotlicompression" title="Permalink to this heading">¶</a></h3>
-<p>Specify whether to enable transparent request Brotli compression. Defaults to false.</p>
-<p><strong>Example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">enableBrotliCompression</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
-
-<span class="o">//</span> <span class="n">Swift</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">enableBrotliCompression</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Default values from the <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/compression/brotli/compressor/v3/brotli.proto">brotli compressor proto</a>
 are used.</p>
 </section>
 <section id="enablesockettagging">
