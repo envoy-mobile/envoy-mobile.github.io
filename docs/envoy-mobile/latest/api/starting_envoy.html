@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-02d091 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-95a3fa documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -38,7 +38,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-02d091
+                0.5.0-95a3fa
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -101,6 +101,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#enableplatformcertificatesvalidation"><code class="docutils literal notranslate"><span class="pre">enablePlatformCertificatesValidation</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enableproxying"><code class="docutils literal notranslate"><span class="pre">enableProxying</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablednscache"><code class="docutils literal notranslate"><span class="pre">enableDNSCache</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setruntimeguard"><code class="docutils literal notranslate"><span class="pre">setRuntimeGuard</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
@@ -567,6 +568,20 @@ but can also be set explicitly.</p>
 
 <span class="o">//</span> <span class="n">Swift</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">enableDNSCache</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">saveInterval</span><span class="p">:</span> <span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="setruntimeguard">
+<h3><code class="docutils literal notranslate"><span class="pre">setRuntimeGuard</span></code><a class="headerlink" href="#setruntimeguard" title="Permalink to this heading">¶</a></h3>
+<p>Adds a runtime guard key value pair to envoy configuration.  The guard is of the short form “feature”
+rather than the fully qualified “envoy.reloadable_features.feature”
+Note that Envoy will fail to start up in debug mode if an unknown guard is specified.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setRuntimeGuard</span><span class="p">(</span><span class="s2">&quot;feature&quot;</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setRuntimeGuard</span><span class="p">(</span><span class="s2">&quot;feature&quot;</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
