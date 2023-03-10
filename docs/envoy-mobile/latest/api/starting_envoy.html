@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-748628 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-e880f4 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -38,7 +38,7 @@
             <a href="../index.html" class="icon icon-home"> envoy-mobile
           </a>
               <div class="version">
-                0.5.0-748628
+                0.5.0-e880f4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -102,6 +102,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#enableproxying"><code class="docutils literal notranslate"><span class="pre">enableProxying</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablednscache"><code class="docutils literal notranslate"><span class="pre">enableDNSCache</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setruntimeguard"><code class="docutils literal notranslate"><span class="pre">setRuntimeGuard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addrtdslayer"><code class="docutils literal notranslate"><span class="pre">addRtdsLayer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setaggregateddiscoveryservice"><code class="docutils literal notranslate"><span class="pre">setAggregatedDiscoveryService</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setnodeid"><code class="docutils literal notranslate"><span class="pre">setNodeId</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setnodelocality"><code class="docutils literal notranslate"><span class="pre">setNodeLocality</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#advanced-configuration">Advanced configuration</a></li>
@@ -582,6 +586,75 @@ Note that Envoy will fail to start up in debug mode if an unknown guard is speci
 
 <span class="o">//</span> <span class="n">Swift</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">setRuntimeGuard</span><span class="p">(</span><span class="s2">&quot;feature&quot;</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="addrtdslayer">
+<h3><code class="docutils literal notranslate"><span class="pre">addRtdsLayer</span></code><a class="headerlink" href="#addrtdslayer" title="Permalink to this heading">¶</a></h3>
+<p>Adds an RTDS layer to the bootstrap configuration.
+Requires that ADS be configured via <cite>setAggregatedDiscoveryService()</cite>.
+See the following link for details:
+<a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/service/runtime/v3/rtds.proto">https://www.envoyproxy.io/docs/envoy/latest/api-v3/service/runtime/v3/rtds.proto</a></p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addRtdsLayer</span><span class="p">(</span><span class="n">layerName</span> <span class="o">=</span> <span class="s2">&quot;rtds_layer_name&quot;</span><span class="p">,</span> <span class="n">timeoutSeconds</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addRTDSLayer</span><span class="p">(</span><span class="n">layerName</span><span class="p">:</span> <span class="s2">&quot;rtds_layer_name&quot;</span><span class="p">,</span> <span class="n">timeoutSeconds</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">C</span><span class="o">++</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addRtdsLayer</span><span class="p">(</span><span class="s2">&quot;rtds_layer_name&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="setaggregateddiscoveryservice">
+<h3><code class="docutils literal notranslate"><span class="pre">setAggregatedDiscoveryService</span></code><a class="headerlink" href="#setaggregateddiscoveryservice" title="Permalink to this heading">¶</a></h3>
+<p>Adds ADS to bootstrap configuration, for instance to be used with RTDS and CDS layers.
+Optional params allow configuring a JWT token and SSL. See the following link for details:
+<a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/xds_api#config-overview-ads">https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/xds_api#config-overview-ads</a></p>
+<p>Parameters:
+address, port, (optional) jwt_token, (optional) jwt_token_lifetime_seconds, (optional) ssl_root_certs</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setAggregatedDiscoveryService</span><span class="p">(</span><span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;192.168.1.1&quot;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setAggregatedDiscoveryService</span><span class="p">(</span><span class="n">address</span><span class="p">:</span> <span class="s2">&quot;192.168.1.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">C</span><span class="o">++</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setAggregatedDiscoveryService</span><span class="p">(</span><span class="s2">&quot;192.168.1.1&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="setnodeid">
+<h3><code class="docutils literal notranslate"><span class="pre">setNodeId</span></code><a class="headerlink" href="#setnodeid" title="Permalink to this heading">¶</a></h3>
+<p>Sets the node.id field. See the following link for details:
+<a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/base.proto#envoy-v3-api-msg-config-core-v3-node">https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/base.proto#envoy-v3-api-msg-config-core-v3-node</a></p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setNodeId</span><span class="p">(</span><span class="n">nodeId</span> <span class="o">=</span> <span class="s2">&quot;my_test_node&quot;</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setNodeID</span><span class="p">(</span><span class="s2">&quot;my_test_node&quot;</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">C</span><span class="o">++</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setNodeId</span><span class="p">(</span><span class="s2">&quot;my_test_node&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="setnodelocality">
+<h3><code class="docutils literal notranslate"><span class="pre">setNodeLocality</span></code><a class="headerlink" href="#setnodelocality" title="Permalink to this heading">¶</a></h3>
+<p>Sets the node.locality field. See the following link for details:
+<a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/base.proto#envoy-v3-api-msg-config-core-v3-node">https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/base.proto#envoy-v3-api-msg-config-core-v3-node</a></p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setNodeLocality</span><span class="p">(</span><span class="n">region</span> <span class="o">=</span> <span class="s2">&quot;us-west-1&quot;</span><span class="p">,</span> <span class="n">zone</span> <span class="o">=</span> <span class="s2">&quot;some_zone&quot;</span><span class="p">,</span> <span class="n">subZone</span> <span class="o">=</span> <span class="s2">&quot;some_sub_zone&quot;</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setNodeLocality</span><span class="p">(</span><span class="n">region</span><span class="p">:</span> <span class="s2">&quot;us-west-1&quot;</span><span class="p">,</span> <span class="n">zone</span><span class="p">:</span> <span class="s2">&quot;some_zone&quot;</span><span class="p">,</span> <span class="n">subZone</span><span class="p">:</span> <span class="s2">&quot;some_sub_zone&quot;</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">C</span><span class="o">++</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setNodeLocality</span><span class="p">(</span><span class="s2">&quot;us-west-1&quot;</span><span class="p">,</span> <span class="s2">&quot;some_zone&quot;</span><span class="p">,</span> <span class="s2">&quot;some_sub_zone&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
