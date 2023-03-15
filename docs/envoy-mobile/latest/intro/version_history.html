@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version history &mdash; envoy-mobile 0.5.0-51825f documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.5.0-f6ba38 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -43,7 +43,7 @@
             envoy-mobile
           </a>
               <div class="version">
-                0.5.0-51825f
+                0.5.0-f6ba38
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -134,6 +134,7 @@
 <li><p>clusters: removing the base_h2 cluster. Requests with <code class="docutils literal notranslate"><span class="pre">x-envoy-mobile-upstream-protocol</span></code> set to <code class="docutils literal notranslate"><span class="pre">http2</span></code> will be sent to the base cluster and use the best available protocol (:issue <cite>#25796 &lt;25796&gt;</cite>).</p></li>
 <li><p>clusters: only creating the stats cluster if an endpoint is configured. Previously if no domain was configured a cluster would be configured pointed at 127.0.0.1. (:issue: <cite>#25816 &lt;25816&gt;</cite>).</p></li>
 <li><p>clusters: removing the base_h3 cluster. If HTTP/3 is enabled, the base cluster will use HTTP/3 instead. (:issue: <cite>#25814 &lt;25814&gt;</cite>).</p></li>
+<li><p>listeners: switched the default listener from Envoy’s TCP listener to a lightweight API listener by default. (:issue: <cite>#25899 &lt;25899&gt;</cite>).</p></li>
 <li><p>headers: removed the APIs for protocol based routing, as best available protocol is now automatically selected (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/25893">#25893</a>).</p></li>
 </ul>
 <p>Bugfixes:</p>
