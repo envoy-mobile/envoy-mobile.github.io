@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version history &mdash; envoy-mobile 0.5.0-2ad1a5 documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.5.0-42e5b4 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -43,7 +43,7 @@
             envoy-mobile
           </a>
               <div class="version">
-                0.5.0-2ad1a5
+                0.5.0-42e5b4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -162,6 +162,7 @@
 <li><p>build: Add a build feature <code class="docutils literal notranslate"><span class="pre">envoy_mobile_stats_reporting</span></code> to allow disabling stats reporting. (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/26086">26086</a>)</p></li>
 <li><p>swift: Add a new Swift implementation of generating the Envoy bootstrap that replaces the previous Objective-C implementation.
 This can be enabled by setting <code class="docutils literal notranslate"><span class="pre">useSwiftBootstrap(true)</span></code> and requires building with <code class="docutils literal notranslate"><span class="pre">--define=envoy_mobile_swift_cxx_interop=enabled</span></code>. (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/26111">#26111</a>)</p></li>
+<li><p>android: log cleared JNI exceptions to platform layer as <cite>jni_cleared_pending_exception</cite> events (<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/26133">#26133</a>).</p></li>
 </ul>
 </section>
 <section id="september-2-2022">
