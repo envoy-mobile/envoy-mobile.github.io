@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-9bae44 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-6a5954 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -43,7 +43,7 @@
             envoy-mobile
           </a>
               <div class="version">
-                0.5.0-9bae44
+                0.5.0-6a5954
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -89,7 +89,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#addpertryidletimeoutseconds"><code class="docutils literal notranslate"><span class="pre">addPerTryIdleTimeoutSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addappversion"><code class="docutils literal notranslate"><span class="pre">addAppVersion</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addappid"><code class="docutils literal notranslate"><span class="pre">addAppId</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#addvirtualcluster"><code class="docutils literal notranslate"><span class="pre">addVirtualCluster</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enableadmininterface"><code class="docutils literal notranslate"><span class="pre">enableAdminInterface</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setonenginerunning"><code class="docutils literal notranslate"><span class="pre">setOnEngineRunning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setlogger"><code class="docutils literal notranslate"><span class="pre">setLogger</span></code></a></li>
@@ -338,25 +337,6 @@ This information is sent as metadata when flushing stats.</p>
 
 <span class="o">//</span> <span class="n">Swift</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">addAppId</span><span class="p">(</span><span class="s2">&quot;com.mydomain.myapp)</span>
-</pre></div>
-</div>
-</section>
-<section id="addvirtualcluster">
-<h3><code class="docutils literal notranslate"><span class="pre">addVirtualCluster</span></code><a class="headerlink" href="#addvirtualcluster" title="Permalink to this heading">¶</a></h3>
-<p>Add a virtual cluster config for Envoy Mobile’s configuration.
-The configuration is expected as a JSON object.
-This functionality is used for stat segmentation.</p>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>This API is non-ideal as it exposes lower-level internals of Envoy than desired by this project.
-<a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/issues/770">#770</a> tracks enhancing this API.</p>
-</div>
-<p><strong>Example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addVirtualCluster</span><span class="p">(</span><span class="s2">&quot;{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">vcluster</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">headers</span><span class="se">\&quot;</span><span class="s2">:[{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">:path</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">exact_match</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">/v1/vcluster</span><span class="se">\&quot;</span><span class="s2">}]}&quot;</span><span class="p">)</span>
-
-<span class="o">//</span> <span class="n">Swift</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addVirtualCluster</span><span class="p">(</span><span class="s2">&quot;{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">vcluster</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">headers</span><span class="se">\&quot;</span><span class="s2">:[{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">:path</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">exact_match</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">/v1/vcluster</span><span class="se">\&quot;</span><span class="s2">}]}&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
