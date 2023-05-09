@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version history &mdash; envoy-mobile 0.5.0-84c08d documentation</title>
+  <title>Version history &mdash; envoy-mobile 0.5.0-73420f documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -43,7 +43,7 @@
             envoy-mobile
           </a>
               <div class="version">
-                0.5.0-84c08d
+                0.5.0-73420f
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -133,6 +133,7 @@
 <li><p>api: added <code class="docutils literal notranslate"><span class="pre">setRuntimeGuard</span></code> APIs for all languages (:issue: <cite>#25434 &lt;25434&gt;</cite>)</p></li>
 <li><p>api: added <code class="docutils literal notranslate"><span class="pre">setRtdsLayer</span></code>, <code class="docutils literal notranslate"><span class="pre">addAggregatedDiscoveryService</span></code>, <code class="docutils literal notranslate"><span class="pre">setNodeId</span></code>, <code class="docutils literal notranslate"><span class="pre">setNodeLocality</span></code> APIs for all languages</p></li>
 <li><p>api: added <code class="docutils literal notranslate"><span class="pre">setCdsLayer</span></code> APIs for all languages (:issue: <cite>#26122 &lt;26122&gt;</cite>)</p></li>
+<li><p>api: removed the <code class="docutils literal notranslate"><span class="pre">enableSkipDNSLookup</span></code> API. The runtime guard can still be set via <code class="docutils literal notranslate"><span class="pre">setRuntimeGuard</span></code>.</p></li>
 <li><p>clusters: removing the base_h2 cluster. Requests with <code class="docutils literal notranslate"><span class="pre">x-envoy-mobile-upstream-protocol</span></code> set to <code class="docutils literal notranslate"><span class="pre">http2</span></code> will be sent to the base cluster and use the best available protocol (:issue <cite>#25796 &lt;25796&gt;</cite>).</p></li>
 <li><p>clusters: only creating the stats cluster if an endpoint is configured. Previously if no domain was configured a cluster would be configured pointed at 127.0.0.1. (:issue: <cite>#25816 &lt;25816&gt;</cite>).</p></li>
 <li><p>clusters: removing the base_h3 cluster. If HTTP/3 is enabled, the base cluster will use HTTP/3 instead. (:issue: <cite>#25814 &lt;25814&gt;</cite>).</p></li>
