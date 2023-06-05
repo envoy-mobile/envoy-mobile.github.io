@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-068adb documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-92e7b1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -43,7 +43,7 @@
             envoy-mobile
           </a>
               <div class="version">
-                0.5.0-068adb
+                0.5.0-92e7b1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -89,7 +89,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#addpertryidletimeoutseconds"><code class="docutils literal notranslate"><span class="pre">addPerTryIdleTimeoutSeconds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addappversion"><code class="docutils literal notranslate"><span class="pre">addAppVersion</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addappid"><code class="docutils literal notranslate"><span class="pre">addAppId</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#enableadmininterface"><code class="docutils literal notranslate"><span class="pre">enableAdminInterface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addnativefilter"><code class="docutils literal notranslate"><span class="pre">addNativeFilter</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setonenginerunning"><code class="docutils literal notranslate"><span class="pre">setOnEngineRunning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setlogger"><code class="docutils literal notranslate"><span class="pre">setLogger</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#seteventtracker"><code class="docutils literal notranslate"><span class="pre">setEventTracker</span></code></a></li>
@@ -339,20 +339,23 @@ This information is sent as metadata when flushing stats.</p>
 </pre></div>
 </div>
 </section>
-<section id="enableadmininterface">
-<h3><code class="docutils literal notranslate"><span class="pre">enableAdminInterface</span></code><a class="headerlink" href="#enableadmininterface" title="Permalink to this heading">¶</a></h3>
-<p>Enable admin interface on 127.0.0.1:9901 address.</p>
+<section id="addnativefilter">
+<h3><code class="docutils literal notranslate"><span class="pre">addNativeFilter</span></code><a class="headerlink" href="#addnativefilter" title="Permalink to this heading">¶</a></h3>
+<p>Add a C++ filter to the Envoy Mobile filter chain</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>Admin interface is intended to be used for development/debugging purposes only.
-Enabling it in production may open your app to security vulnerabilities.</p>
+<p>This will only work if the C++ filter specified is linked into your Envoy Mobile build.
+For C++ and Android testing, calling addNativeFilter and linking the Envoy library by adding the
+library to <code class="docutils literal notranslate"><span class="pre">envoy_build_config/extensions_build_config.bzl</span></code> is sufficient.
+For iOS, due to enthusiastic garbage collection, and for upstream CI, to catch bugs, you will
+also need to forceRegister the filter in <code class="docutils literal notranslate"><span class="pre">envoy_build_config/extension_registry.cc</span></code></p>
 </div>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">enableAdminInterface</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addNativeFilter</span><span class="p">(</span><span class="s2">&quot;envoy.filters.http.buffer&quot;</span><span class="p">,</span> <span class="s2">&quot;{</span><span class="se">\&quot;</span><span class="s2">@type</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">type.googleapis.com/envoy.extensions.filters.http.buffer.v3.Buffer</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">max_request_bytes</span><span class="se">\&quot;</span><span class="s2">:5242880}&quot;</span><span class="p">)</span>
 
 <span class="o">//</span> <span class="n">Swift</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">enableAdminInterface</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addNativeFilter</span><span class="p">(</span><span class="s2">&quot;envoy.filters.http.buffer&quot;</span><span class="p">,</span> <span class="s2">&quot;{</span><span class="se">\&quot;</span><span class="s2">@type</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">type.googleapis.com/envoy.extensions.filters.http.buffer.v3.Buffer</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">max_request_bytes</span><span class="se">\&quot;</span><span class="s2">:5242880}&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
