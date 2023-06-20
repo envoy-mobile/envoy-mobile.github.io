@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-56f507 documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-4222f1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -43,7 +43,7 @@
             envoy-mobile
           </a>
               <div class="version">
-                0.5.0-56f507
+                0.5.0-4222f1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -105,9 +105,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#enableproxying"><code class="docutils literal notranslate"><span class="pre">enableProxying</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablednscache"><code class="docutils literal notranslate"><span class="pre">enableDNSCache</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setruntimeguard"><code class="docutils literal notranslate"><span class="pre">setRuntimeGuard</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#addrtdslayer"><code class="docutils literal notranslate"><span class="pre">addRtdsLayer</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#addcdslayer"><code class="docutils literal notranslate"><span class="pre">addCdsLayer</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#setaggregateddiscoveryservice"><code class="docutils literal notranslate"><span class="pre">setAggregatedDiscoveryService</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setxds"><code class="docutils literal notranslate"><span class="pre">setXds</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setnodeid"><code class="docutils literal notranslate"><span class="pre">setNodeId</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setnodelocality"><code class="docutils literal notranslate"><span class="pre">setNodeLocality</span></code></a></li>
 </ul>
@@ -565,58 +563,38 @@ Note that Envoy will fail to start up in debug mode if an unknown guard is speci
 </pre></div>
 </div>
 </section>
-<section id="addrtdslayer">
-<h3><code class="docutils literal notranslate"><span class="pre">addRtdsLayer</span></code><a class="headerlink" href="#addrtdslayer" title="Permalink to this heading">¶</a></h3>
-<p>Adds an RTDS layer to the bootstrap configuration.
-Requires that ADS be configured via <cite>setAggregatedDiscoveryService()</cite>.
-See the following link for details:
-<a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/service/runtime/v3/rtds.proto">https://www.envoyproxy.io/docs/envoy/latest/api-v3/service/runtime/v3/rtds.proto</a></p>
-<p><strong>Example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addRtdsLayer</span><span class="p">(</span><span class="n">layerName</span> <span class="o">=</span> <span class="s2">&quot;rtds_layer_name&quot;</span><span class="p">,</span> <span class="n">timeoutSeconds</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
-
-<span class="o">//</span> <span class="n">Swift</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addRTDSLayer</span><span class="p">(</span><span class="n">layerName</span><span class="p">:</span> <span class="s2">&quot;rtds_layer_name&quot;</span><span class="p">,</span> <span class="n">timeoutSeconds</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
-
-<span class="o">//</span> <span class="n">C</span><span class="o">++</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addRtdsLayer</span><span class="p">(</span><span class="s2">&quot;rtds_layer_name&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="addcdslayer">
-<h3><code class="docutils literal notranslate"><span class="pre">addCdsLayer</span></code><a class="headerlink" href="#addcdslayer" title="Permalink to this heading">¶</a></h3>
-<p>Adds a CDS layer to the bootstrap configuration.
-Requires that ADS be configured via <cite>setAggregatedDiscoveryService()</cite>.
-See the following link for details:
-<a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/configuration/upstream/cluster_manager/cds">https://www.envoyproxy.io/docs/envoy/latest/configuration/upstream/cluster_manager/cds</a></p>
-<p><strong>Example</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addCdsLayer</span><span class="p">(</span><span class="n">resourcesLocator</span> <span class="o">=</span> <span class="s2">&quot;xdstp://td-location.com/cluster_location&quot;</span><span class="p">,</span> <span class="n">timeoutSeconds</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
-
-<span class="o">//</span> <span class="n">Swift</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addCDSLayer</span><span class="p">(</span><span class="n">resourcesLocator</span><span class="p">:</span> <span class="s2">&quot;xdstp://td-location.com/cluster_location&quot;</span><span class="p">,</span> <span class="n">timeoutSeconds</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
-
-<span class="o">//</span> <span class="n">C</span><span class="o">++</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">addCdsLayer</span><span class="p">(</span><span class="s2">&quot;xdstp://td-location.com/cluster_location&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="setaggregateddiscoveryservice">
-<h3><code class="docutils literal notranslate"><span class="pre">setAggregatedDiscoveryService</span></code><a class="headerlink" href="#setaggregateddiscoveryservice" title="Permalink to this heading">¶</a></h3>
-<p>Adds ADS to bootstrap configuration, for instance to be used with RTDS and CDS layers.
-Optional params allow configuring a JWT token and SSL. See the following link for details:
-<a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/xds_api#config-overview-ads">https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/xds_api#config-overview-ads</a></p>
+<section id="setxds">
+<h3><code class="docutils literal notranslate"><span class="pre">setXds</span></code><a class="headerlink" href="#setxds" title="Permalink to this heading">¶</a></h3>
+<p>Sets the Bootstrap configuration up with <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/xds_api#config-overview-ads">xDS</a>
+to fetch dynamic configuration from an xDS management server. The xDS management server must
+support the ADS protocol. At this moment, only the State-of-the-World (SotW) xDS protocol is
+supported, not the Delta protocol. The Envoy Mobile client will communicate with the configured
+xDS management server over gRPC.</p>
+<p>Use the XdsBuilder class to configure the xDS for the Envoy Mobile engine.  For example, the
+<cite>addRuntimeDiscoveryService()</cite> method can be used to configure the
+<a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/service/runtime/v3/rtds.proto">Runtime Discovery Service (RTDS)</a>
+and the <cite>addClusterDiscoveryService()</cite> method to configure the
+<a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/configuration/upstream/cluster_manager/cds">Cluster Discovery Service (CDS)</a>.</p>
 <p>Parameters:
-address, port, (optional) jwt_token, (optional) jwt_token_lifetime_seconds, (optional) ssl_root_certs</p>
+xds_builder</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">setAggregatedDiscoveryService</span><span class="p">(</span><span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;192.168.1.1&quot;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">val</span> <span class="n">xdsBuilder</span> <span class="o">=</span> <span class="n">new</span> <span class="n">XdsBuilder</span><span class="p">(</span><span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;my_xds_server.com&quot;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">443</span><span class="p">)</span>
+                     <span class="o">.</span><span class="n">addRuntimeDiscoveryService</span><span class="p">(</span><span class="s2">&quot;my_rtds_resource&quot;</span><span class="p">)</span>
+                     <span class="o">.</span><span class="n">addClusterDiscoveryService</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setXds</span><span class="p">(</span><span class="n">xdsBuilder</span><span class="p">)</span>
 
 <span class="o">//</span> <span class="n">Swift</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">setAggregatedDiscoveryService</span><span class="p">(</span><span class="n">address</span><span class="p">:</span> <span class="s2">&quot;192.168.1.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">xdsBuilder</span> <span class="o">=</span> <span class="n">XdsBuilder</span><span class="p">(</span><span class="n">address</span><span class="p">:</span> <span class="s2">&quot;my_xds_server.com&quot;</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="mi">443</span><span class="p">)</span>
+                     <span class="o">.</span><span class="n">addRuntimeDiscoveryService</span><span class="p">(</span><span class="s2">&quot;my_rtds_resource&quot;</span><span class="p">)</span>
+                     <span class="o">.</span><span class="n">addClusterDiscoveryService</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setXds</span><span class="p">(</span><span class="n">xdsBuilder</span><span class="p">)</span>
 
 <span class="o">//</span> <span class="n">C</span><span class="o">++</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">setAggregatedDiscoveryService</span><span class="p">(</span><span class="s2">&quot;192.168.1.1&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">XdsBuilder</span> <span class="n">xds_builder</span><span class="p">(</span><span class="o">/*</span><span class="n">address</span><span class="o">=*/</span><span class="s2">&quot;my_xds_server.com&quot;</span><span class="p">,</span> <span class="o">/*</span><span class="n">port</span><span class="o">=*/</span><span class="mi">443</span><span class="p">);</span>
+<span class="n">xds_builder</span><span class="o">.</span><span class="n">addRuntimeDiscoveryService</span><span class="p">(</span><span class="s2">&quot;my_rtds_resource&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">addClusterDiscoveryService</span><span class="p">();</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">setXds</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">move</span><span class="p">(</span><span class="n">xds_builder</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
