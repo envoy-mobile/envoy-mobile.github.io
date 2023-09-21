@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
@@ -13,17 +13,17 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-ea7ad7 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
+  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-1970b3 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/envoy.css?v=98e714dc" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=8b692262"></script>
+        <script src="../_static/documentation_options.js?v=dccb1ffa"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -43,7 +43,7 @@
             envoy-mobile
           </a>
               <div class="version">
-                0.5.0-ea7ad7
+                0.5.0-1970b3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -149,9 +149,9 @@
            <div itemprop="articleBody">
              
   <section id="starting-envoy">
-<span id="api-starting-envoy"></span><h1>Starting Envoy<a class="headerlink" href="#starting-envoy" title="Permalink to this heading">¶</a></h1>
+<span id="api-starting-envoy"></span><h1>Starting Envoy<a class="headerlink" href="#starting-envoy" title="Link to this heading">¶</a></h1>
 <section id="streamclient">
-<h2><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code><a class="headerlink" href="#streamclient" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">StreamClient</span></code><a class="headerlink" href="#streamclient" title="Link to this heading">¶</a></h2>
 <p>Starting an instance of Envoy Mobile is done by building the <code class="docutils literal notranslate"><span class="pre">Engine</span></code> instance with <code class="docutils literal notranslate"><span class="pre">EngineBuilder</span></code>. Requests are performed by the <code class="docutils literal notranslate"><span class="pre">StreamClient</span></code> provided by <code class="docutils literal notranslate"><span class="pre">Engine</span></code>.</p>
 <p>To obtain a <code class="docutils literal notranslate"><span class="pre">StreamClient</span></code>, call <code class="docutils literal notranslate"><span class="pre">streamClient()</span></code> on the <code class="docutils literal notranslate"><span class="pre">Engine</span></code> instance (see below).</p>
 <p>After the stream client is obtained, it should be stored and used to start network requests/streams.</p>
@@ -173,12 +173,12 @@
 </div>
 </section>
 <section id="enginebuilder">
-<h2><code class="docutils literal notranslate"><span class="pre">EngineBuilder</span></code><a class="headerlink" href="#enginebuilder" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">EngineBuilder</span></code><a class="headerlink" href="#enginebuilder" title="Link to this heading">¶</a></h2>
 <p>This type is used to configure an instance of <code class="docutils literal notranslate"><span class="pre">Engine</span></code> before finally
 creating the engine using <code class="docutils literal notranslate"><span class="pre">.build()</span></code>.</p>
 <p>Available builders are nearly all 1:1 between iOS/Android, and are documented below.</p>
 <section id="addconnecttimeoutseconds">
-<h3><code class="docutils literal notranslate"><span class="pre">addConnectTimeoutSeconds</span></code><a class="headerlink" href="#addconnecttimeoutseconds" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addConnectTimeoutSeconds</span></code><a class="headerlink" href="#addconnecttimeoutseconds" title="Link to this heading">¶</a></h3>
 <p>Specify the timeout for new network connections to hosts in Envoy Mobile clusters.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
@@ -190,7 +190,7 @@ creating the engine using <code class="docutils literal notranslate"><span class
 </div>
 </section>
 <section id="adddnsfailurerefreshseconds">
-<h3><code class="docutils literal notranslate"><span class="pre">addDNSFailureRefreshSeconds</span></code><a class="headerlink" href="#adddnsfailurerefreshseconds" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addDNSFailureRefreshSeconds</span></code><a class="headerlink" href="#adddnsfailurerefreshseconds" title="Link to this heading">¶</a></h3>
 <p>Specify the rate at which Envoy Mobile should refresh DNS in states of failure.</p>
 <p>This should typically be a relatively aggressive range compared to the standard-state DNS refresh
 rate, as it is required for Envoy Mobile to recover and continue making requests.</p>
@@ -204,7 +204,7 @@ rate, as it is required for Envoy Mobile to recover and continue making requests
 </div>
 </section>
 <section id="adddnsrefreshseconds">
-<h3><code class="docutils literal notranslate"><span class="pre">addDNSRefreshSeconds</span></code><a class="headerlink" href="#adddnsrefreshseconds" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addDNSRefreshSeconds</span></code><a class="headerlink" href="#adddnsrefreshseconds" title="Link to this heading">¶</a></h3>
 <p>Specify the interval at which Envoy should forcefully refresh DNS.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
@@ -216,7 +216,7 @@ rate, as it is required for Envoy Mobile to recover and continue making requests
 </div>
 </section>
 <section id="adddnsquerytimeoutseconds">
-<h3><code class="docutils literal notranslate"><span class="pre">addDNSQueryTimeoutSeconds</span></code><a class="headerlink" href="#adddnsquerytimeoutseconds" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addDNSQueryTimeoutSeconds</span></code><a class="headerlink" href="#adddnsquerytimeoutseconds" title="Link to this heading">¶</a></h3>
 <p>Specify the interval at which Envoy should timeout a DNS query.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
@@ -228,7 +228,7 @@ rate, as it is required for Envoy Mobile to recover and continue making requests
 </div>
 </section>
 <section id="adddnspreresolvehostnames">
-<h3><code class="docutils literal notranslate"><span class="pre">addDNSPreresolveHostnames</span></code><a class="headerlink" href="#adddnspreresolvehostnames" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addDNSPreresolveHostnames</span></code><a class="headerlink" href="#adddnspreresolvehostnames" title="Link to this heading">¶</a></h3>
 <p>Add a list of hostnames to preresolve on Engine startup.</p>
 <blockquote>
 <div><p>// Kotlin
@@ -238,7 +238,7 @@ builder.addDNSPreresolveHostnames([“lyft.com”, “google.com”])</p>
 </div></blockquote>
 </section>
 <section id="addloglevel">
-<h3><code class="docutils literal notranslate"><span class="pre">addLogLevel</span></code><a class="headerlink" href="#addloglevel" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addLogLevel</span></code><a class="headerlink" href="#addloglevel" title="Link to this heading">¶</a></h3>
 <p>Specify the log level to be used when running the underlying Envoy engine.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
@@ -250,7 +250,7 @@ builder.addDNSPreresolveHostnames([“lyft.com”, “google.com”])</p>
 </div>
 </section>
 <section id="addgrpcstatsdomain">
-<h3><code class="docutils literal notranslate"><span class="pre">addGrpcStatsDomain</span></code><a class="headerlink" href="#addgrpcstatsdomain" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addGrpcStatsDomain</span></code><a class="headerlink" href="#addgrpcstatsdomain" title="Link to this heading">¶</a></h3>
 <p>Specify a domain which implements the
 <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/tree/83908423d46a37574e9a35627df1f3dd9634e5ec/library/common/config_template.cc#L139-L145">stats endpoint</a>
 in order to take advantage of the
@@ -270,7 +270,7 @@ will be emitted.</p>
 </div>
 </section>
 <section id="addstatsflushseconds">
-<h3><code class="docutils literal notranslate"><span class="pre">addStatsFlushSeconds</span></code><a class="headerlink" href="#addstatsflushseconds" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addStatsFlushSeconds</span></code><a class="headerlink" href="#addstatsflushseconds" title="Link to this heading">¶</a></h3>
 <p>Specify the rate at which Envoy Mobile should flush its queued stats.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
@@ -282,7 +282,7 @@ will be emitted.</p>
 </div>
 </section>
 <section id="addstreamidletimeoutseconds">
-<h3><code class="docutils literal notranslate"><span class="pre">addStreamIdleTimeoutSeconds</span></code><a class="headerlink" href="#addstreamidletimeoutseconds" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addStreamIdleTimeoutSeconds</span></code><a class="headerlink" href="#addstreamidletimeoutseconds" title="Link to this heading">¶</a></h3>
 <p>Specifies the length of time a stream should wait without a headers or data event before timing out.
 Defaults to 15 seconds.
 See <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-stream-idle-timeout">the Envoy docs</a>
@@ -297,7 +297,7 @@ for further information.</p>
 </div>
 </section>
 <section id="addpertryidletimeoutseconds">
-<h3><code class="docutils literal notranslate"><span class="pre">addPerTryIdleTimeoutSeconds</span></code><a class="headerlink" href="#addpertryidletimeoutseconds" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addPerTryIdleTimeoutSeconds</span></code><a class="headerlink" href="#addpertryidletimeoutseconds" title="Link to this heading">¶</a></h3>
 <p>Specifies the length of time a retry (including the initial attempt) should wait without a headers
 or data event before timing out. Defaults to 15 seconds.
 See <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto.html#config-route-v3-retrypolicy">the Envoy docs</a>
@@ -312,7 +312,7 @@ for further information.</p>
 </div>
 </section>
 <section id="addappversion">
-<h3><code class="docutils literal notranslate"><span class="pre">addAppVersion</span></code><a class="headerlink" href="#addappversion" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addAppVersion</span></code><a class="headerlink" href="#addappversion" title="Link to this heading">¶</a></h3>
 <p>Specify the version of the app using Envoy Mobile.
 This information is sent as metadata when flushing stats.</p>
 <p><strong>Example</strong>:</p>
@@ -325,7 +325,7 @@ This information is sent as metadata when flushing stats.</p>
 </div>
 </section>
 <section id="addappid">
-<h3><code class="docutils literal notranslate"><span class="pre">addAppId</span></code><a class="headerlink" href="#addappid" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addAppId</span></code><a class="headerlink" href="#addappid" title="Link to this heading">¶</a></h3>
 <p>Specify the version of the app using Envoy Mobile.
 This information is sent as metadata when flushing stats.</p>
 <p><strong>Example</strong>:</p>
@@ -338,7 +338,7 @@ This information is sent as metadata when flushing stats.</p>
 </div>
 </section>
 <section id="addnativefilter">
-<h3><code class="docutils literal notranslate"><span class="pre">addNativeFilter</span></code><a class="headerlink" href="#addnativefilter" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addNativeFilter</span></code><a class="headerlink" href="#addnativefilter" title="Link to this heading">¶</a></h3>
 <p>Add a C++ filter to the Envoy Mobile filter chain</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
@@ -358,7 +358,7 @@ also need to forceRegister the filter in <code class="docutils literal notransla
 </div>
 </section>
 <section id="setonenginerunning">
-<h3><code class="docutils literal notranslate"><span class="pre">setOnEngineRunning</span></code><a class="headerlink" href="#setonenginerunning" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">setOnEngineRunning</span></code><a class="headerlink" href="#setonenginerunning" title="Link to this heading">¶</a></h3>
 <p>Specify a closure to be called once Envoy’s engine finishes its async startup and begins running.</p>
 <p>When Envoy is instantiated, its initializer returns before all of its internal configuration
 completes. This interface provides the ability to observe when Envoy has completed its setup and is
@@ -374,7 +374,7 @@ will be queued automatically, and this function is typically used purely for obs
 </div>
 </section>
 <section id="setlogger">
-<h3><code class="docutils literal notranslate"><span class="pre">setLogger</span></code><a class="headerlink" href="#setlogger" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">setLogger</span></code><a class="headerlink" href="#setlogger" title="Link to this heading">¶</a></h3>
 <p>Specify a closure to be called when Envoy’s engine emits a log message.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
@@ -388,7 +388,7 @@ will be queued automatically, and this function is typically used purely for obs
 </div>
 </section>
 <section id="seteventtracker">
-<h3><code class="docutils literal notranslate"><span class="pre">setEventTracker</span></code><a class="headerlink" href="#seteventtracker" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">setEventTracker</span></code><a class="headerlink" href="#seteventtracker" title="Link to this heading">¶</a></h3>
 <p>Specify a closure to be called when Envoy’s engine emits an event.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
@@ -404,7 +404,7 @@ will be queued automatically, and this function is typically used purely for obs
 </div>
 </section>
 <section id="addstringaccessor">
-<h3><code class="docutils literal notranslate"><span class="pre">addStringAccessor</span></code><a class="headerlink" href="#addstringaccessor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addStringAccessor</span></code><a class="headerlink" href="#addstringaccessor" title="Link to this heading">¶</a></h3>
 <p>Specify a closure to be called by Envoy to access arbitrary strings from Platform runtime.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
@@ -416,7 +416,7 @@ will be queued automatically, and this function is typically used purely for obs
 </div>
 </section>
 <section id="setnetworkmonitoringmode">
-<h3><code class="docutils literal notranslate"><span class="pre">setNetworkMonitoringMode</span></code><a class="headerlink" href="#setnetworkmonitoringmode" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">setNetworkMonitoringMode</span></code><a class="headerlink" href="#setnetworkmonitoringmode" title="Link to this heading">¶</a></h3>
 <p>Configure how the engine observes network reachability state changes to update the preferred Envoy network cluster (e.g. WLAN vs WWAN).
 Defaults to <code class="docutils literal notranslate"><span class="pre">NWPathMonitor</span></code>, but can be configured to use <code class="docutils literal notranslate"><span class="pre">SCNetworkReachability</span></code> or be disabled completely.</p>
 <p><strong>Example</strong>:</p>
@@ -429,7 +429,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">NWPathM
 </div>
 </section>
 <section id="enablegzipdecompression">
-<h3><code class="docutils literal notranslate"><span class="pre">enableGzipDecompression</span></code><a class="headerlink" href="#enablegzipdecompression" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">enableGzipDecompression</span></code><a class="headerlink" href="#enablegzipdecompression" title="Link to this heading">¶</a></h3>
 <p>Specify whether to enable transparent response Gzip decompression. Defaults to true.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
@@ -443,7 +443,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">NWPathM
 are used.</p>
 </section>
 <section id="enablebrotlidecompression">
-<h3><code class="docutils literal notranslate"><span class="pre">enableBrotliDecompression</span></code><a class="headerlink" href="#enablebrotlidecompression" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">enableBrotliDecompression</span></code><a class="headerlink" href="#enablebrotlidecompression" title="Link to this heading">¶</a></h3>
 <p>Specify whether to enable transparent response Brotli decompression. Defaults to false.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
@@ -457,7 +457,7 @@ are used.</p>
 are used.</p>
 </section>
 <section id="enablesockettagging">
-<h3><code class="docutils literal notranslate"><span class="pre">enableSocketTagging</span></code><a class="headerlink" href="#enablesockettagging" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">enableSocketTagging</span></code><a class="headerlink" href="#enablesockettagging" title="Link to this heading">¶</a></h3>
 <p>Specify whether to enable support for Android socket tagging. Unavailable on iOS. Defaults to false.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
@@ -466,7 +466,7 @@ are used.</p>
 </div>
 </section>
 <section id="enableinterfacebinding">
-<h3><code class="docutils literal notranslate"><span class="pre">enableInterfaceBinding</span></code><a class="headerlink" href="#enableinterfacebinding" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">enableInterfaceBinding</span></code><a class="headerlink" href="#enableinterfacebinding" title="Link to this heading">¶</a></h3>
 <p>Specify whether sockets may attempt to bind to a specific interface, based on network conditions.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
@@ -478,7 +478,7 @@ are used.</p>
 </div>
 </section>
 <section id="addkeyvaluestore">
-<h3><code class="docutils literal notranslate"><span class="pre">addKeyValueStore</span></code><a class="headerlink" href="#addkeyvaluestore" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addKeyValueStore</span></code><a class="headerlink" href="#addkeyvaluestore" title="Link to this heading">¶</a></h3>
 <p>Implementations of a public KeyValueStore interface may be added in their respective languages and
 made available to the library. General usage is supported, but typical future usage will be in
 support of HTTP and endpoint property caching.</p>
@@ -503,7 +503,7 @@ SharedPreferences.</p>
 </div>
 </section>
 <section id="forceipv6">
-<h3><code class="docutils literal notranslate"><span class="pre">forceIPv6</span></code><a class="headerlink" href="#forceipv6" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">forceIPv6</span></code><a class="headerlink" href="#forceipv6" title="Link to this heading">¶</a></h3>
 <p>Specify whether to remap IPv4 addresses to the IPv6 space and always force connections
 to use IPv6. Note this is an experimental option and should be enabled with caution.</p>
 <p><strong>Example</strong>:</p>
@@ -515,7 +515,7 @@ to use IPv6. Note this is an experimental option and should be enabled with caut
 </div>
 </section>
 <section id="enableplatformcertificatesvalidation">
-<h3><code class="docutils literal notranslate"><span class="pre">enablePlatformCertificatesValidation</span></code><a class="headerlink" href="#enableplatformcertificatesvalidation" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">enablePlatformCertificatesValidation</span></code><a class="headerlink" href="#enableplatformcertificatesvalidation" title="Link to this heading">¶</a></h3>
 <p>Specify whether to use platform provided certificate validation interfaces. Currently only supported on Android. Defaults to false.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
@@ -524,7 +524,7 @@ to use IPv6. Note this is an experimental option and should be enabled with caut
 </div>
 </section>
 <section id="enableproxying">
-<h3><code class="docutils literal notranslate"><span class="pre">enableProxying</span></code><a class="headerlink" href="#enableproxying" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">enableProxying</span></code><a class="headerlink" href="#enableproxying" title="Link to this heading">¶</a></h3>
 <p>Specify whether to respect system Proxy settings when establishing connections.
 Available on Android only.</p>
 <p><strong>Example</strong>:</p>
@@ -534,7 +534,7 @@ Available on Android only.</p>
 </div>
 </section>
 <section id="enablednscache">
-<h3><code class="docutils literal notranslate"><span class="pre">enableDNSCache</span></code><a class="headerlink" href="#enablednscache" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">enableDNSCache</span></code><a class="headerlink" href="#enablednscache" title="Link to this heading">¶</a></h3>
 <p>Specify whether to enable DNS cache. Note that DNS cache requires an addition of
 a key value store named ‘reserved.platform_store’.</p>
 <p>The interval at which results are saved to the key value store defaults to 1s
@@ -550,7 +550,7 @@ but can also be set explicitly.</p>
 </div>
 </section>
 <section id="setruntimeguard">
-<h3><code class="docutils literal notranslate"><span class="pre">setRuntimeGuard</span></code><a class="headerlink" href="#setruntimeguard" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">setRuntimeGuard</span></code><a class="headerlink" href="#setruntimeguard" title="Link to this heading">¶</a></h3>
 <p>Adds a runtime guard key value pair to envoy configuration.  The guard is of the short form “feature”
 rather than the fully qualified “envoy.reloadable_features.feature”
 Note that Envoy will fail to start up in debug mode if an unknown guard is specified.</p>
@@ -564,7 +564,7 @@ Note that Envoy will fail to start up in debug mode if an unknown guard is speci
 </div>
 </section>
 <section id="setxds">
-<h3><code class="docutils literal notranslate"><span class="pre">setXds</span></code><a class="headerlink" href="#setxds" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">setXds</span></code><a class="headerlink" href="#setxds" title="Link to this heading">¶</a></h3>
 <p>Sets the Bootstrap configuration up with <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/xds_api#config-overview-ads">xDS</a>
 to fetch dynamic configuration from an xDS management server. The xDS management server must
 support the ADS protocol. At this moment, only the State-of-the-World (SotW) xDS protocol is
@@ -599,7 +599,7 @@ xds_builder</p>
 </div>
 </section>
 <section id="setnodeid">
-<h3><code class="docutils literal notranslate"><span class="pre">setNodeId</span></code><a class="headerlink" href="#setnodeid" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">setNodeId</span></code><a class="headerlink" href="#setnodeid" title="Link to this heading">¶</a></h3>
 <p>Sets the node.id field. See the following link for details:
 <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/base.proto#envoy-v3-api-msg-config-core-v3-node">https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/base.proto#envoy-v3-api-msg-config-core-v3-node</a></p>
 <p><strong>Example</strong>:</p>
@@ -615,7 +615,7 @@ xds_builder</p>
 </div>
 </section>
 <section id="setnodelocality">
-<h3><code class="docutils literal notranslate"><span class="pre">setNodeLocality</span></code><a class="headerlink" href="#setnodelocality" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">setNodeLocality</span></code><a class="headerlink" href="#setnodelocality" title="Link to this heading">¶</a></h3>
 <p>Sets the node.locality field. See the following link for details:
 <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/base.proto#envoy-v3-api-msg-config-core-v3-node">https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/base.proto#envoy-v3-api-msg-config-core-v3-node</a></p>
 <p><strong>Example</strong>:</p>
@@ -632,7 +632,7 @@ xds_builder</p>
 </section>
 </section>
 <section id="advanced-configuration">
-<h2>Advanced configuration<a class="headerlink" href="#advanced-configuration" title="Permalink to this heading">¶</a></h2>
+<h2>Advanced configuration<a class="headerlink" href="#advanced-configuration" title="Link to this heading">¶</a></h2>
 <p>In most cases, the functions provided by the builder should cover basic setup requirements.
 However, in some cases it can be useful to provide a
 <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/configuration/configuration">Envoy configuration YAML file</a>
@@ -664,7 +664,7 @@ options are supported by Envoy Mobile.</p>
 </div>
 </section>
 <section id="making-requests">
-<h2>Making requests<a class="headerlink" href="#making-requests" title="Permalink to this heading">¶</a></h2>
+<h2>Making requests<a class="headerlink" href="#making-requests" title="Link to this heading">¶</a></h2>
 <p>Now that you have a stream client instance, you can start making requests:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="http.html#api-http"><span class="std std-ref">HTTP requests and streams</span></a></p></li>

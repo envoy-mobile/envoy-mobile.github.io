@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
@@ -13,17 +13,17 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>gRPC streams &mdash; envoy-mobile 0.5.0-ea7ad7 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
+  <title>gRPC streams &mdash; envoy-mobile 0.5.0-1970b3 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/envoy.css?v=98e714dc" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=8b692262"></script>
+        <script src="../_static/documentation_options.js?v=dccb1ffa"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -43,7 +43,7 @@
             envoy-mobile
           </a>
               <div class="version">
-                0.5.0-ea7ad7
+                0.5.0-1970b3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -118,7 +118,7 @@
            <div itemprop="articleBody">
              
   <section id="grpc-streams">
-<span id="api-grpc"></span><h1>gRPC streams<a class="headerlink" href="#grpc-streams" title="Permalink to this heading">¶</a></h1>
+<span id="api-grpc"></span><h1>gRPC streams<a class="headerlink" href="#grpc-streams" title="Link to this heading">¶</a></h1>
 <p>Envoy Mobile provides support for gRPC as a thin interface built on top of its <a class="reference internal" href="http.html#api-http"><span class="std std-ref">HTTP APIs</span></a>.</p>
 <p>gRPC APIs are designed to be used in conjunction with protobuf libraries such as
 <a class="reference external" href="https://github.com/apple/swift-protobuf">SwiftProtobuf</a> and
@@ -130,7 +130,7 @@
 utilizing annotations for enhanced functionality.</p>
 </div>
 <section id="quick-start">
-<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this heading">¶</a></h2>
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
 <p>Below are some quick examples for getting started with gRPC streams. See the individual class references
 in the later sections of this page for in-depth information on how each type is used.</p>
 <p>Start and interact with a gRPC stream in <strong>Kotlin</strong>:</p>
@@ -185,7 +185,7 @@ in the later sections of this page for in-depth information on how each type is 
 </div>
 </section>
 <section id="grpcclient">
-<h2><code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code><a class="headerlink" href="#grpcclient" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code><a class="headerlink" href="#grpcclient" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code> type provides the ability to start gRPC streams, and is backed by Envoy Mobile’s
 <code class="docutils literal notranslate"><span class="pre">StreamClient</span></code> interface (typically instantiated using a <code class="docutils literal notranslate"><span class="pre">StreamClientBuilder</span></code>).</p>
 <p>To create a <code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code>, simply <a class="reference internal" href="starting_envoy.html#api-starting-envoy"><span class="std std-ref">create a stream client</span></a> and pass it to the initializer:</p>
@@ -193,7 +193,7 @@ in the later sections of this page for in-depth information on how each type is 
 <p>This client can then be used with the types outlined below for starting gRPC streams.</p>
 </section>
 <section id="grpcrequestheaders">
-<h2><code class="docutils literal notranslate"><span class="pre">GRPCRequestHeaders</span></code><a class="headerlink" href="#grpcrequestheaders" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">GRPCRequestHeaders</span></code><a class="headerlink" href="#grpcrequestheaders" title="Link to this heading">¶</a></h2>
 <p>Envoy Mobile provides a <code class="docutils literal notranslate"><span class="pre">GRPCRequestHeadersBuilder</span></code> which acts very similarly to the <code class="docutils literal notranslate"><span class="pre">RequestHeadersBuilder</span></code>
 type. Upon calling <code class="docutils literal notranslate"><span class="pre">build()</span></code>, it returns a <code class="docutils literal notranslate"><span class="pre">GRPCRequestHeaders</span></code> instance - a subclass of <code class="docutils literal notranslate"><span class="pre">RequestHeaders</span></code>
 configured specifically for gRPC streams.</p>
@@ -214,7 +214,7 @@ configured specifically for gRPC streams.</p>
 </div>
 </section>
 <section id="grpcstreamprototype">
-<h2><code class="docutils literal notranslate"><span class="pre">GRPCStreamPrototype</span></code><a class="headerlink" href="#grpcstreamprototype" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">GRPCStreamPrototype</span></code><a class="headerlink" href="#grpcstreamprototype" title="Link to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">GRPCStreamPrototype</span></code> is used to configure gRPC streams prior to starting them by assigning callbacks
 to be invoked when response data is received on the stream.</p>
 <p>Typically, consumers should listen to <code class="docutils literal notranslate"><span class="pre">onMessage</span></code> and use a protobuf library to deserialize
@@ -254,7 +254,7 @@ the complete protobuf message data.</p>
 </div>
 </section>
 <section id="grpcstream">
-<h2><code class="docutils literal notranslate"><span class="pre">GRPCStream</span></code><a class="headerlink" href="#grpcstream" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">GRPCStream</span></code><a class="headerlink" href="#grpcstream" title="Link to this heading">¶</a></h2>
 <p>gRPC streams are started by calling <code class="docutils literal notranslate"><span class="pre">start()</span></code> on a <code class="docutils literal notranslate"><span class="pre">GRPCStreamPrototype</span></code>.</p>
 <p>Doing so returns a <code class="docutils literal notranslate"><span class="pre">GRPCStream</span></code> which allows the sender to interact with the stream.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">sendMessage</span></code> function should be invoked with the serialized data from a protobuf message.

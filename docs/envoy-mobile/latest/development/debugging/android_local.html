@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
@@ -13,17 +13,17 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Debugging the Hello World App (Android) &mdash; envoy-mobile 0.5.0-ea7ad7 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
+  <title>Debugging the Hello World App (Android) &mdash; envoy-mobile 0.5.0-1970b3 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/envoy.css?v=98e714dc" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=8b692262"></script>
+        <script src="../../_static/documentation_options.js?v=dccb1ffa"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -43,7 +43,7 @@
             envoy-mobile
           </a>
               <div class="version">
-                0.5.0-ea7ad7
+                0.5.0-1970b3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -102,9 +102,9 @@
            <div itemprop="articleBody">
              
   <section id="debugging-the-hello-world-app-android">
-<span id="debugging-android-instructions"></span><h1>Debugging the Hello World App (Android)<a class="headerlink" href="#debugging-the-hello-world-app-android" title="Permalink to this heading">¶</a></h1>
+<span id="debugging-android-instructions"></span><h1>Debugging the Hello World App (Android)<a class="headerlink" href="#debugging-the-hello-world-app-android" title="Link to this heading">¶</a></h1>
 <section id="goals">
-<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this heading">¶</a></h2>
+<h2>Goals<a class="headerlink" href="#goals" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>As a developer you can compile your <cite>envoy-mobile</cite> repository and the generated <cite>.aar</cite> will be automatically recognized by Android Studio</p></li>
 <li><p><cite>envoy-mobile</cite> can be compiled to a single arch for debugging</p></li>
@@ -113,7 +113,7 @@
 </ul>
 </section>
 <section id="setting-up-the-environment">
-<h2>Setting up the environment<a class="headerlink" href="#setting-up-the-environment" title="Permalink to this heading">¶</a></h2>
+<h2>Setting up the environment<a class="headerlink" href="#setting-up-the-environment" title="Link to this heading">¶</a></h2>
 <p>Before we start, you’ll need to download Android Studio and the <a class="reference external" href="https://plugins.jetbrains.com/plugin/9185-bazel">Bazel plugin</a>, you can find it in Preferences -&gt; Plugins
 .</p>
 <ol class="arabic simple">
@@ -122,7 +122,7 @@
 </ol>
 </section>
 <section id="adding-envoy-mobile-project-into-android-studio">
-<h2>Adding Envoy-Mobile Project into Android Studio<a class="headerlink" href="#adding-envoy-mobile-project-into-android-studio" title="Permalink to this heading">¶</a></h2>
+<h2>Adding Envoy-Mobile Project into Android Studio<a class="headerlink" href="#adding-envoy-mobile-project-into-android-studio" title="Link to this heading">¶</a></h2>
 <p>With your environment setup, open Android Studio.</p>
 <ol class="arabic simple">
 <li><p>Add a new bazel project by clicking here:</p></li>
@@ -146,7 +146,7 @@
 <img alt="../../_images/bazel-sync.png" src="../../_images/bazel-sync.png" />
 </section>
 <section id="entering-a-debugging-session">
-<h2>Entering a debugging session<a class="headerlink" href="#entering-a-debugging-session" title="Permalink to this heading">¶</a></h2>
+<h2>Entering a debugging session<a class="headerlink" href="#entering-a-debugging-session" title="Link to this heading">¶</a></h2>
 <p>With the project ready, you can now start debugging with Android Studio.</p>
 <ol class="arabic simple">
 <li><p>From Android Studio select one of the available configurations e.g., <cite>Example App (Debug) [x86]</cite> or <cite>Example App (Debug) [arm64]</cite>. Note: <cite>x86</cite> configurations don’t work on ARM machines (i.e., M1 Macbooks).</p></li>

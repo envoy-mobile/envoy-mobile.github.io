@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
@@ -13,17 +13,17 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>What is Envoy Mobile? &mdash; envoy-mobile 0.5.0-ea7ad7 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/envoy.css" type="text/css" />
+  <title>What is Envoy Mobile? &mdash; envoy-mobile 0.5.0-1970b3 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/envoy.css?v=98e714dc" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=8b692262"></script>
+        <script src="../_static/documentation_options.js?v=dccb1ffa"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -43,7 +43,7 @@
             envoy-mobile
           </a>
               <div class="version">
-                0.5.0-ea7ad7
+                0.5.0-1970b3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -98,7 +98,7 @@
            <div itemprop="articleBody">
              
   <section id="what-is-envoy-mobile">
-<h1>What is Envoy Mobile?<a class="headerlink" href="#what-is-envoy-mobile" title="Permalink to this heading">¶</a></h1>
+<h1>What is Envoy Mobile?<a class="headerlink" href="#what-is-envoy-mobile" title="Link to this heading">¶</a></h1>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>Envoy Mobile is currently in a very early stage of development. This page should be read as a set
@@ -127,7 +127,7 @@ client mobile applications. The library approach is required due to the practica
 applications are written and distributed on both the iOS and Android platforms. The high level goals
 of the library are discussed in the following subsections.</p>
 <section id="ubiquitous-api-and-abstraction-for-networking">
-<h2>Ubiquitous API and abstraction for networking<a class="headerlink" href="#ubiquitous-api-and-abstraction-for-networking" title="Permalink to this heading">¶</a></h2>
+<h2>Ubiquitous API and abstraction for networking<a class="headerlink" href="#ubiquitous-api-and-abstraction-for-networking" title="Link to this heading">¶</a></h2>
 <p>With the industry progressively moving towards specifying APIs via a strongly typed IDL such as
 <a class="reference external" href="https://developers.google.com/protocol-buffers/">protocol buffers</a>, Envoy Mobile will standardize
 and abstract how mobile developers interact with IDL exposed endpoints. Via <a class="reference external" href="https://github.com/lyft/protoc-gen-star">intelligent protobuf
@@ -141,7 +141,7 @@ high-level language specific APIs that encapsulate common concerns such as makin
 analytics, tracing, etc.</p>
 </section>
 <section id="simple-and-explicit-system-for-supporting-advanced-networking-features">
-<h2>Simple and explicit system for supporting advanced networking features<a class="headerlink" href="#simple-and-explicit-system-for-supporting-advanced-networking-features" title="Permalink to this heading">¶</a></h2>
+<h2>Simple and explicit system for supporting advanced networking features<a class="headerlink" href="#simple-and-explicit-system-for-supporting-advanced-networking-features" title="Link to this heading">¶</a></h2>
 <p>With protocol buffer’s powerful annotation/extension system, Envoy Mobile can add sophisticated
 cross-platform functionality in a simple and explicit way when using strongly typed IDL APIs.
 Examples of annotations that are planned on our roadmap include marking an API as offline/deferred
@@ -159,7 +159,7 @@ reflection. This model means that Envoy Mobile will not necessarily need to have
 an organization’s APIs in order to provide enhanced cross-platform networking functionality.</p>
 </section>
 <section id="xds-driven-mobile-client-policy">
-<h2>xDS driven mobile client policy<a class="headerlink" href="#xds-driven-mobile-client-policy" title="Permalink to this heading">¶</a></h2>
+<h2>xDS driven mobile client policy<a class="headerlink" href="#xds-driven-mobile-client-policy" title="Link to this heading">¶</a></h2>
 <p>One of the reasons that Envoy has become so popular as a platform is its rich configuration
 discovery APIs which are collectively known as <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/operations/dynamic_configuration">xDS</a>. These
 APIs allow a distributed set of Envoys to be managed by an eventually consistent control plane. One

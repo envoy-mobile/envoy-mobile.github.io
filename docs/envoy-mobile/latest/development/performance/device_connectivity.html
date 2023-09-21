@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
@@ -13,17 +13,17 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Device connectivity analysis &mdash; envoy-mobile 0.5.0-ea7ad7 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/envoy.css" type="text/css" />
+  <title>Device connectivity analysis &mdash; envoy-mobile 0.5.0-1970b3 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/envoy.css?v=98e714dc" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=8b692262"></script>
+        <script src="../../_static/documentation_options.js?v=dccb1ffa"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -43,7 +43,7 @@
             envoy-mobile
           </a>
               <div class="version">
-                0.5.0-ea7ad7
+                0.5.0-1970b3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -108,14 +108,14 @@
            <div itemprop="articleBody">
              
   <section id="device-connectivity-analysis">
-<span id="dev-performance-connectivity"></span><h1>Device connectivity analysis<a class="headerlink" href="#device-connectivity-analysis" title="Permalink to this heading">¶</a></h1>
+<span id="dev-performance-connectivity"></span><h1>Device connectivity analysis<a class="headerlink" href="#device-connectivity-analysis" title="Link to this heading">¶</a></h1>
 <section id="results">
-<h2>Results<a class="headerlink" href="#results" title="Permalink to this heading">¶</a></h2>
+<h2>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>
 <p>Envoy Mobile currently handles switching preferred networks between wifi/cellular based on
 reachability updates from the OS. After switching to a new preferred network, all future requests
 made through the library will use the new connection.</p>
 <section id="ios">
-<h3>iOS<a class="headerlink" href="#ios" title="Permalink to this heading">¶</a></h3>
+<h3>iOS<a class="headerlink" href="#ios" title="Link to this heading">¶</a></h3>
 <p>The above approach has proven successful for unary requests, but has been problematic for long-lived
 streams due to the fact that the library does not aggressively shut down these streams when the
 preferred network changes, causing them to sometimes hang until they time out.</p>
@@ -126,12 +126,12 @@ long-lived streams, as well as using native platform sockets to alleviate the is
 </div>
 </section>
 <section id="android">
-<h3>Android<a class="headerlink" href="#android" title="Permalink to this heading">¶</a></h3>
+<h3>Android<a class="headerlink" href="#android" title="Link to this heading">¶</a></h3>
 <p>We did not observe any issues when switching between background/foreground or between wifi/cellular.</p>
 </section>
 </section>
 <section id="experimentation-method">
-<h2>Experimentation method<a class="headerlink" href="#experimentation-method" title="Permalink to this heading">¶</a></h2>
+<h2>Experimentation method<a class="headerlink" href="#experimentation-method" title="Link to this heading">¶</a></h2>
 <p>Modified versions of the “hello world” example apps were used to run the following experiments,
 validating that the library is able to continue making successful requests after each change.</p>
 <p>Lifecycle experiment steps:</p>
@@ -150,7 +150,7 @@ validating that the library is able to continue making successful requests after
 <li><p>Turn off airplane mode</p></li>
 </ol>
 <section id="ios-configuration">
-<h3>iOS configuration<a class="headerlink" href="#ios-configuration" title="Permalink to this heading">¶</a></h3>
+<h3>iOS configuration<a class="headerlink" href="#ios-configuration" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Build the library with debugging symbols (using <code class="docutils literal notranslate"><span class="pre">--copt=-ggdb3</span></code>)</p></li>
 <li><p>Add the outputted <code class="docutils literal notranslate"><span class="pre">Envoy.framework</span></code> to the example app</p></li>
@@ -159,7 +159,7 @@ validating that the library is able to continue making successful requests after
 </ol>
 </section>
 <section id="android-configuration">
-<h3>Android configuration<a class="headerlink" href="#android-configuration" title="Permalink to this heading">¶</a></h3>
+<h3>Android configuration<a class="headerlink" href="#android-configuration" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Build the library</p></li>
 <li><p>Build and run the example app:</p></li>
@@ -168,7 +168,7 @@ validating that the library is able to continue making successful requests after
 </section>
 </section>
 <section id="open-issues">
-<h2>Open issues<a class="headerlink" href="#open-issues" title="Permalink to this heading">¶</a></h2>
+<h2>Open issues<a class="headerlink" href="#open-issues" title="Link to this heading">¶</a></h2>
 <p>For current issues with device conditions, please see issues with the
 <a class="reference external" href="https://github.com/envoyproxy/envoy-mobile/labels/perf%2Fdevice">perf/device label</a>.</p>
 </section>
