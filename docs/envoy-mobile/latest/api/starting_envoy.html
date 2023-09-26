@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-c96eca documentation</title>
+  <title>Starting Envoy &mdash; envoy-mobile 0.5.0-7b1cf0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="../_static/css/envoy.css?v=98e714dc" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -21,7 +21,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=c8abe921"></script>
+        <script src="../_static/documentation_options.js?v=a70fd39d"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -43,7 +43,7 @@
             envoy-mobile
           </a>
               <div class="version">
-                0.5.0-c96eca
+                0.5.0-7b1cf0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -97,6 +97,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#setnetworkmonitoringmode"><code class="docutils literal notranslate"><span class="pre">setNetworkMonitoringMode</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablegzipdecompression"><code class="docutils literal notranslate"><span class="pre">enableGzipDecompression</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablebrotlidecompression"><code class="docutils literal notranslate"><span class="pre">enableBrotliDecompression</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enablehttp3"><code class="docutils literal notranslate"><span class="pre">enableHttp3</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addquichint"><code class="docutils literal notranslate"><span class="pre">addQuicHint</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablesockettagging"><code class="docutils literal notranslate"><span class="pre">enableSocketTagging</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enableinterfacebinding"><code class="docutils literal notranslate"><span class="pre">enableInterfaceBinding</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addkeyvaluestore"><code class="docutils literal notranslate"><span class="pre">addKeyValueStore</span></code></a></li>
@@ -455,6 +457,34 @@ are used.</p>
 </div>
 <p>Default values from the <a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/compression/brotli/decompressor/v3/brotli.proto">brotli decompressor proto</a>
 are used.</p>
+</section>
+<section id="enablehttp3">
+<h3><code class="docutils literal notranslate"><span class="pre">enableHttp3</span></code><a class="headerlink" href="#enablehttp3" title="Link to this heading">¶</a></h3>
+<p>Specify whether to enable HTTP/3. Defaults to true. Only available when the Envoy Mobile build has HTTP/3 included.
+When HTTP/3 is enabled, the client will first talk HTTP/2 with the servers and upon receiving alt-svc in the response,
+following traffic will be sent via HTTP/3.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">enableHttp3</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">enableHttp3</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="addquichint">
+<h3><code class="docutils literal notranslate"><span class="pre">addQuicHint</span></code><a class="headerlink" href="#addquichint" title="Link to this heading">¶</a></h3>
+<p>Add a host port pair that’s known to support QUIC. Only available when HTTP/3 is enabled.
+It can be called multiple times to append a list of QUIC hints.
+This allows HTTP/3 to be used for the first request to the hosts and avoid the HTTP/2 -&gt; HTTP/3 switch as mentioned in enableHttp3.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addQuicHint</span><span class="p">(</span><span class="s2">&quot;www.example.com&quot;</span><span class="p">,</span> <span class="mi">443</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addQuicHint</span><span class="p">(</span><span class="s2">&quot;www.example.com&quot;</span><span class="p">,</span> <span class="mi">443</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="enablesockettagging">
 <h3><code class="docutils literal notranslate"><span class="pre">enableSocketTagging</span></code><a class="headerlink" href="#enablesockettagging" title="Link to this heading">¶</a></h3>
