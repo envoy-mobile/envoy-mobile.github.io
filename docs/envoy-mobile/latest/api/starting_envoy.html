@@ -99,6 +99,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#enablebrotlidecompression"><code class="docutils literal notranslate"><span class="pre">enableBrotliDecompression</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablehttp3"><code class="docutils literal notranslate"><span class="pre">enableHttp3</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addquichint"><code class="docutils literal notranslate"><span class="pre">addQuicHint</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addquiccanonicalsuffix"><code class="docutils literal notranslate"><span class="pre">addQuicCanonicalSuffix</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablesockettagging"><code class="docutils literal notranslate"><span class="pre">enableSocketTagging</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enableinterfacebinding"><code class="docutils literal notranslate"><span class="pre">enableInterfaceBinding</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addkeyvaluestore"><code class="docutils literal notranslate"><span class="pre">addKeyValueStore</span></code></a></li>
@@ -483,6 +484,21 @@ This allows HTTP/3 to be used for the first request to the hosts and avoid the H
 
 <span class="o">//</span> <span class="n">Swift</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">addQuicHint</span><span class="p">(</span><span class="s2">&quot;www.example.com&quot;</span><span class="p">,</span> <span class="mi">443</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="addquiccanonicalsuffix">
+<h3><code class="docutils literal notranslate"><span class="pre">addQuicCanonicalSuffix</span></code><a class="headerlink" href="#addquiccanonicalsuffix" title="Link to this heading">¶</a></h3>
+<p>Add a canonical suffix that’s known to speak QUIC.
+This feature works as a extension to QUIC hints in such way that:
+if <cite>.abc.com</cite> is added to canonical suffix, and <cite>foo.abc.com</cite> is added to QUIC hint, then all requests to
+<cite>*.abc.com</cite> will be considered QUIC ready.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Kotlin</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addQuicCanonicalSuffix</span><span class="p">(</span><span class="s2">&quot;.example.com&quot;</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Swift</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">addQuicCanonicalSuffix</span><span class="p">(</span><span class="s2">&quot;.example.com&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
