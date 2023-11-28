@@ -63,7 +63,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#requestheaders"><code class="docutils literal notranslate"><span class="pre">RequestHeaders</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#streamprototype"><code class="docutils literal notranslate"><span class="pre">StreamPrototype</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#retrypolicy"><code class="docutils literal notranslate"><span class="pre">RetryPolicy</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#compressionalgorithm"><code class="docutils literal notranslate"><span class="pre">CompressionAlgorithm</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#stream"><code class="docutils literal notranslate"><span class="pre">Stream</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#unary-requests">Unary requests</a></li>
 </ul>
@@ -83,7 +82,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#requestheaders"><code class="docutils literal notranslate"><span class="pre">RequestHeaders</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#streamprototype"><code class="docutils literal notranslate"><span class="pre">StreamPrototype</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#retrypolicy"><code class="docutils literal notranslate"><span class="pre">RetryPolicy</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#compressionalgorithm"><code class="docutils literal notranslate"><span class="pre">CompressionAlgorithm</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stream"><code class="docutils literal notranslate"><span class="pre">Stream</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#unary-requests">Unary requests</a></li>
 </ul>
@@ -190,7 +188,6 @@ then passing it to a previously created <a class="reference internal" href="star
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">RequestHeadersBuilder</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="s2">&quot;https&quot;</span><span class="p">,</span> <span class="s2">&quot;api.envoyproxy.io&quot;</span><span class="p">,</span> <span class="s2">&quot;/foo&quot;</span><span class="p">)</span>
   <span class="o">.</span><span class="n">addRetryPolicy</span><span class="p">(</span><span class="n">RetryPolicy</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
   <span class="o">.</span><span class="n">addUpstreamHttpProtocol</span><span class="p">(</span><span class="n">UpstreamRequestProtocol</span><span class="o">.</span><span class="n">HTTP2</span><span class="p">)</span>
-  <span class="o">.</span><span class="n">enableRequestCompression</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
   <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;x-custom-header&quot;</span><span class="p">,</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
   <span class="o">...</span>
   <span class="o">.</span><span class="n">build</span><span class="p">()</span>
@@ -200,7 +197,6 @@ then passing it to a previously created <a class="reference internal" href="star
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">RequestHeadersBuilder</span><span class="p">(</span><span class="n">method</span><span class="p">:</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="n">scheme</span><span class="p">:</span> <span class="s2">&quot;https&quot;</span><span class="p">,</span> <span class="n">authority</span><span class="p">:</span> <span class="s2">&quot;api.envoyproxy.io&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="s2">&quot;/foo&quot;</span><span class="p">)</span>
   <span class="o">.</span><span class="n">addRetryPolicy</span><span class="p">(</span><span class="n">RetryPolicy</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
   <span class="o">.</span><span class="n">addUpstreamHttpProtocol</span><span class="p">(</span><span class="o">.</span><span class="n">http2</span><span class="p">)</span>
-  <span class="o">.</span><span class="n">enableRequestCompression</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
   <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s2">&quot;x-custom-header&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
   <span class="o">...</span>
   <span class="o">.</span><span class="n">build</span><span class="p">()</span>
@@ -254,16 +250,6 @@ and are applied when the request headers are sent.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.envoyproxy.io/learn/automatic-retries">Automatic retries</a></p></li>
 <li><p><a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/http/http_routing.html?highlight=exponential#retry-semantics">Retry semantics</a></p></li>
-</ul>
-</section>
-<section id="compressionalgorithm">
-<h2><code class="docutils literal notranslate"><span class="pre">CompressionAlgorithm</span></code><a class="headerlink" href="#compressionalgorithm" title="Link to this heading">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">CompressionAlgorithm</span></code> type allows for compressing request bodies using either gzip or Brotli.
-This can be set by calling <code class="docutils literal notranslate"><span class="pre">enableRequestCompression(...)</span></code> on the <code class="docutils literal notranslate"><span class="pre">RequestHeadersBuilder</span></code>.</p>
-<p>See the compression filter documentation for details about how and when this compression is applied:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/compression/gzip/compressor/v3/gzip.proto">gzip compressor proto</a></p></li>
-<li><p><a class="reference external" href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/compression/brotli/compressor/v3/brotli.proto">brotli compressor proto</a></p></li>
 </ul>
 </section>
 <section id="stream">
